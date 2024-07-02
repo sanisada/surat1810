@@ -16,10 +16,10 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                             <span class="avatar-icon"><i class="fa fa-user"></i></span> 
-                            <span>Hi <?php echo ucwords(USER_NAME); ?> !</span>
+                            <span><?php echo ucwords(USER_NAME); ?></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="<?php print_link('account') ?>"><i class="fa fa-user"></i> My Account</a>
+                            <!-- <a class="dropdown-item" href="<?php print_link('account') ?>"><i class="fa fa-user"></i> My Account</a> -->
                             <a class="dropdown-item" href="<?php print_link('index/logout?csrf_token=' . Csrf::$token) ?>"><i class="fa fa-sign-out"></i> Logout</a>
                         </ul>
                     </li>
@@ -36,13 +36,13 @@
     <nav id="sidebar" class="navbar-dark bg-dark">
         <ul class="nav navbar-nav w-100 flex-column align-self-start">
             <li class="menu-profile text-center nav-item">
-                <a class="avatar" href="<?php print_link('account') ?>">
+                <!-- <a class="avatar" href="<?php print_link('account') ?>">
                     <span class="avatar-icon"><i class="fa fa-user"></i></span>
-                </a>
-                <h5 class="user-name">Hi 
+                </a> -->
+                <h5 class="user-name"> 
                     <?php echo ucwords(USER_NAME); ?>
                 </h5>
-                <div class="dropdown menu-dropdown">
+                <!-- <div class="dropdown menu-dropdown">
                     <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i>
                     </button>
@@ -50,7 +50,7 @@
                         <a class="dropdown-item" href="<?php print_link('account') ?>"><i class="fa fa-user"></i> My Account</a>
                         <a class="dropdown-item" href="<?php print_link('index/logout?csrf_token=' . Csrf::$token) ?>"><i class="fa fa-sign-out"></i> Logout</a>
                     </ul>
-                </div>
+                </div> -->
             </li>
         </ul>
         <?php Html :: render_menu(Menu :: $navbarsideleft  , "nav navbar-nav w-100 flex-column align-self-start"  , "accordion"); ?>

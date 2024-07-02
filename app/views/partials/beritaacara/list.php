@@ -23,12 +23,12 @@ $show_pagination = $this->show_pagination;
         <div class="container-fluid">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Beritaacara</h4>
+                    <h4 class="record-title">Berita Acara</h4>
                 </div>
                 <div class="col-sm-3 ">
                     <a  class="btn btn btn-primary my-1" href="<?php print_link("beritaacara/add") ?>">
                         <i class="fa fa-plus"></i>                              
-                        Add New Beritaacara 
+                        Tambah Berita Acara 
                     </a>
                 </div>
                 <div class="col-sm-4 ">
@@ -107,12 +107,12 @@ $show_pagination = $this->show_pagination;
                                     <table class="table  table-striped table-sm text-left">
                                         <thead class="table-header bg-light">
                                             <tr>
-                                                <th class="td-checkbox">
+                                                <!-- <th class="td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="toggle-check-all custom-control-input" type="checkbox" />
                                                         <span class="custom-control-label"></span>
                                                     </label>
-                                                </th>
+                                                </th> -->
                                                 <th class="td-sno">#</th>
                                                 <th  class="td-Nomor"> Nomor</th>
                                                 <th  class="td-Tanggal"> Tanggal</th>
@@ -135,12 +135,12 @@ $show_pagination = $this->show_pagination;
                                             $counter++;
                                             ?>
                                             <tr>
-                                                <th class=" td-checkbox">
+                                                <!-- <th class=" td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="optioncheck custom-control-input" name="optioncheck[]" value="<?php echo $data['Nomor'] ?>" type="checkbox" />
                                                             <span class="custom-control-label"></span>
                                                         </label>
-                                                    </th>
+                                                    </th> -->
                                                     <th class="td-sno"><?php echo $counter; ?></th>
                                                     <td class="td-Nomor"><a href="<?php print_link("beritaacara/view/$data[Nomor]") ?>"><?php echo $data['Nomor']; ?></a></td>
                                                     <td class="td-Tanggal">
@@ -155,7 +155,7 @@ $show_pagination = $this->show_pagination;
                                                             data-type="flatdatetimepicker" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['Tanggal']; ?> 
                                                         </span>
                                                     </td>
@@ -170,7 +170,7 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['Alamat']; ?> 
                                                         </span>
                                                     </td>
@@ -185,7 +185,7 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['Ringkasan_Isi']; ?> 
                                                         </span>
                                                     </td>
@@ -200,7 +200,7 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['No_Berita_Acara']; ?> 
                                                         </span>
                                                     </td>
@@ -215,22 +215,29 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['Keterangan']; ?> 
                                                         </span>
                                                     </td>
-                                                    <th class="td-btn">
-                                                        <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("beritaacara/view/$rec_id"); ?>">
-                                                            <i class="fa fa-eye"></i> View
-                                                        </a>
-                                                        <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("beritaacara/edit/$rec_id"); ?>">
-                                                            <i class="fa fa-edit"></i> Edit
-                                                        </a>
-                                                        <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("beritaacara/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
-                                                            <i class="fa fa-times"></i>
-                                                            Delete
-                                                        </a>
-                                                    </th>
+                                                    <?php
+                                                        // Hanya tampilkan tombol edit jika role pengguna adalah admin
+                                                        if (USER_ROLE === 'Admin') {
+                                                            ?>
+                                                        <th class="td-btn">
+                                                            <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("beritaacara/view/$rec_id"); ?>">
+                                                                <i class="fa fa-eye"></i> View
+                                                            </a>
+                                                            <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("beritaacara/edit/$rec_id"); ?>">
+                                                                <i class="fa fa-edit"></i> Edit
+                                                            </a>
+                                                            <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("beritaacara/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
+                                                                <i class="fa fa-times"></i>
+                                                                Delete
+                                                            </a>
+                                                        </th>
+                                                        <?php
+                                                        }
+                                                    ?>
                                                 </tr>
                                                 <?php 
                                                 }

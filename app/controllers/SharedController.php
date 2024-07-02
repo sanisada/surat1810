@@ -46,7 +46,7 @@ class SharedController extends BaseController{
      */
 	function suratkeluar_Subkode_Sensus_option_list($lookup_Kode_Sensus){
 		$db = $this->GetModel();
-		$sqltext = "SELECT  DISTINCT Subkode AS value,keterangan AS label FROM kodesurveisensus WHERE Kode= ?" ;
+		$sqltext = "SELECT  DISTINCT Subkode AS value,keterangan AS label FROM kodesurveisensus WHERE Kode= ? AND Subkode <> '' AND Klasifikasi = ''" ;
 		$queryparams = array($lookup_Kode_Sensus);
 		$arr = $db->rawQuery($sqltext, $queryparams);
 		return $arr;
@@ -56,10 +56,22 @@ class SharedController extends BaseController{
      * suratkeluar_Bagian_Sensus_option_list Model Action
      * @return array
      */
-	function suratkeluar_Bagian_Sensus_option_list($lookup_Subkode_Sensus){
+	function suratkeluar_Bagian_Sensus_option_list($lookup_Kode_Sensus, $lookup_Subkode_Sensus){
 		$db = $this->GetModel();
-		$sqltext = "SELECT  DISTINCT Bagian AS value,keterangan AS label FROM kodesurveisensus WHERE Subkode= ?" ;
-		$queryparams = array($lookup_Subkode_Sensus);
+		$sqltext = "SELECT  DISTINCT Klasifikasi AS value,keterangan AS label FROM kodesurveisensus WHERE Kode= ? AND Subkode= ? AND Klasifikasi <> '' AND Subklasifikasi = ''" ;
+		$queryparams = array($lookup_Kode_Sensus, $lookup_Subkode_Sensus);
+		$arr = $db->rawQuery($sqltext, $queryparams);
+		return $arr;
+	}
+
+	/**
+     * suratkeluar_Sub_Bagian_Sensus_option_list Model Action
+     * @return array
+     */
+	function suratkeluar_Sub_Bagian_Sensus_option_list($lookup_Kode_Sensus, $lookup_Subkode_Sensus, $lookup_Bagian_Sensus){
+		$db = $this->GetModel();
+		$sqltext = "SELECT  DISTINCT Klasifikasi AS value,keterangan AS label FROM kodesurveisensus WHERE Kode= ? AND Subkode= ? AND Klasifikasi = ?  AND Subklasifikasi <> ''" ;
+		$queryparams = array($lookup_Kode_Sensus, $lookup_Subkode_Sensus, $lookup_Bagian_Sensus);
 		$arr = $db->rawQuery($sqltext, $queryparams);
 		return $arr;
 	}
@@ -70,7 +82,7 @@ class SharedController extends BaseController{
      */
 	function suratkeluar_Subkode_Klasifikasi_option_list($lookup_Kode_Klasifikasi){
 		$db = $this->GetModel();
-		$sqltext = "SELECT  DISTINCT Subkode AS value,Keterangan AS label FROM kodeklasifikasifasilitatif WHERE Kode= ?" ;
+		$sqltext = "SELECT  DISTINCT Subkode AS value,Keterangan AS label FROM kodeklasifikasifasilitatif WHERE Kode= ? AND Subkode <> '' AND Klasifikasi = ''" ;
 		$queryparams = array($lookup_Kode_Klasifikasi);
 		$arr = $db->rawQuery($sqltext, $queryparams);
 		return $arr;
@@ -80,10 +92,18 @@ class SharedController extends BaseController{
      * suratkeluar_Bagian_Klasifikasi_option_list Model Action
      * @return array
      */
-	function suratkeluar_Bagian_Klasifikasi_option_list($lookup_Subkode_Klasifikasi){
+	function suratkeluar_Bagian_Klasifikasi_option_list($lookup_Kode_Klasifikasi, $lookup_Subkode_Klasifikasi){
 		$db = $this->GetModel();
-		$sqltext = "SELECT  DISTINCT Bagian AS value,Keterangan AS label FROM kodeklasifikasifasilitatif WHERE Subkode= ?" ;
-		$queryparams = array($lookup_Subkode_Klasifikasi);
+		$sqltext = "SELECT  DISTINCT Klasifikasi AS value,keterangan AS label FROM kodeklasifikasifasilitatif WHERE Kode= ? AND Subkode= ? AND Klasifikasi <> '' AND Subklasifikasi = ''" ;
+		$queryparams = array($lookup_Kode_Klasifikasi, $lookup_Subkode_Klasifikasi);
+		$arr = $db->rawQuery($sqltext, $queryparams);
+		return $arr;
+	}
+
+	function suratkeluar_Sub_Bagian_Klasifikasi_option_list($lookup_Kode_Klasifikasi, $lookup_Subkode_Klasifikasi, $lookup_Bagian_Klasifikasi){
+		$db = $this->GetModel();
+		$sqltext = "SELECT  DISTINCT Klasifikasi AS value,keterangan AS label FROM kodeklasifikasifasilitatif WHERE Kode= ? AND Subkode= ? AND Klasifikasi = ?  AND Subklasifikasi <> ''" ;
+		$queryparams = array($lookup_Kode_Klasifikasi, $lookup_Subkode_Klasifikasi, $lookup_Bagian_Klasifikasi);
 		$arr = $db->rawQuery($sqltext, $queryparams);
 		return $arr;
 	}

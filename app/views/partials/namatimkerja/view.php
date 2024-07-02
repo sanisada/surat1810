@@ -62,7 +62,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Kode_Tim']; ?> 
                                             </span>
                                         </td>
@@ -80,7 +80,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Nama_Tim_Kerja']; ?> 
                                             </span>
                                         </td>

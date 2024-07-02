@@ -28,7 +28,7 @@ $show_pagination = $this->show_pagination;
                 <div class="col-sm-3 ">
                     <a  class="btn btn btn-primary my-1" href="<?php print_link("pengguna/add") ?>">
                         <i class="fa fa-plus"></i>                              
-                        Add New Pengguna 
+                        Tambah Pengguna 
                     </a>
                 </div>
                 <div class="col-sm-4 ">
@@ -107,12 +107,12 @@ $show_pagination = $this->show_pagination;
                                     <table class="table  table-striped table-sm text-left">
                                         <thead class="table-header bg-light">
                                             <tr>
-                                                <th class="td-checkbox">
+                                                <!-- <th class="td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="toggle-check-all custom-control-input" type="checkbox" />
                                                         <span class="custom-control-label"></span>
                                                     </label>
-                                                </th>
+                                                </th> -->
                                                 <th class="td-sno">#</th>
                                                 <th  class="td-id_user"> Id User</th>
                                                 <th  class="td-Username"> Username</th>
@@ -132,12 +132,12 @@ $show_pagination = $this->show_pagination;
                                             $counter++;
                                             ?>
                                             <tr>
-                                                <th class=" td-checkbox">
+                                                <!-- <th class=" td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="optioncheck custom-control-input" name="optioncheck[]" value="<?php echo $data['id_user'] ?>" type="checkbox" />
                                                             <span class="custom-control-label"></span>
                                                         </label>
-                                                    </th>
+                                                    </th> -->
                                                     <th class="td-sno"><?php echo $counter; ?></th>
                                                     <td class="td-id_user"><a href="<?php print_link("pengguna/view/$data[id_user]") ?>"><?php echo $data['id_user']; ?></a></td>
                                                     <td class="td-Username">
@@ -151,23 +151,30 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['Username']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Email"><a href="<?php print_link("mailto:$data[Email]") ?>"><?php echo $data['Email']; ?></a></td>
-                                                    <th class="td-btn">
-                                                        <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("pengguna/view/$rec_id"); ?>">
-                                                            <i class="fa fa-eye"></i> View
-                                                        </a>
-                                                        <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("pengguna/edit/$rec_id"); ?>">
-                                                            <i class="fa fa-edit"></i> Edit
-                                                        </a>
-                                                        <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("pengguna/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
-                                                            <i class="fa fa-times"></i>
-                                                            Delete
-                                                        </a>
-                                                    </th>
+                                                    <?php
+                                                        // Hanya tampilkan tombol edit jika role pengguna adalah admin
+                                                        if (USER_ROLE === 'Admin') {
+                                                            ?>
+                                                            <th class="td-btn">
+                                                                <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("pengguna/view/$rec_id"); ?>">
+                                                                    <i class="fa fa-eye"></i> View
+                                                                </a>
+                                                                <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("pengguna/edit/$rec_id"); ?>">
+                                                                    <i class="fa fa-edit"></i> Edit
+                                                                </a>
+                                                                <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("pengguna/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
+                                                                    <i class="fa fa-times"></i>
+                                                                    Delete
+                                                                </a>
+                                                            </th>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </tr>
                                                 <?php 
                                                 }

@@ -1342,7 +1342,7 @@ EOT;
                 break;
 
             case 'add':
-                // this is to add new items to the procset list, despite the fact that this is considered
+                // this is to Tambah items to the procset list, despite the fact that this is considered
                 // obsolete, the items are required for printing to some postscript printers
                 switch ($options) {
                     case 'ImageB':
@@ -5528,7 +5528,7 @@ EOT;
 
     /**
      * define font families, this is used to initialize the font families for the default fonts
-     * and for the user to add new ones for their fonts. The default bahavious can be overridden should
+     * and for the user to Tambah ones for their fonts. The default bahavious can be overridden should
      * that be desired.
      *
      * @param $family

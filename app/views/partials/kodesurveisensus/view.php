@@ -58,7 +58,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="number" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Nomor']; ?> 
                                             </span>
                                         </td>
@@ -76,7 +76,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Kode']; ?> 
                                             </span>
                                         </td>
@@ -94,7 +94,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Subkode']; ?> 
                                             </span>
                                         </td>
@@ -112,7 +112,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Bagian']; ?> 
                                             </span>
                                         </td>
@@ -130,7 +130,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['keterangan']; ?> 
                                             </span>
                                         </td>

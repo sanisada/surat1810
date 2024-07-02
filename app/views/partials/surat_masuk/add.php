@@ -15,7 +15,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Add New Surat Masuk</h4>
+                    <h4 class="record-title">Tambah Surat Masuk</h4>
                 </div>
             </div>
         </div>
@@ -31,105 +31,121 @@ $redirect_to = $this->redirect_to;
                     <div  class="bg-light p-3 animated fadeIn page-content">
                         <form id="surat_masuk-add-form" role="form" novalidate enctype="multipart/form-data" class="form page-form form-horizontal needs-validation" action="<?php print_link("surat_masuk/add?csrf_token=$csrf_token") ?>" method="post">
                             <div>
+                                <?php
+                                    $kode_controller = new Surat_masukController;
+                                    $kode = $kode_controller->getKode();
+                                ?>
                                 <div class="form-group ">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <label class="control-label" for="Nomor">Nomor <span class="text-danger">*</span></label>
+                                            <label class="control-label" for="ctrl-Nomor">Nomor <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="">
-                                                <input id="ctrl-Nomor"  value="<?php  echo $this->set_field_value('Nomor',""); ?>" type="text" placeholder="Enter Nomor"  required="" name="Nomor"  class="form-control " />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <label class="control-label" for="Tanggl_Surat">Tanggl Surat <span class="text-danger">*</span></label>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="input-group">
-                                                    <input id="ctrl-Tanggl_Surat" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('Tanggl_Surat',""); ?>" type="datetime" name="Tanggl_Surat" placeholder="Enter Tanggl Surat" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label class="control-label" for="Asal_Surat">Asal Surat <span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <div class="">
-                                                        <input id="ctrl-Asal_Surat"  value="<?php  echo $this->set_field_value('Asal_Surat',""); ?>" type="text" placeholder="Enter Asal Surat"  required="" name="Asal_Surat"  class="form-control " />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group ">
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <label class="control-label" for="Penerima">Penerima <span class="text-danger">*</span></label>
-                                                    </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="">
-                                                            <input id="ctrl-Penerima"  value="<?php  echo $this->set_field_value('Penerima',""); ?>" type="text" placeholder="Enter Penerima"  required="" name="Penerima"  class="form-control " />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group ">
-                                                    <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label" for="Nomor_Surat">Nomor Surat <span class="text-danger">*</span></label>
-                                                        </div>
-                                                        <div class="col-sm-8">
-                                                            <div class="">
-                                                                <input id="ctrl-Nomor_Surat"  value="<?php  echo $this->set_field_value('Nomor_Surat',""); ?>" type="text" placeholder="Enter Nomor Surat"  required="" name="Nomor_Surat"  class="form-control " />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group ">
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label" for="Ringkasan_Isi_Surat">Ringkasan Isi Surat <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="col-sm-8">
-                                                                <div class="">
-                                                                    <input id="ctrl-Ringkasan_Isi_Surat"  value="<?php  echo $this->set_field_value('Ringkasan_Isi_Surat',""); ?>" type="text" placeholder="Enter Ringkasan Isi Surat"  required="" name="Ringkasan_Isi_Surat"  class="form-control " />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group ">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <label class="control-label" for="Keterangan">Keterangan <span class="text-danger">*</span></label>
-                                                                </div>
-                                                                <div class="col-sm-8">
-                                                                    <div class="">
-                                                                        <input id="ctrl-Keterangan"  value="<?php  echo $this->set_field_value('Keterangan',""); ?>" type="text" placeholder="Enter Keterangan"  required="" name="Keterangan"  class="form-control " />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-submit-btn-holder text-center mt-3">
-                                                            <div class="form-ajax-status"></div>
-                                                            <button class="btn btn-primary" type="submit">
-                                                                Submit
-                                                                <i class="fa fa-send"></i>
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                                <input id="ctrl-Nomor" value="<?php echo $this->set_field_value('Nomor', $kode); ?>" type="text" placeholder="Enter Nomor" required="" name="Nomor" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </section>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="ctrl-Tanggal_Surat">Tanggal Surat <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="input-group">
+                                                <input id="ctrl-Tanggal_Surat" class="form-control" type="date" name="Tanggal_Surat" required="">
+                                                <!-- <div id="tanggal_display" class="mt-2"></div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="ctrl-Asal_Surat">Asal Surat <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="">
+                                                <input id="ctrl-Asal_Surat" value="<?php echo $this->set_field_value('Asal_Surat', ""); ?>" type="text" placeholder="Enter Asal Surat" required="" name="Asal_Surat" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="ctrl-Penerima">Penerima <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="">
+                                                <input id="ctrl-Penerima" value="<?php echo $this->set_field_value('Penerima', ""); ?>" type="text" placeholder="Enter Penerima" required="" name="Penerima" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="ctrl-Nomor_Surat">Nomor Surat <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="">
+                                                <input id="ctrl-Nomor_Surat" value="<?php echo $this->set_field_value('Nomor_Surat', ""); ?>" type="text" placeholder="Enter Nomor Surat" required="" name="Nomor_Surat" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="ctrl-Ringkasan_Isi_Surat">Ringkasan Isi Surat <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="">
+                                                <input id="ctrl-Ringkasan_Isi_Surat" value="<?php echo $this->set_field_value('Ringkasan_Isi_Surat', ""); ?>" type="text" placeholder="Enter Ringkasan Isi Surat" required="" name="Ringkasan_Isi_Surat" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="ctrl-Keterangan">Keterangan <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="">
+                                                <input id="ctrl-Keterangan" value="<?php echo $this->set_field_value('Keterangan', ""); ?>" type="text" placeholder="Enter Keterangan" required="" name="Keterangan" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-submit-btn-holder text-center mt-3">
+                                    <div class="form-ajax-status"></div>
+                                    <button class="btn btn-primary" type="submit">
+                                        Submit
+                                        <i class="fa fa-send"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById('ctrl-Tanggal_Surat');
+    const display = document.getElementById('tanggal_display');
+    
+    input.addEventListener('change', function() {
+      const tanggal = new Date(this.value);
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = tanggal.toLocaleDateString('id-ID', options);
+      display.innerText = formattedDate;
+    });
+  });
+</script>

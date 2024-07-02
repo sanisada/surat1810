@@ -23,15 +23,15 @@ $show_pagination = $this->show_pagination;
         <div class="container-fluid">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Kodeklasifikasifasilitatif</h4>
+                    <h4 class="record-title">Kode Klasifikasi Fasilitatif</h4>
                 </div>
-                <div class="col-sm-3 ">
+                <!-- <div class="col-sm-3 ">
                     <a  class="btn btn btn-primary my-1" href="<?php print_link("kodeklasifikasifasilitatif/add") ?>">
                         <i class="fa fa-plus"></i>                              
-                        Add New Kodeklasifikasifasilitatif 
+                        Tambah Kodeklasifikasifasilitatif 
                     </a>
-                </div>
-                <div class="col-sm-4 ">
+                </div> -->
+                <!-- <div class="col-sm-4 ">
                     <form  class="search" action="<?php print_link('kodeklasifikasifasilitatif'); ?>" method="get">
                         <div class="input-group">
                             <input value="<?php echo get_value('search'); ?>" class="form-control" type="text" name="search"  placeholder="Search" />
@@ -40,7 +40,7 @@ $show_pagination = $this->show_pagination;
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
                     <div class="col-md-12 comp-grid">
                         <div class="">
                             <!-- Page bread crumbs components-->
@@ -107,17 +107,19 @@ $show_pagination = $this->show_pagination;
                                     <table class="table  table-striped table-sm text-left">
                                         <thead class="table-header bg-light">
                                             <tr>
-                                                <th class="td-checkbox">
+                                                <!-- <th class="td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="toggle-check-all custom-control-input" type="checkbox" />
                                                         <span class="custom-control-label"></span>
                                                     </label>
-                                                </th>
+                                                </th> -->
                                                 <th class="td-sno">#</th>
-                                                <th  class="td-Nomor"> Nomor</th>
+                                                <!-- <th  class="td-Nomor"> Nomor</th> -->
                                                 <th  class="td-Kode"> Kode</th>
                                                 <th  class="td-Subkode"> Subkode</th>
-                                                <th  class="td-Bagian"> Bagian</th>
+                                                <th  class="td-Klasifikasi"> Klasifikasi</th>
+                                                <th  class="td-Subklasifikasi"> Subklasifikasi</th>
+                                                <th  class="td-Sub subklasifikasi"> Sub subklasifikasi</th>
                                                 <th  class="td-Keterangan"> Keterangan</th>
                                                 <th class="td-btn"></th>
                                             </tr>
@@ -134,14 +136,14 @@ $show_pagination = $this->show_pagination;
                                             $counter++;
                                             ?>
                                             <tr>
-                                                <th class=" td-checkbox">
+                                                <!-- <th class=" td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="optioncheck custom-control-input" name="optioncheck[]" value="<?php echo $data['Nomor'] ?>" type="checkbox" />
                                                             <span class="custom-control-label"></span>
                                                         </label>
-                                                    </th>
+                                                    </th> -->
                                                     <th class="td-sno"><?php echo $counter; ?></th>
-                                                    <td class="td-Nomor"><a href="<?php print_link("kodeklasifikasifasilitatif/view/$data[Nomor]") ?>"><?php echo $data['Nomor']; ?></a></td>
+                                                    <!-- <td class="td-Nomor"><a href="<?php print_link("kodeklasifikasifasilitatif/view/$data[Nomor]") ?>"><?php echo $data['Nomor']; ?></a></td> -->
                                                     <td class="td-Kode">
                                                         <span  data-value="<?php echo $data['Kode']; ?>" 
                                                             data-pk="<?php echo $data['Nomor'] ?>" 
@@ -153,7 +155,7 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['Kode']; ?> 
                                                         </span>
                                                     </td>
@@ -168,23 +170,53 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['Subkode']; ?> 
                                                         </span>
                                                     </td>
-                                                    <td class="td-Bagian">
-                                                        <span  data-value="<?php echo $data['Bagian']; ?>" 
+                                                    <td class="td-Klasifikasi">
+                                                        <span  data-value="<?php echo $data['Klasifikasi']; ?>" 
                                                             data-pk="<?php echo $data['Nomor'] ?>" 
                                                             data-url="<?php print_link("kodeklasifikasifasilitatif/editfield/" . urlencode($data['Nomor'])); ?>" 
-                                                            data-name="Bagian" 
-                                                            data-title="Enter Bagian" 
+                                                            data-name="Klasifikasi" 
+                                                            data-title="Enter Klasifikasi" 
                                                             data-placement="left" 
                                                             data-toggle="click" 
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
-                                                            <?php echo $data['Bagian']; ?> 
+                                                             >
+                                                            <?php echo $data['Klasifikasi']; ?> 
+                                                        </span>
+                                                    </td>
+                                                    <td class="td-Subklasifikasi">
+                                                        <span  data-value="<?php echo $data['Subklasifikasi']; ?>" 
+                                                            data-pk="<?php echo $data['Nomor'] ?>" 
+                                                            data-url="<?php print_link("kodeklasifikasifasilitatif/editfield/" . urlencode($data['Nomor'])); ?>" 
+                                                            data-name="Subklasifikasi" 
+                                                            data-title="Enter Subklasifikasi" 
+                                                            data-placement="left" 
+                                                            data-toggle="click" 
+                                                            data-type="text" 
+                                                            data-mode="popover" 
+                                                            data-showbuttons="left" 
+                                                             >
+                                                            <?php echo $data['Subklasifikasi']; ?> 
+                                                        </span>
+                                                    </td>
+                                                    <td class="td-Subsubklasifikasi">
+                                                        <span  data-value="<?php echo $data['Sub_subklasifikasi']; ?>" 
+                                                            data-pk="<?php echo $data['Nomor'] ?>" 
+                                                            data-url="<?php print_link("kodeklasifikasifasilitatif/editfield/" . urlencode($data['Nomor'])); ?>" 
+                                                            data-name="Sub_subklasifikasi" 
+                                                            data-title="Enter Sub_subklasifikasi" 
+                                                            data-placement="left" 
+                                                            data-toggle="click" 
+                                                            data-type="text" 
+                                                            data-mode="popover" 
+                                                            data-showbuttons="left" 
+                                                             >
+                                                            <?php echo $data['Sub_subklasifikasi']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Keterangan">
@@ -198,11 +230,11 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['Keterangan']; ?> 
                                                         </span>
                                                     </td>
-                                                    <th class="td-btn">
+                                                    <!-- <th class="td-btn">
                                                         <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("kodeklasifikasifasilitatif/view/$rec_id"); ?>">
                                                             <i class="fa fa-eye"></i> View
                                                         </a>
@@ -213,7 +245,7 @@ $show_pagination = $this->show_pagination;
                                                             <i class="fa fa-times"></i>
                                                             Delete
                                                         </a>
-                                                    </th>
+                                                    </th> -->
                                                 </tr>
                                                 <?php 
                                                 }
@@ -242,7 +274,7 @@ $show_pagination = $this->show_pagination;
                                         <div class="row justify-content-center">    
                                             <div class="col-md-auto justify-content-center">    
                                                 <div class="p-3 d-flex justify-content-between">    
-                                                    <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("kodeklasifikasifasilitatif/delete/{sel_ids}/?csrf_token=$csrf_token&redirect=$current_page"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
+                                                    <!-- <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("kodeklasifikasifasilitatif/delete/{sel_ids}/?csrf_token=$csrf_token&redirect=$current_page"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                                                         <i class="fa fa-times"></i> Delete Selected
                                                     </button>
                                                     <div class="dropup export-btn-holder mx-1">
@@ -294,7 +326,7 @@ $show_pagination = $this->show_pagination;
                                                         <?php
                                                         }
                                                         ?>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>

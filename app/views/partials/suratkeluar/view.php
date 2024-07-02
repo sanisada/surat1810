@@ -21,7 +21,7 @@ $show_export_btn = $this->show_export_btn;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">View  Suratkeluar</h4>
+                    <h4 class="record-title">View  Surat Keluar</h4>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Nomor']; ?> 
                                             </span>
                                         </td>
@@ -81,7 +81,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="flatdatetimepicker" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Tanggal_Surat']; ?> 
                                             </span>
                                         </td>
@@ -99,7 +99,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Tujuan_Surat']; ?> 
                                             </span>
                                         </td>
@@ -117,7 +117,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Nama_Pegawai']; ?> 
                                             </span>
                                         </td>
@@ -136,7 +136,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="select" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Nama_Tim_Kerja']; ?> 
                                             </span>
                                         </td>
@@ -155,7 +155,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="select" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Jenis_Kegiatan']; ?> 
                                             </span>
                                         </td>
@@ -174,7 +174,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="select" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Kode_Sensus']; ?> 
                                             </span>
                                         </td>
@@ -196,7 +196,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="select" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Subkode_Sensus']; ?> 
                                             </span>
                                         </td>
@@ -218,7 +218,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="select" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Bagian_Sensus']; ?> 
                                             </span>
                                         </td>
@@ -237,7 +237,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="select" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Kode_Klasifikasi']; ?> 
                                             </span>
                                         </td>
@@ -259,7 +259,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="select" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Subkode_Klasifikasi']; ?> 
                                             </span>
                                         </td>
@@ -281,7 +281,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="select" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Bagian_Klasifikasi']; ?> 
                                             </span>
                                         </td>
@@ -299,7 +299,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Nomor_Surat']; ?> 
                                             </span>
                                         </td>
@@ -317,7 +317,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Ringkasan_Isi_Surat']; ?> 
                                             </span>
                                         </td>
@@ -335,7 +335,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Keterangan']; ?> 
                                             </span>
                                         </td>

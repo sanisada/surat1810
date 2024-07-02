@@ -25,7 +25,7 @@
                                 <span class="input-group-text"><i class="form-control-feedback fa fa-key"></i></span>
                             </div>
                         </div>
-                        <div class="row clearfix mt-3 mb-3">
+                        <!-- <div class="row clearfix mt-3 mb-3">
                             
                             <div class="col-6">
                                 <label class="">
@@ -38,7 +38,7 @@
                                 <a href="<?php print_link('passwordmanager') ?>" class="text-danger"> Reset Password?</a>
                             </div>
                             
-                        </div>
+                        </div> -->
                         
                         <div class="form-group text-center">
                             <button class="btn btn-primary btn-block btn-md" type="submit"> 
@@ -50,10 +50,10 @@
                         </div>
                         <hr />
                         
-                        <div class="text-center">
+                        <!-- <div class="text-center">
                             Don't Have an Account? <a href="<?php print_link("index/register") ?>" class="btn btn-success">Register
                             <i class="fa fa-user"></i></a>
-                        </div>
+                        </div> -->
                         
                     </form>
                 </div>

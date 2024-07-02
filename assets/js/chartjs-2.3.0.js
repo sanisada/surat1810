@@ -4641,7 +4641,7 @@ module.exports = function(Chart) {
 				// Remove excess bars for data points that have been removed
 				md.splice(numData, numMetaData - numData);
 			} else if (numData > numMetaData) {
-				// Add new elements
+				// Tambah elements
 				for (var index = numMetaData; index < numData; ++index) {
 					this.addElementAndReset(index);
 				}

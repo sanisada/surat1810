@@ -9,7 +9,8 @@
                         <div class="">
                             <div class="fadeIn animated mb-4">
                                 <div class="text-capitalize">
-                                    <h2 class="text-capitalize">Welcome To <?php echo SITE_NAME ?></h2>
+                                    <h2 class="text-capitalize"><?php echo SITE_NAME ?> BPS PRINGSEWU</h2><br/>
+                                    <h5>Sistem Informasi Manajemen Penomoran Surat BPS Kabupaten Pringsewu</h5>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +38,7 @@
                                             <span class="input-group-text"><i class="form-control-feedback fa fa-key"></i></span>
                                         </div>
                                     </div>
-                                    <div class="row clearfix mt-3 mb-3">
+                                    <!-- <div class="row clearfix mt-3 mb-3">
                                         <div class="col-6">
                                             <label class="">
                                                 <input value="true" type="checkbox" name="rememberme" />
@@ -47,7 +48,7 @@
                                         <div class="col-6">
                                             <a href="<?php print_link('passwordmanager') ?>" class="text-danger"> Reset Password?</a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group text-center">
                                         <button class="btn btn-primary btn-block btn-md" type="submit"> 
                                             <i class="load-indicator">
@@ -57,10 +58,10 @@
                                         </button>
                                     </div>
                                     <hr />
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         Don't Have an Account? <a href="<?php print_link("index/register") ?>" class="btn btn-success">Register
                                         <i class="fa fa-user"></i></a>
-                                    </div>
+                                    </div> -->
                                 </form>
                             </div>
                         </div>

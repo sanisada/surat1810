@@ -144,7 +144,7 @@ class NamatimkerjaController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Namatimkerja";
+		$page_title = $this->view->page_title = "Tambah Namatimkerja";
 		$this->render_view("namatimkerja/add.php");
 	}
 	/**

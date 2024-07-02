@@ -8,7 +8,7 @@ $current_page = $this->set_current_page_link();
         <div class="container">
             <div class="row ">
                 <div class="col-md-12 comp-grid">
-                    <h4 >BPS PRINGSEWU</h4>
+                    <h4 >SIMENOR BPS PRINGSEWU</h4><br/><br/>
                 </div>
                 <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_suratmasuk();  ?>
@@ -36,7 +36,7 @@ $current_page = $this->set_current_page_link();
                             </div>
                             <div class="col-10">
                                 <div class="flex-column justify-content align-center">
-                                    <div class="title">Suratkeluar</div>
+                                    <div class="title">Surat Keluar</div>
                                     <small class=""></small>
                                 </div>
                             </div>

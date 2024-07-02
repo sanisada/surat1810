@@ -161,7 +161,7 @@ class BeritaacaraController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Beritaacara";
+		$page_title = $this->view->page_title = "Tambah Berita Acara";
 		$this->render_view("beritaacara/add.php");
 	}
 	/**
@@ -314,5 +314,25 @@ class BeritaacaraController extends SecureController{
 			$this->set_flash_msg($page_error, "danger");
 		}
 		return	$this->redirect("beritaacara");
+	}
+
+	function getKode(){
+	    $db  = $this->GetModel();
+	    
+	    $data = $db->rawQueryOne("SELECT max(Nomor) as maxID FROM beritaacara");
+	    
+	    $idMax = $data ["maxID"];
+	    
+	    // $noUrut =1;
+	    
+	    // if(!empty($idMax)){
+	    //     $noUrut = (int)substr($idMax,2,4);
+	    // }
+	    
+	    $idMax++;
+	    
+	    $newID = $idMax;
+	    
+	    return $newID;
 	}
 }

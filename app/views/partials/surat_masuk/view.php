@@ -21,7 +21,7 @@ $show_export_btn = $this->show_export_btn;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">View  Surat Masuk</h4>
+                    <h4 class="record-title">View Surat Masuk</h4>
                 </div>
             </div>
         </div>
@@ -58,27 +58,27 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Nomor']; ?> 
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-Tanggl_Surat">
-                                        <th class="title"> Tanggl Surat: </th>
+                                    <tr  class="td-Tanggal_Surat">
+                                        <th class="title"> Tanggal Surat: </th>
                                         <td class="value">
                                             <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
-                                                data-value="<?php echo $data['Tanggl_Surat']; ?>" 
+                                                data-value="<?php echo $data['Tanggal_Surat']; ?>" 
                                                 data-pk="<?php echo $data['Nomor'] ?>" 
                                                 data-url="<?php print_link("surat_masuk/editfield/" . urlencode($data['Nomor'])); ?>" 
-                                                data-name="Tanggl_Surat" 
-                                                data-title="Enter Tanggl Surat" 
+                                                data-name="Tanggal_Surat" 
+                                                data-title="Enter Tanggal Surat" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
                                                 data-type="flatdatetimepicker" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
-                                                <?php echo $data['Tanggl_Surat']; ?> 
+                                                 >
+                                                <?php echo $data['Tanggal_Surat']; ?> 
                                             </span>
                                         </td>
                                     </tr>
@@ -95,7 +95,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Asal_Surat']; ?> 
                                             </span>
                                         </td>
@@ -113,7 +113,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Penerima']; ?> 
                                             </span>
                                         </td>
@@ -131,7 +131,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Nomor_Surat']; ?> 
                                             </span>
                                         </td>
@@ -149,7 +149,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Ringkasan_Isi_Surat']; ?> 
                                             </span>
                                         </td>
@@ -167,7 +167,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Keterangan']; ?> 
                                             </span>
                                         </td>

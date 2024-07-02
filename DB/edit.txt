@@ -1,0 +1,246 @@
+<div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Kode_Sensus">Kode </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select id="ctrl-Kode_Sensus" data-load-select-options="Subkode_Sensus" name="Kode_Sensus" placeholder="-- Pilih --" class="custom-select">
+                                                                    <option value="">-- Pilih --</option>
+                                                                    <?php
+                                                                    $Kode_Sensus_options = Menu:: $Kode_Sensus;
+                                                                    $field_value = $data['Kode_Sensus'];
+                                                                    if (!empty($Kode_Sensus_options)) {
+                                                                        foreach ($Kode_Sensus_options as $option) {
+                                                                            $value = $option['value'];
+                                                                            $label = $option['label'];
+                                                                            $selected = ( $value == $field_value ? 'selected' : null );
+                                                                            ?>
+                                                                            <option <?php echo $selected ?> value="<?php echo $value ?>">
+                                                                                <?php echo $label ?>
+                                                                            </option>
+                                                                        <?php
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Subkode_Sensus">Subkode </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select id="ctrl-Subkode_Sensus" 
+                                                                        data-load-path="<?php print_link('api/json/suratkeluar_Subkode_Sensus_option_list') ?>" 
+                                                                        data-load-select-options="Bagian_Sensus" 
+                                                                        name="Subkode_Sensus"  
+                                                                        placeholder="Select a value ..." 
+                                                                        class="custom-select">
+                                                                    <option value="">-- Pilih --</option>
+                                                                    <?php
+                                                                    $rec = $data['Subkode_Sensus'];
+                                                                    $Subkode_Sensus_options = $comp_model->suratkeluar_Subkode_Sensus_option_list($data['Kode_Sensus']);
+                                                                    if (!empty($Subkode_Sensus_options)) {
+                                                                        foreach ($Subkode_Sensus_options as $option) {
+                                                                            $value = (!empty($option['value']) ? $option['value'] : null);
+                                                                            $label = (!empty($option['label']) ? $option['label'] : $value);
+                                                                            $selected = ($value == $rec ? 'selected' : null);
+                                                                            ?>
+                                                                            <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+                                                                                <?php echo $label; ?>
+                                                                            </option>
+                                                                            <?php
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Bagian_Sensus">Klasifikasi </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select  id="ctrl-Bagian_Sensus" data-load-path="<?php print_link('api/json/suratkeluar_Bagian_Sensus_option_list') ?>" name="Bagian_Sensus"  placeholder="Select a value ..."    class="custom-select" >
+                                                                    <option value="">-- Pilih --</option>
+                                                                    <?php
+                                                                    $rec = $data['Bagian_Sensus'];
+                                                                    $Bagian_Sensus_options = $comp_model -> suratkeluar_Bagian_Sensus_option_list($data['Kode_Sensus'],$data['Subkode_Sensus']);
+                                                                    if(!empty($Bagian_Sensus_options)){
+                                                                    foreach($Bagian_Sensus_options as $option){
+                                                                    $value = (!empty($option['value']) ? $option['value'] : null);
+                                                                    $label = (!empty($option['label']) ? $option['label'] : $value);
+                                                                    $selected = ( $value == $rec ? 'selected' : null );
+                                                                    ?>
+                                                                    <option 
+                                                                        <?php echo $selected; ?> value="<?php echo $value; ?>"><?php echo $label; ?>
+                                                                    </option>
+                                                                    <?php
+                                                                    }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Sub_Bagian_Sensus">Subklasifikasi </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select  id="ctrl-Sub_Bagian_Sensus" data-load-path="<?php print_link('api/json/suratkeluar_Sub_Bagian_Sensus_option_list') ?>" name="Sub_Bagian_Sensus"  placeholder="Select a value ..."    class="custom-select" >
+                                                                    <option value="">-- Pilih --</option>
+                                                                    <?php
+                                                                    $rec = $data['Sub_Bagian_Sensus'];
+                                                                    $Sub_Bagian_Sensus_options = $comp_model -> suratkeluar_Sub_Bagian_Sensus_option_list($data['Subkode_Sensus']);
+                                                                    if(!empty($Sub_Bagian_Sensus_options)){
+                                                                    foreach($Sub_Bagian_Sensus_options as $option){
+                                                                    $value = (!empty($option['value']) ? $option['value'] : null);
+                                                                    $label = (!empty($option['label']) ? $option['label'] : $value);
+                                                                    $selected = ( $value == $rec ? 'selected' : null );
+                                                                    ?>
+                                                                    <option 
+                                                                        <?php echo $selected; ?> value="<?php echo $value; ?>"><?php echo $label; ?>
+                                                                    </option>
+                                                                    <?php
+                                                                    }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Kode_Klasifikasi">Kode </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select  id="ctrl-Kode_Klasifikasi" data-load-select-options="Subkode_Klasifikasi" name="Kode_Klasifikasi"  placeholder="Select a value ..."    class="custom-select" >
+                                                                    <option value="">Select a value ...</option>
+                                                                    <?php
+                                                                    $Kode_Klasifikasi_options = Menu :: $Kode_Klasifikasi;
+                                                                    $field_value = $data['Kode_Klasifikasi'];
+                                                                    if(!empty($Kode_Klasifikasi_options)){
+                                                                    foreach($Kode_Klasifikasi_options as $option){
+                                                                    $value = $option['value'];
+                                                                    $label = $option['label'];
+                                                                    $selected = ( $value == $field_value ? 'selected' : null );
+                                                                    ?>
+                                                                    <option <?php echo $selected ?> value="<?php echo $value ?>">
+                                                                        <?php echo $label ?>
+                                                                    </option>                                   
+                                                                    <?php
+                                                                    }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Subkode_Klasifikasi">Subkode </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select  id="ctrl-Subkode_Klasifikasi" data-load-path="<?php print_link('api/json/suratkeluar_Subkode_Klasifikasi_option_list') ?>" data-load-select-options="Bagian_Klasifikasi" name="Subkode_Klasifikasi"  placeholder="Select a value ..."    class="custom-select" >
+                                                                    <?php
+                                                                    $rec = $data['Subkode_Klasifikasi'];
+                                                                    $Subkode_Klasifikasi_options = $comp_model -> suratkeluar_Subkode_Klasifikasi_option_list($data['Kode_Klasifikasi']);
+                                                                    if(!empty($Subkode_Klasifikasi_options)){
+                                                                    foreach($Subkode_Klasifikasi_options as $option){
+                                                                    $value = (!empty($option['value']) ? $option['value'] : null);
+                                                                    $label = (!empty($option['label']) ? $option['label'] : $value);
+                                                                    $selected = ( $value == $rec ? 'selected' : null );
+                                                                    ?>
+                                                                    <option 
+                                                                        <?php echo $selected; ?> value="<?php echo $value; ?>"><?php echo $label; ?>
+                                                                    </option>
+                                                                    <?php
+                                                                    }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Bagian_Klasifikasi">Klasifikasi </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select  id="ctrl-Bagian_Klasifikasi" data-load-path="<?php print_link('api/json/suratkeluar_Bagian_Klasifikasi_option_list') ?>" name="Bagian_Klasifikasi"  placeholder="Select a value ..."    class="custom-select" >
+                                                                    <?php
+                                                                    $rec = $data['Bagian_Klasifikasi'];
+                                                                    $Bagian_Klasifikasi_options = $comp_model -> suratkeluar_Bagian_Klasifikasi_option_list($data['Subkode_Klasifikasi']);
+                                                                    if(!empty($Bagian_Klasifikasi_options)){
+                                                                    foreach($Bagian_Klasifikasi_options as $option){
+                                                                    $value = (!empty($option['value']) ? $option['value'] : null);
+                                                                    $label = (!empty($option['label']) ? $option['label'] : $value);
+                                                                    $selected = ( $value == $rec ? 'selected' : null );
+                                                                    ?>
+                                                                    <option 
+                                                                        <?php echo $selected; ?> value="<?php echo $value; ?>"><?php echo $label; ?>
+                                                                    </option>
+                                                                    <?php
+                                                                    }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Sub_Bagian_Klasifikasi">Subklasifikasi </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select  id="ctrl-Sub_Bagian_Klasifikasi" data-load-path="<?php print_link('api/json/suratkeluar_Sub_Bagian_Klasifikasi_option_list') ?>" name="Sub_Bagian_Klasifikasi"  placeholder="Select a value ..."    class="custom-select" >
+                                                                    <?php
+                                                                    $rec = $data['Sub_Bagian_Klasifikasi'];
+                                                                    $Sub_Bagian_Klasifikasi_options = $comp_model -> suratkeluar_Sub_Bagian_Klasifikasi_option_list($data['Subkode_Klasifikasi']);
+                                                                    if(!empty($Sub_Bagian_Klasifikasi_options)){
+                                                                    foreach($Sub_Bagian_Klasifikasi_options as $option){
+                                                                    $value = (!empty($option['value']) ? $option['value'] : null);
+                                                                    $label = (!empty($option['label']) ? $option['label'] : $value);
+                                                                    $selected = ( $value == $rec ? 'selected' : null );
+                                                                    ?>
+                                                                    <option 
+                                                                        <?php echo $selected; ?> value="<?php echo $value; ?>"><?php echo $label; ?>
+                                                                    </option>
+                                                                    <?php
+                                                                    }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>

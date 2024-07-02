@@ -8,7 +8,7 @@ define("ROOT", str_replace("\\", "/", dirname(__FILE__)) . "/");
 // return the application directory name.
 define("ROOT_DIR_NAME", basename(ROOT));
 
-define("SITE_NAME", "BPSPRINGSEWU");
+define("SITE_NAME", "SIMENOR");
 
 
 // Get Site Address Dynamically
@@ -99,4 +99,5 @@ define("ORDER_TYPE", "DESC");  //Default Order Type
 define('USER_ID',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_data']['Username'] : null ));
 define('USER_NAME',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_data']['Username'] : null ));
 define('USER_EMAIL',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_data']['Email'] : null ));
+define('USER_ROLE',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_data']['Role'] : null ));
 

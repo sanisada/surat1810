@@ -18,7 +18,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Edit  Beritaacara</h4>
+                    <h4 class="record-title">Edit Berita Acara</h4>
                 </div>
             </div>
         </div>
@@ -47,15 +47,15 @@ $redirect_to = $this->redirect_to;
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <label class="control-label" for="Tanggal">Tanggal <span class="text-danger">*</span></label>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="input-group">
-                                                    <input id="ctrl-Tanggal" class="form-control datepicker  datepicker"  required="" value="<?php  echo $data['Tanggal']; ?>" type="datetime" name="Tanggal" placeholder="Enter Tanggal" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        <div class="form-group ">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                        <label class="control-label" for="ctrl-Tanggal_Surat">Tanggal Surat <span class="text-danger">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group">
+                                                            <input id="ctrl-Tanggal_Surat" class="form-control" type="date" value="<?php  echo $data['Tanggal']; ?>" name="Tanggal" required="">
+                                                            <!-- <div id="tanggal_display" class="mt-2"></div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,3 +124,17 @@ $redirect_to = $this->redirect_to;
                                 </div>
                             </div>
                         </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById('ctrl-Tanggal_Surat');
+    const display = document.getElementById('tanggal_display');
+    
+    input.addEventListener('change', function() {
+      const tanggal = new Date(this.value);
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = tanggal.toLocaleDateString('id-ID', options);
+      display.innerText = formattedDate;
+    });
+  });
+</script>

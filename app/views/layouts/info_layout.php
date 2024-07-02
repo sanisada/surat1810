@@ -39,7 +39,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-item active">
+					<!-- <li class="nav-item active">
 						<a class="nav-link" href="<?php print_link(HOME_PAGE) ?>">Home</a>
 					</li>
 					<li class="nav-item active">
@@ -50,7 +50,7 @@
 					</li>
 					<li class="nav-item active">
 						<a class="nav-link" href="<?php print_link('info/contact') ?>">Contact us</a>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</nav>

@@ -136,6 +136,8 @@ $('#ctrl-Subkode_Klasifikasi').hide();
 $("label[for='Subkode_Klasifikasi']").hide();
 $('#ctrl-Bagian_Klasifikasi').hide();
 $("label[for='Bagian_Klasifikasi']").hide();
+$('#ctrl-Sub_Bagian_Klasifikasi').hide();
+$("label[for='Sub_Bagian_Klasifikasi']").hide();
 
 $('#ctrl-Jenis_Kegiatan').on('input',function(){
     if($('#ctrl-Jenis_Kegiatan').val() == "Klasifikasi"){
@@ -145,6 +147,8 @@ $('#ctrl-Jenis_Kegiatan').on('input',function(){
         $("label[for='Subkode_Klasifikasi']").show();
        $('#ctrl-Bagian_Klasifikasi').show();
         $("label[for='Bagian_Klasifikasi']").show();
+		$('#ctrl-Sub_Bagian_Klasifikasi').show();
+		$("label[for='Sub_Bagian_Klasifikasi']").show();
     }
 });
 
@@ -156,6 +160,8 @@ $('#ctrl-Jenis_Kegiatan').on('change', function(){
     $("label[for='Subkode_Klasifikasi']").show();
         $('#ctrl-Bagian_Klasifikasi').show();
         $("label[for='Bagian_Klasifikasi']").show();
+		$('#ctrl-Sub_Bagian_Klasifikasi').show();
+		$("label[for='Sub_Bagian_Klasifikasi']").show();
     }
 });
 
@@ -167,6 +173,8 @@ $('#ctrl-Jenis_Kegiatan').on('change', function(){
         $("label[for='Subkode_Klasifikasi']").hide();
          $('#ctrl-Bagian_Klasifikasi').hide();
         $("label[for='Bagian_Klasifikasi']").hide();
+		$('#ctrl-Sub_Bagian_Klasifikasi').hide();
+		$("label[for='Sub_Bagian_Klasifikasi']").hide();
     }
 });
 
@@ -176,6 +184,8 @@ $('#ctrl-Subkode_Sensus').hide();
 $("label[for='Subkode_Sensus']").hide();
 $('#ctrl-Bagian_Sensus').hide();
 $("label[for='Bagian_Sensus']").hide();
+$('#ctrl-Sub_Bagian_Sensus').hide();
+$("label[for='Sub_Bagian_Sensus']").hide();
 
 $('#ctrl-Jenis_Kegiatan').on('input',function(){
     if($('#ctrl-Jenis_Kegiatan').val() == "Survei Sensus"){
@@ -185,6 +195,8 @@ $('#ctrl-Jenis_Kegiatan').on('input',function(){
         $("label[for='Subkode_Sensus']").show();
        $('#ctrl-Bagian_Sensus').show();
         $("label[for='Bagian_Sensus']").show();
+	   $('#ctrl-Sub_Bagian_Sensus').show();
+		$("label[for='Sub_Bagian_Sensus']").show();
     }
 });
 
@@ -196,6 +208,8 @@ $('#ctrl-Jenis_Kegiatan').on('change', function(){
         $("label[for='Subkode_Sensus']").show();
         $('#ctrl-Bagian_Sensus').show();
         $("label[for='Bagian_Sensus']").show();
+		$('#ctrl-Sub_Bagian_Sensus').show();
+		$("label[for='Sub_Bagian_Sensus']").show();
     }
 });
 
@@ -206,7 +220,9 @@ $('#ctrl-Jenis_Kegiatan').on('change', function(){
          $('#ctrl-Subkode_Sensus').hide();
         $("label[for='Subkode_Sensus']").hide();
          $('#ctrl-Bagian_Sensus').hide();
-$("label[for='Bagian_Sensus']").hide();
+		$("label[for='Bagian_Sensus']").hide();
+		$('#ctrl-Sub_Bagian_Sensus').hide();
+		$("label[for='Sub_Bagian_Sensus']").hide();
 }
 });$('#ctrl-Kode_Sensus,#ctrl-Subkode_Sensus,#ctrl-Bagian_Sensus,#ctrl-Kode_Klasifikasi,#ctrl-Subkode_Klasifikasi,#ctrl-Bagian_Klasifikasi,#ctrl-Nama_Tim_Kerja').on('change', function(){ 
 	var Kode_Sensus = $('#ctrl-Kode_Sensus').val();
@@ -434,7 +450,7 @@ $(document).on('click', '.btn-remove-table-row', function(e){
 	}
 });
 /**
- * add new table row in a multi-table form
+ * Tambah table row in a multi-table form
  */
 $(document).on('click', '.btn-add-table-row', function(e){
 	var tableBody = $(this).closest('table').find("tbody");

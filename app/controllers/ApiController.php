@@ -13,10 +13,10 @@ class ApiController extends BaseController
 	 * @return json data
 	 */
 
-	function json($action, $arg1 = null, $arg2 = null)
+	function json($action, $arg1 = null, $arg2 = null, $arg3 = null)
 	{
 		$model = new SharedController;
-		$args = array($arg1, $arg2);
+		$args = array($arg1, $arg2, $arg3);
 		$data = call_user_func_array(array($model, $action), $args);
 		render_json($data);
 	}

@@ -82,7 +82,7 @@ class SuratkeluarController extends BaseController{
 		if($db->getLastError()){
 			$this->set_page_error();
 		}
-		$page_title = $this->view->page_title = "Suratkeluar";
+		$page_title = $this->view->page_title = "Surat Keluar";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -125,7 +125,7 @@ class SuratkeluarController extends BaseController{
 		}
 		$record = $db->getOne($tablename, $fields );
 		if($record){
-			$page_title = $this->view->page_title = "View  Suratkeluar";
+			$page_title = $this->view->page_title = "View  Surat Keluar";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -196,7 +196,7 @@ class SuratkeluarController extends BaseController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Suratkeluar";
+		$page_title = $this->view->page_title = "Tambah Surat Keluar";
 		$this->render_view("suratkeluar/add.php");
 	}
 	/**
@@ -267,7 +267,7 @@ class SuratkeluarController extends BaseController{
 		}
 		$db->where("suratkeluar.id", $rec_id);;
 		$data = $db->getOne($tablename, $fields);
-		$page_title = $this->view->page_title = "Edit  Suratkeluar";
+		$page_title = $this->view->page_title = "Edit  Surat Keluar";
 		if(!$data){
 			$this->set_page_error();
 		}

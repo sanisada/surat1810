@@ -159,7 +159,7 @@ class Surat_tugasController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Surat Tugas";
+		$page_title = $this->view->page_title = "Tambah Surat Tugas";
 		$this->render_view("surat_tugas/add.php");
 	}
 	/**

@@ -23,14 +23,14 @@ $show_pagination = $this->show_pagination;
         <div class="container-fluid">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Namatimkerja</h4>
+                    <h4 class="record-title">Tim Kerja</h4>
                 </div>
-                <div class="col-sm-3 ">
+                <!-- <div class="col-sm-3 ">
                     <a  class="btn btn btn-primary my-1" href="<?php print_link("namatimkerja/add") ?>">
                         <i class="fa fa-plus"></i>                              
-                        Add New Namatimkerja 
+                        Tambah Namatimkerja 
                     </a>
-                </div>
+                </div> -->
                 <div class="col-sm-4 ">
                     <form  class="search" action="<?php print_link('namatimkerja'); ?>" method="get">
                         <div class="input-group">
@@ -107,14 +107,14 @@ $show_pagination = $this->show_pagination;
                                     <table class="table  table-striped table-sm text-left">
                                         <thead class="table-header bg-light">
                                             <tr>
-                                                <th class="td-checkbox">
+                                                <!-- <th class="td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="toggle-check-all custom-control-input" type="checkbox" />
                                                         <span class="custom-control-label"></span>
                                                     </label>
-                                                </th>
+                                                </th> -->
                                                 <th class="td-sno">#</th>
-                                                <th  class="td-Nomor"> Nomor</th>
+                                                <!-- <th  class="td-Nomor"> Nomor</th> -->
                                                 <th  class="td-Kode_Tim"> Kode Tim</th>
                                                 <th  class="td-Nama_Tim_Kerja"> Nama Tim Kerja</th>
                                                 <th class="td-btn"></th>
@@ -132,14 +132,14 @@ $show_pagination = $this->show_pagination;
                                             $counter++;
                                             ?>
                                             <tr>
-                                                <th class=" td-checkbox">
+                                                <!-- <th class=" td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="optioncheck custom-control-input" name="optioncheck[]" value="<?php echo $data['Nomor'] ?>" type="checkbox" />
                                                             <span class="custom-control-label"></span>
                                                         </label>
-                                                    </th>
+                                                    </th> -->
                                                     <th class="td-sno"><?php echo $counter; ?></th>
-                                                    <td class="td-Nomor"><a href="<?php print_link("namatimkerja/view/$data[Nomor]") ?>"><?php echo $data['Nomor']; ?></a></td>
+                                                    <!-- <td class="td-Nomor"><a href="<?php print_link("namatimkerja/view/$data[Nomor]") ?>"><?php echo $data['Nomor']; ?></a></td> -->
                                                     <td class="td-Kode_Tim">
                                                         <span  data-value="<?php echo $data['Kode_Tim']; ?>" 
                                                             data-pk="<?php echo $data['Nomor'] ?>" 
@@ -151,7 +151,7 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['Kode_Tim']; ?> 
                                                         </span>
                                                     </td>
@@ -166,11 +166,11 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" >
+                                                             >
                                                             <?php echo $data['Nama_Tim_Kerja']; ?> 
                                                         </span>
                                                     </td>
-                                                    <th class="td-btn">
+                                                    <!-- <th class="td-btn">
                                                         <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("namatimkerja/view/$rec_id"); ?>">
                                                             <i class="fa fa-eye"></i> View
                                                         </a>
@@ -181,7 +181,7 @@ $show_pagination = $this->show_pagination;
                                                             <i class="fa fa-times"></i>
                                                             Delete
                                                         </a>
-                                                    </th>
+                                                    </th> -->
                                                 </tr>
                                                 <?php 
                                                 }
@@ -214,9 +214,9 @@ $show_pagination = $this->show_pagination;
                                                         <i class="fa fa-times"></i> Delete Selected
                                                     </button>
                                                     <div class="dropup export-btn-holder mx-1">
-                                                        <button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <!-- <button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fa fa-save"></i> Export
-                                                        </button>
+                                                        </button> -->
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                             <?php $export_print_link = $this->set_current_page_link(array('format' => 'print')); ?>
                                                             <a class="dropdown-item export-link-btn" data-format="print" href="<?php print_link($export_print_link); ?>" target="_blank">

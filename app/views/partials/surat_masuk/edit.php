@@ -49,14 +49,34 @@ $redirect_to = $this->redirect_to;
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <label class="control-label" for="Tanggl_Surat">Tanggl Surat <span class="text-danger">*</span></label>
+                                                <label class="control-label" for="ctrl-Tanggal_Surat">Tanggal Surat <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="input-group">
-                                                    <input id="ctrl-Tanggl_Surat" class="form-control datepicker  datepicker"  required="" value="<?php  echo $data['Tanggl_Surat']; ?>" type="datetime" name="Tanggl_Surat" placeholder="Enter Tanggl Surat" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
+                                                    <input id="ctrl-Tanggal_Surat" class="form-control" type="date" value="<?php  echo $data['Tanggal_Surat']; ?>" name="Tanggal_Surat" required="">
+                                                    <!-- <div id="tanggal_display" class="mt-2"></div> -->
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="col-sm-8">
+                                                <div class="input-group">
+                                                    <input id="ctrl-Tanggal_Surat" class="form-control datepicker  datepicker"  required="" value="<?php  echo $data['Tanggal_Surat']; ?>" type="datetime" name="Tanggal_Surat" placeholder="Enter Tanggal Surat" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label" for="Asal_Surat">Asal Surat <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="">
+                                                    <input id="ctrl-Asal_Surat"  value="<?php  echo $data['Asal_Surat']; ?>" type="text" placeholder="Enter Asal Surat"  required="" name="Asal_Surat"  class="form-control " />
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,11 +84,11 @@ $redirect_to = $this->redirect_to;
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label class="control-label" for="Asal_Surat">Asal Surat <span class="text-danger">*</span></label>
+                                                    <label class="control-label" for="Penerima">Penerima <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="">
-                                                        <input id="ctrl-Asal_Surat"  value="<?php  echo $data['Asal_Surat']; ?>" type="text" placeholder="Enter Asal Surat"  required="" name="Asal_Surat"  class="form-control " />
+                                                        <input id="ctrl-Penerima"  value="<?php  echo $data['Penerima']; ?>" type="text" placeholder="Enter Penerima"  required="" name="Penerima"  class="form-control " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -76,11 +96,11 @@ $redirect_to = $this->redirect_to;
                                             <div class="form-group ">
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <label class="control-label" for="Penerima">Penerima <span class="text-danger">*</span></label>
+                                                        <label class="control-label" for="Nomor_Surat">Nomor Surat <span class="text-danger">*</span></label>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="">
-                                                            <input id="ctrl-Penerima"  value="<?php  echo $data['Penerima']; ?>" type="text" placeholder="Enter Penerima"  required="" name="Penerima"  class="form-control " />
+                                                            <input id="ctrl-Nomor_Surat"  value="<?php  echo $data['Nomor_Surat']; ?>" type="text" placeholder="Enter Nomor Surat"  required="" name="Nomor_Surat"  class="form-control " />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -88,11 +108,11 @@ $redirect_to = $this->redirect_to;
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="Nomor_Surat">Nomor Surat <span class="text-danger">*</span></label>
+                                                            <label class="control-label" for="Ringkasan_Isi_Surat">Ringkasan Isi Surat <span class="text-danger">*</span></label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="">
-                                                                <input id="ctrl-Nomor_Surat"  value="<?php  echo $data['Nomor_Surat']; ?>" type="text" placeholder="Enter Nomor Surat"  required="" name="Nomor_Surat"  class="form-control " />
+                                                                <input id="ctrl-Ringkasan_Isi_Surat"  value="<?php  echo $data['Ringkasan_Isi_Surat']; ?>" type="text" placeholder="Enter Ringkasan Isi Surat"  required="" name="Ringkasan_Isi_Surat"  class="form-control " />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -100,39 +120,41 @@ $redirect_to = $this->redirect_to;
                                                     <div class="form-group ">
                                                         <div class="row">
                                                             <div class="col-sm-4">
-                                                                <label class="control-label" for="Ringkasan_Isi_Surat">Ringkasan Isi Surat <span class="text-danger">*</span></label>
+                                                                <label class="control-label" for="Keterangan">Keterangan <span class="text-danger">*</span></label>
                                                             </div>
                                                             <div class="col-sm-8">
                                                                 <div class="">
-                                                                    <input id="ctrl-Ringkasan_Isi_Surat"  value="<?php  echo $data['Ringkasan_Isi_Surat']; ?>" type="text" placeholder="Enter Ringkasan Isi Surat"  required="" name="Ringkasan_Isi_Surat"  class="form-control " />
+                                                                    <input id="ctrl-Keterangan"  value="<?php  echo $data['Keterangan']; ?>" type="text" placeholder="Enter Keterangan"  required="" name="Keterangan"  class="form-control " />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group ">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <label class="control-label" for="Keterangan">Keterangan <span class="text-danger">*</span></label>
-                                                                </div>
-                                                                <div class="col-sm-8">
-                                                                    <div class="">
-                                                                        <input id="ctrl-Keterangan"  value="<?php  echo $data['Keterangan']; ?>" type="text" placeholder="Enter Keterangan"  required="" name="Keterangan"  class="form-control " />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-ajax-status"></div>
-                                                        <div class="form-group text-center">
-                                                            <button class="btn btn-primary" type="submit">
-                                                                Update
-                                                                <i class="fa fa-send"></i>
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                                    </div>
+                                                    <div class="form-ajax-status"></div>
+                                                    <div class="form-group text-center">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            Update
+                                                            <i class="fa fa-send"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- </div> -->
                                 </div>
                             </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById('ctrl-Tanggal_Surat');
+    const display = document.getElementById('tanggal_display');
+    
+    input.addEventListener('change', function() {
+      const tanggal = new Date(this.value);
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = tanggal.toLocaleDateString('id-ID', options);
+      display.innerText = formattedDate;
+    });
+  });
+</script>

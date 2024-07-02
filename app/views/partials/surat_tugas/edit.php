@@ -35,15 +35,15 @@ $redirect_to = $this->redirect_to;
                         <form novalidate  id="" role="form" enctype="multipart/form-data"  class="form page-form form-horizontal needs-validation" action="<?php print_link("surat_tugas/edit/$page_id/?csrf_token=$csrf_token"); ?>" method="post">
                             <div>
                                 <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="Tanggal_Surat">Tanggal Surat <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="input-group">
-                                                <input id="ctrl-Tanggal_Surat" class="form-control datepicker  datepicker"  required="" value="<?php  echo $data['Tanggal_Surat']; ?>" type="datetime" name="Tanggal_Surat" placeholder="Enter Tanggal Surat" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                    <label class="control-label" for="ctrl-Tanggal_Surat">Tanggal Surat <span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group">
+                                                        <input id="ctrl-Tanggal_Surat" class="form-control" type="date" value="<?php  echo $data['Tanggal_Surat']; ?>" name="Tanggal_Surat" required="">
+                                                        <!-- <div id="tanggal_display" class="mt-2"></div> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,10 +92,10 @@ $redirect_to = $this->redirect_to;
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="input-group">
-                                                                <input id="ctrl-Rentang_Waktu_Penugasan"  value="<?php  echo $data['Rentang_Waktu_Penugasan']; ?>" type="text" placeholder="Enter Rentang Waktu Penugasan"  required="" name="Rentang_Waktu_Penugasan"  class="form-control " />
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                                                    </div>
+                                                                <!-- <input id="ctrl-Rentang_Waktu_Penugasan"  value="<?php  echo $this->set_field_value('Rentang_Waktu_Penugasan',""); ?>" type="text" placeholder="Enter Rentang Waktu Penugasan"  required="" name="Rentang_Waktu_Penugasan"  class="form-control " /> -->
+                                                                    <input class="form-control" type="date" id="datepicker-start" value="<?php echo date('Y-m-d', strtotime(explode(' - ', $data['Rentang_Waktu_Penugasan'])[0])); ?>">
+                                                                    <input class="form-control" type="date" id="datepicker-end" value="<?php echo date('Y-m-d', strtotime(explode(' - ', $data['Rentang_Waktu_Penugasan'])[1])); ?>">
+                                                                    <input type="hidden" id="Rentang_Waktu_Penugasan" name="Rentang_Waktu_Penugasan" value="<?php  echo $data['Rentang_Waktu_Penugasan']; ?>">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -115,3 +115,41 @@ $redirect_to = $this->redirect_to;
                             </div>
                         </div>
                     </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById('ctrl-Tanggal_Surat');
+    const display = document.getElementById('tanggal_display');
+    
+    input.addEventListener('change', function() {
+      const tanggal = new Date(this.value);
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = tanggal.toLocaleDateString('id-ID', options);
+      display.innerText = formattedDate;
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+        // Menangani perubahan pada input tanggal awal
+        document.getElementById('datepicker-start').addEventListener('change', function() {
+            updateRentangWaktu();
+        });
+
+        // Menangani perubahan pada input tanggal akhir
+        document.getElementById('datepicker-end').addEventListener('change', function() {
+            updateRentangWaktu();
+        });
+
+        // Fungsi untuk menggabungkan nilai dari kedua datepicker
+        function updateRentangWaktu() {
+            var startDate = document.getElementById('datepicker-start').value;
+            var endDate = document.getElementById('datepicker-end').value;
+
+            // Gabungkan nilai ke format yang diinginkan, misalnya: "YYYY-MM-DD - YYYY-MM-DD"
+            var rentangWaktu = startDate + ' - ' + endDate;
+
+            // Set nilai pada input hidden
+            document.getElementById('Rentang_Waktu_Penugasan').value = rentangWaktu;
+        }
+    });
+</script>

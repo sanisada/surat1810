@@ -144,7 +144,7 @@ class IndexController extends BaseController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Pengguna";
+		$page_title = $this->view->page_title = "Tambah Pengguna";
 		return $this->render_view("index/register.php");
 	}
 	/**

@@ -164,7 +164,7 @@ class PenggunaController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Pengguna";
+		$page_title = $this->view->page_title = "Tambah Pengguna";
 		$this->render_view("pengguna/add.php");
 	}
 	/**

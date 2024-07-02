@@ -98,7 +98,7 @@ $show_export_btn = $this->show_export_btn;
                                                                 data-type="text" 
                                                                 data-mode="popover" 
                                                                 data-showbuttons="left" 
-                                                                class="is-editable" >
+                                                                 >
                                                                 <?php echo $data['Username']; ?> 
                                                             </span>
                                                         </td>

@@ -63,7 +63,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="flatdatetimepicker" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Tanggal_Surat']; ?> 
                                             </span>
                                         </td>
@@ -81,7 +81,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Nomor_Surat']; ?> 
                                             </span>
                                         </td>
@@ -99,7 +99,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Nama_Yang_di_Tugaskan']; ?> 
                                             </span>
                                         </td>
@@ -117,7 +117,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Isi_Tugas']; ?> 
                                             </span>
                                         </td>
@@ -135,7 +135,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" >
+                                                 >
                                                 <?php echo $data['Rentang_Waktu_Penugasan']; ?> 
                                             </span>
                                         </td>

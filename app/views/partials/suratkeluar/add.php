@@ -15,7 +15,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Add New Suratkeluar</h4>
+                    <h4 class="record-title">Tambah Surat Keluar</h4>
                 </div>
             </div>
         </div>
@@ -50,22 +50,20 @@ $redirect_to = $this->redirect_to;
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <label class="control-label" for="Tanggal_Surat">Tanggal Surat <span class="text-danger">*</span></label>
+                                                <label class="control-label" for="ctrl-Tanggal_Surat">Tanggal Surat <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="input-group">
-                                                    <input id="ctrl-Tanggal_Surat" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('Tanggal_Surat',""); ?>" type="datetime" name="Tanggal_Surat" placeholder="Enter Tanggal Surat" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="d-m-Y" data-alt-format="F, j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                                        </div>
-                                                    </div>
+                                                    <input id="ctrl-Tanggal_Surat" class="form-control" type="date" name="Tanggal_Surat" required="">
+                                                    <!-- <div id="tanggal_display" class="mt-2"></div> -->
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label class="control-label" for="Tujuan_Surat">Tujuan Surat <span class="text-danger">*</span></label>
+                                                    <label class="control-label" for="Tujuan_Surat">Alamat/Tujuan Surat <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="">
@@ -93,8 +91,8 @@ $redirect_to = $this->redirect_to;
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="">
-                                                                <select required=""  id="ctrl-Nama_Tim_Kerja" name="Nama_Tim_Kerja"  placeholder="Select a value ..."    class="custom-select" >
-                                                                    <option value="">Select a value ...</option>
+                                                                <select required=""  id="ctrl-Nama_Tim_Kerja" name="Nama_Tim_Kerja"  placeholder="-- Pilih --"    class="custom-select" >
+                                                                    <option value="">-- Pilih --</option>
                                                                     <?php 
                                                                     $Nama_Tim_Kerja_options = $comp_model -> suratkeluar_Nama_Tim_Kerja_option_list();
                                                                     if(!empty($Nama_Tim_Kerja_options)){
@@ -122,8 +120,8 @@ $redirect_to = $this->redirect_to;
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="">
-                                                                <select required=""  id="ctrl-Jenis_Kegiatan" name="Jenis_Kegiatan"  placeholder="Select a value ..."    class="custom-select" >
-                                                                    <option value="">Select a value ...</option>
+                                                                <select required=""  id="ctrl-Jenis_Kegiatan" name="Jenis_Kegiatan"  placeholder="-- Pilih --"    class="custom-select" >
+                                                                    <option value="">-- Pilih --</option>
                                                                     <?php
                                                                     $Jenis_Kegiatan_options = Menu :: $Jenis_Kegiatan;
                                                                     if(!empty($Jenis_Kegiatan_options)){
@@ -144,44 +142,75 @@ $redirect_to = $this->redirect_to;
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group ">
+                                                <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="Kode_Sensus">Kode Sensus </label>
+                                                            <label class="control-label" for="Kode_Sensus">Kode </label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="">
-                                                                <select  id="ctrl-Kode_Sensus" data-load-select-options="Subkode_Sensus" name="Kode_Sensus"  placeholder="Select a value ..."    class="custom-select" >
-                                                                    <option value="">Select a value ...</option>
+                                                                <select id="ctrl-Kode_Sensus" data-load-select-options="Subkode_Sensus" name="Kode_Sensus" placeholder="-- Pilih --" class="custom-select">
+                                                                    <option value="">-- Pilih --</option>
                                                                     <?php
-                                                                    $Kode_Sensus_options = Menu :: $Kode_Sensus;
-                                                                    if(!empty($Kode_Sensus_options)){
-                                                                    foreach($Kode_Sensus_options as $option){
-                                                                    $value = $option['value'];
-                                                                    $label = $option['label'];
-                                                                    $selected = $this->set_field_selected('Kode_Sensus', $value, "");
-                                                                    ?>
-                                                                    <option <?php echo $selected ?> value="<?php echo $value ?>">
-                                                                        <?php echo $label ?>
-                                                                    </option>                                   
-                                                                    <?php
+                                                                    $Kode_Sensus_options = Menu:: $Kode_Sensus;
+                                                                    if (!empty($Kode_Sensus_options)) {
+                                                                        foreach ($Kode_Sensus_options as $option) {
+                                                                            $value = $option['value'];
+                                                                            $label = $option['label'];
+                                                                            $selected = $this->set_field_selected('Kode_Sensus', $value, "");
+                                                                            ?>
+                                                                            <option <?php echo $selected ?> value="<?php echo $value ?>">
+                                                                                <?php echo $label ?>
+                                                                            </option>
+                                                                        <?php
+                                                                        }
                                                                     }
-                                                                    }
                                                                     ?>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group ">
+
+                                                <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="Subkode_Sensus">Subkode Sensus </label>
+                                                            <label class="control-label" for="Subkode_Sensus">Subkode </label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="">
-                                                                <select  id="ctrl-Subkode_Sensus" data-load-path="<?php print_link('api/json/suratkeluar_Subkode_Sensus_option_list') ?>" data-load-select-options="Bagian_Sensus" name="Subkode_Sensus"  placeholder="Select a value ..."    class="custom-select" >
-                                                                    <option value="">Select a value ...</option>
+                                                                <select id="ctrl-Subkode_Sensus" data-load-path="<?php print_link('api/json/suratkeluar_Subkode_Sensus_option_list') ?>" name="Subkode_Sensus" placeholder="-- Pilih --" class="custom-select">
+                                                                    <option value="">-- Pilih --</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Bagian_Sensus">Klasifikasi </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select id="ctrl-Bagian_Sensus" name="Bagian_Sensus" placeholder="-- Pilih --" class="custom-select">
+                                                                    <option value="">-- Pilih --</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Sub_Bagian_Sensus">Subklasifikasi </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select  id="ctrl-Sub_Bagian_Sensus" placeholder="-- Pilih --"    class="custom-select" >
+                                                                    <option value="">-- Pilih --</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -190,26 +219,12 @@ $redirect_to = $this->redirect_to;
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="Bagian_Sensus">Bagian Sensus </label>
+                                                            <label class="control-label" for="Kode_Klasifikasi">Kode </label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="">
-                                                                <select  id="ctrl-Bagian_Sensus" data-load-path="<?php print_link('api/json/suratkeluar_Bagian_Sensus_option_list') ?>" name="Bagian_Sensus"  placeholder="Select a value ..."    class="custom-select" >
-                                                                    <option value="">Select a value ...</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group ">
-                                                    <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label" for="Kode_Klasifikasi">Kode Klasifikasi </label>
-                                                        </div>
-                                                        <div class="col-sm-8">
-                                                            <div class="">
-                                                                <select  id="ctrl-Kode_Klasifikasi" data-load-select-options="Subkode_Klasifikasi" name="Kode_Klasifikasi"  placeholder="Select a value ..."    class="custom-select" >
-                                                                    <option value="">Select a value ...</option>
+                                                                <select  id="ctrl-Kode_Klasifikasi" data-load-select-options="Subkode_Klasifikasi" name="Kode_Klasifikasi"  placeholder="-- Pilih --"    class="custom-select" >
+                                                                    <option value="">-- Pilih --</option>
                                                                     <?php
                                                                     $Kode_Klasifikasi_options = Menu :: $Kode_Klasifikasi;
                                                                     if(!empty($Kode_Klasifikasi_options)){
@@ -233,12 +248,12 @@ $redirect_to = $this->redirect_to;
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="Subkode_Klasifikasi">Subkode Klasifikasi </label>
+                                                            <label class="control-label" for="Subkode_Klasifikasi">Subkode </label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="">
-                                                                <select  id="ctrl-Subkode_Klasifikasi" data-load-path="<?php print_link('api/json/suratkeluar_Subkode_Klasifikasi_option_list') ?>" data-load-select-options="Bagian_Klasifikasi" name="Subkode_Klasifikasi"  placeholder="Select a value ..."    class="custom-select" >
-                                                                    <option value="">Select a value ...</option>
+                                                                <select  id="ctrl-Subkode_Klasifikasi" data-load-path="<?php print_link('api/json/suratkeluar_Subkode_Klasifikasi_option_list') ?>" name="Subkode_Klasifikasi"  placeholder="-- Pilih --"    class="custom-select" >
+                                                                    <option value="">-- Pilih --</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -247,17 +262,32 @@ $redirect_to = $this->redirect_to;
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="Bagian_Klasifikasi">Bagian Klasifikasi </label>
+                                                            <label class="control-label" for="Bagian_Klasifikasi">Klasifikasi </label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="">
-                                                                <select  id="ctrl-Bagian_Klasifikasi" data-load-path="<?php print_link('api/json/suratkeluar_Bagian_Klasifikasi_option_list') ?>" name="Bagian_Klasifikasi"  placeholder="Select a value ..."    class="custom-select" >
-                                                                    <option value="">Select a value ...</option>
+                                                                <select  id="ctrl-Bagian_Klasifikasi" name="Bagian_Klasifikasi"  placeholder="-- Pilih --"    class="custom-select" >
+                                                                    <option value="">-- Pilih --</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Sub_Bagian_Klasifikasi">Subklasifikasi </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <select  id="ctrl-Sub_Bagian_Klasifikasi" name="Sub_Bagian_Klasifikasi"  placeholder="-- Pilih --"    class="custom-select" >
+                                                                    <option value="">-- Pilih --</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
@@ -273,7 +303,7 @@ $redirect_to = $this->redirect_to;
                                                     <div class="form-group ">
                                                         <div class="row">
                                                             <div class="col-sm-4">
-                                                                <label class="control-label" for="Ringkasan_Isi_Surat">Ringkasan Isi Surat <span class="text-danger">*</span></label>
+                                                                <label class="control-label" for="Ringkasan_Isi_Surat">Ringkasan Isi <span class="text-danger">*</span></label>
                                                             </div>
                                                             <div class="col-sm-8">
                                                                 <div class="">
@@ -306,6 +336,117 @@ $redirect_to = $this->redirect_to;
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    
                                 </div>
                             </section>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById('ctrl-Tanggal_Surat');
+    const display = document.getElementById('tanggal_display');
+    
+    input.addEventListener('change', function() {
+      const tanggal = new Date(this.value);
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = tanggal.toLocaleDateString('id-ID', options);
+      display.innerText = formattedDate;
+    });
+  });
+
+    $(document).on('change', '#ctrl-Kode_Sensus, #ctrl-Subkode_Sensus', function() {
+        var kodeSensus = $('#ctrl-Kode_Sensus').val();
+        var subkodeSensus = $('#ctrl-Subkode_Sensus').val();
+        var path = '<?php print_link('api/json/suratkeluar_Bagian_Sensus_option_list') ?>/' + encodeURIComponent(kodeSensus) + '/' + encodeURIComponent(subkodeSensus);
+
+        $('#ctrl-Bagian_Sensus').html('<option value="">Loading...</option>');
+
+        $.ajax({
+            type: 'GET',
+            url: path,
+            dataType: 'json',
+            success: function(data) {
+                var options = '<option value="">-- Pilih --</option>';
+                for (var i = 0; i < data.length; i++) {
+                    options += '<option value="' + data[i].value + '">' + data[i].label + '</option>';
+                }
+                $('#ctrl-Bagian_Sensus').html(options);
+            },
+            error: function(data) {
+                $('#ctrl-Bagian_Sensus').html('<option value="">-- Pilih --</option>');
+            }
+        });
+    });
+
+    $(document).on('change', '#ctrl-Kode_Sensus, #ctrl-Subkode_Sensus, #ctrl-Bagian_Sensus', function() {
+        var kodeSensus = $('#ctrl-Kode_Sensus').val();
+        var subkodeSensus = $('#ctrl-Subkode_Sensus').val();
+        var bagianSensus = $('#ctrl-Bagian_Sensus').val();
+        var path = '<?php print_link('api/json/suratkeluar_Sub_Bagian_Sensus_option_list') ?>/' + encodeURIComponent(kodeSensus) + '/' + encodeURIComponent(subkodeSensus) + '/' + encodeURIComponent(bagianSensus);
+
+        $('#ctrl-Sub_Bagian_Sensus').html('<option value="">Loading...</option>');
+
+        $.ajax({
+            type: 'GET',
+            url: path,
+            dataType: 'json',
+            success: function(data) {
+                var options = '<option value="">-- Pilih --</option>';
+                for (var i = 0; i < data.length; i++) {
+                    options += '<option value="' + data[i].value + '">' + data[i].label + '</option>';
+                }
+                $('#ctrl-Sub_Bagian_Sensus').html(options);
+            },
+            error: function(data) {
+                $('#ctrl-Sub_Bagian_Sensus').html('<option value="">-- Pilih --</option>');
+            }
+        });
+    });
+
+    $(document).on('change', '#ctrl-Kode_Klasifikasi, #ctrl-Subkode_Klasifikasi', function() {
+        var kodeKlasifikasi = $('#ctrl-Kode_Klasifikasi').val();
+        var subkodeKlasifikasi = $('#ctrl-Subkode_Klasifikasi').val();
+        var path = '<?php print_link('api/json/suratkeluar_Bagian_Klasifikasi_option_list') ?>/' + encodeURIComponent(kodeKlasifikasi) + '/' + encodeURIComponent(subkodeKlasifikasi);
+
+        $('#ctrl-Bagian_Klasifikasi').html('<option value="">Loading...</option>');
+
+        $.ajax({
+            type: 'GET',
+            url: path,
+            dataType: 'json',
+            success: function(data) {
+                var options = '<option value="">-- Pilih --</option>';
+                for (var i = 0; i < data.length; i++) {
+                    options += '<option value="' + data[i].value + '">' + data[i].label + '</option>';
+                }
+                $('#ctrl-Bagian_Klasifikasi').html(options);
+            },
+            error: function(data) {
+                $('#ctrl-Bagian_Klasifikasi').html('<option value="">-- Pilih --</option>');
+            }
+        });
+    });
+
+    $(document).on('change', '#ctrl-Kode_Klasifikasi, #ctrl-Subkode_Klasifikasi, #ctrl-Bagian_Klasifikasi', function() {
+        var kodeKlasifikasi = $('#ctrl-Kode_Klasifikasi').val();
+        var subkodeKlasifikasi = $('#ctrl-Subkode_Klasifikasi').val();
+        var bagianKlasifikasi = $('#ctrl-Bagian_Klasifikasi').val();
+        var path = '<?php print_link('api/json/suratkeluar_Sub_Bagian_Klasifikasi_option_list') ?>/' + encodeURIComponent(kodeKlasifikasi) + '/' + encodeURIComponent(subkodeKlasifikasi) + '/' + encodeURIComponent(bagianKlasifikasi);
+
+        $('#ctrl-Sub_Bagian_Klasifikasi').html('<option value="">Loading...</option>');
+
+        $.ajax({
+            type: 'GET',
+            url: path,
+            dataType: 'json',
+            success: function(data) {
+                var options = '<option value="">-- Pilih --</option>';
+                for (var i = 0; i < data.length; i++) {
+                    options += '<option value="' + data[i].value + '">' + data[i].label + '</option>';
+                }
+                $('#ctrl-Sub_Bagian_Klasifikasi').html(options);
+            },
+            error: function(data) {
+                $('#ctrl-Sub_Bagian_Klasifikasi').html('<option value="">-- Pilih --</option>');
+            }
+        });
+    });
+</script>

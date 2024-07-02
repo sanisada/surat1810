@@ -19,7 +19,7 @@ class Surat_masukController extends SecureController{
 		$db = $this->GetModel();
 		$tablename = $this->tablename;
 		$fields = array("Nomor", 
-			"Tanggl_Surat", 
+			"Tanggal_Surat", 
 			"Asal_Surat", 
 			"Penerima", 
 			"Nomor_Surat", 
@@ -31,7 +31,7 @@ class Surat_masukController extends SecureController{
 			$text = trim($request->search); 
 			$search_condition = "(
 				surat_masuk.Nomor LIKE ? OR 
-				surat_masuk.Tanggl_Surat LIKE ? OR 
+				surat_masuk.Tanggal_Surat LIKE ? OR 
 				surat_masuk.Asal_Surat LIKE ? OR 
 				surat_masuk.Penerima LIKE ? OR 
 				surat_masuk.Nomor_Surat LIKE ? OR 
@@ -91,7 +91,7 @@ class Surat_masukController extends SecureController{
 		$rec_id = $this->rec_id = urldecode($rec_id);
 		$tablename = $this->tablename;
 		$fields = array("Nomor", 
-			"Tanggl_Surat", 
+			"Tanggal_Surat", 
 			"Asal_Surat", 
 			"Penerima", 
 			"Nomor_Surat", 
@@ -133,11 +133,11 @@ class Surat_masukController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("Nomor","Tanggl_Surat","Asal_Surat","Penerima","Nomor_Surat","Ringkasan_Isi_Surat","Keterangan");
+			$fields = $this->fields = array("Nomor","Tanggal_Surat","Asal_Surat","Penerima","Nomor_Surat","Ringkasan_Isi_Surat","Keterangan");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'Nomor' => 'required',
-				'Tanggl_Surat' => 'required',
+				'Tanggal_Surat' => 'required',
 				'Asal_Surat' => 'required',
 				'Penerima' => 'required',
 				'Nomor_Surat' => 'required',
@@ -146,7 +146,7 @@ class Surat_masukController extends SecureController{
 			);
 			$this->sanitize_array = array(
 				'Nomor' => 'sanitize_string',
-				'Tanggl_Surat' => 'sanitize_string',
+				'Tanggal_Surat' => 'sanitize_string',
 				'Asal_Surat' => 'sanitize_string',
 				'Penerima' => 'sanitize_string',
 				'Nomor_Surat' => 'sanitize_string',
@@ -166,7 +166,7 @@ class Surat_masukController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Surat Masuk";
+		$page_title = $this->view->page_title = "Tambah Surat Masuk";
 		$this->render_view("surat_masuk/add.php");
 	}
 	/**
@@ -181,12 +181,12 @@ class Surat_masukController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("Nomor","Tanggl_Surat","Asal_Surat","Penerima","Nomor_Surat","Ringkasan_Isi_Surat","Keterangan");
+		$fields = $this->fields = array("Nomor","Tanggal_Surat","Asal_Surat","Penerima","Nomor_Surat","Ringkasan_Isi_Surat","Keterangan");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'Nomor' => 'required',
-				'Tanggl_Surat' => 'required',
+				'Tanggal_Surat' => 'required',
 				'Asal_Surat' => 'required',
 				'Penerima' => 'required',
 				'Nomor_Surat' => 'required',
@@ -195,7 +195,7 @@ class Surat_masukController extends SecureController{
 			);
 			$this->sanitize_array = array(
 				'Nomor' => 'sanitize_string',
-				'Tanggl_Surat' => 'sanitize_string',
+				'Tanggal_Surat' => 'sanitize_string',
 				'Asal_Surat' => 'sanitize_string',
 				'Penerima' => 'sanitize_string',
 				'Nomor_Surat' => 'sanitize_string',
@@ -244,7 +244,7 @@ class Surat_masukController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("Nomor","Tanggl_Surat","Asal_Surat","Penerima","Nomor_Surat","Ringkasan_Isi_Surat","Keterangan");
+		$fields = $this->fields = array("Nomor","Tanggal_Surat","Asal_Surat","Penerima","Nomor_Surat","Ringkasan_Isi_Surat","Keterangan");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -254,7 +254,7 @@ class Surat_masukController extends SecureController{
 			$postdata = $this->format_request_data($postdata);
 			$this->rules_array = array(
 				'Nomor' => 'required',
-				'Tanggl_Surat' => 'required',
+				'Tanggal_Surat' => 'required',
 				'Asal_Surat' => 'required',
 				'Penerima' => 'required',
 				'Nomor_Surat' => 'required',
@@ -263,7 +263,7 @@ class Surat_masukController extends SecureController{
 			);
 			$this->sanitize_array = array(
 				'Nomor' => 'sanitize_string',
-				'Tanggl_Surat' => 'sanitize_string',
+				'Tanggal_Surat' => 'sanitize_string',
 				'Asal_Surat' => 'sanitize_string',
 				'Penerima' => 'sanitize_string',
 				'Nomor_Surat' => 'sanitize_string',
@@ -323,5 +323,25 @@ class Surat_masukController extends SecureController{
 			$this->set_flash_msg($page_error, "danger");
 		}
 		return	$this->redirect("surat_masuk");
+	}
+
+	function getKode(){
+	    $db  = $this->GetModel();
+	    
+	    $data = $db->rawQueryOne("SELECT max(Nomor) as maxID FROM surat_masuk");
+	    
+	    $idMax = $data ["maxID"];
+	    
+	    // $noUrut =1;
+	    
+	    // if(!empty($idMax)){
+	    //     $noUrut = (int)substr($idMax,2,4);
+	    // }
+	    
+	    $idMax++;
+	    
+	    $newID = $idMax;
+	    
+	    return $newID;
 	}
 }

@@ -15,7 +15,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Add New Namatimkerja</h4>
+                    <h4 class="record-title">Tambah Namatimkerja</h4>
                 </div>
             </div>
         </div>

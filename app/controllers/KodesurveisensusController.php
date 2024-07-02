@@ -21,9 +21,10 @@ class KodesurveisensusController extends SecureController{
 		$fields = array("Nomor", 
 			"Kode", 
 			"Subkode", 
-			"Bagian", 
+			"Klasifikasi", 
+			"Subklasifikasi",
 			"keterangan");
-		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
+		$pagination = $this->get_pagination(200); // get current pagination e.g array(page_number, page_limit)
 		//search table record
 		if(!empty($request->search)){
 			$text = trim($request->search); 
@@ -31,11 +32,12 @@ class KodesurveisensusController extends SecureController{
 				kodesurveisensus.Nomor LIKE ? OR 
 				kodesurveisensus.Kode LIKE ? OR 
 				kodesurveisensus.Subkode LIKE ? OR 
-				kodesurveisensus.Bagian LIKE ? OR 
+				kodesurveisensus.Klasifikasi LIKE ? OR 
+				kodesurveisensus.Subklasifikasi LIKE ? OR 
 				kodesurveisensus.keterangan LIKE ?
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%"
+				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -156,7 +158,7 @@ class KodesurveisensusController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Kodesurveisensus";
+		$page_title = $this->view->page_title = "Tambah Kodesurveisensus";
 		$this->render_view("kodesurveisensus/add.php");
 	}
 	/**
