@@ -1,0 +1,7 @@
+{
+    "require": {
+        "dompdf/dompdf": "^0.8.3",
+        "wixel/gump": "^1.11",
+        "irsadarief/jkd-sso": "^1.6"
+    }
+}
