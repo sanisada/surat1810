@@ -25,24 +25,24 @@ Aplikasi Manajemen Penomoran Layanan Surat BPS Kabupaten Pringsewu
 
 2. **Masuk ke direktori proyek:**
 
-```bash
-cd surat1810
+   ```bash
+   cd surat1810
 
 3. **Jalankan perintah berikut untuk menginstal dependensi:**
 
-```bash
-composer install
+   ```bash
+   composer install
 
 4. **Konfigurasi environment:**
 
-Salin file .env.example menjadi .env dan sesuaikan konfigurasi yang diperlukan seperti database dan OAuth2.
+   Salin file .env.example menjadi .env dan sesuaikan konfigurasi yang diperlukan seperti database dan OAuth2.
 
-```bash
-cp .env.example .env
+   ```bash
+   cp .env.example .env
 
 5. **Jalankan aplikasi menggunakan XAMPP:**
 
-Pastikan XAMPP berjalan dan server Apache serta MySQL aktif. Lalu, buka proyek ini di browser melalui alamat berikut:
+   Pastikan XAMPP berjalan dan server Apache serta MySQL aktif. Lalu, buka proyek ini di browser melalui alamat berikut:
 
-```bash
-http://localhost/surat1810
+   ```bash
+   http://localhost/surat1810
