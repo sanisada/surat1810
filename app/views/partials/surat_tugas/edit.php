@@ -38,6 +38,37 @@ $redirect_to = $this->redirect_to;
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-sm-4">
+                                                <label class="control-label" for="Nama_Tim_Kerja">Nama Tim Kerja <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="">
+                                                    <select required="" id="ctrl-Nama_Tim_Kerja" name="Nama_Tim_Kerja" placeholder="-- Pilih --" class="custom-select">
+                                                        <option value="">-- Pilih --</option>
+                                                        <option value="18100">18100 - Umum Kantor</option>
+                                                        <?php
+                                                            $rec = $data['Nama_Tim_Kerja'];
+                                                            $Nama_Tim_Kerja_options = $comp_model -> suratkeluar_Nama_Tim_Kerja_option_list();
+                                                            if(!empty($Nama_Tim_Kerja_options)){
+                                                            foreach($Nama_Tim_Kerja_options as $option){
+                                                            $value = (!empty($option['value']) ? $option['value'] : null);
+                                                            $label = (!empty($option['label']) ? $option['label'] : $value);
+                                                            $selected = ( $value == $rec ? 'selected' : null );
+                                                            ?>
+                                                            <option 
+                                                                <?php echo $selected; ?> value="<?php echo $value; ?>"><?php echo $label; ?>
+                                                            </option>
+                                                            <?php
+                                                            }
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-sm-4">
                                                     <label class="control-label" for="ctrl-Tanggal_Surat">Tanggal Surat <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-sm-8">
@@ -76,15 +107,39 @@ $redirect_to = $this->redirect_to;
                                             <div class="form-group ">
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <label class="control-label" for="Isi_Tugas">Isi Tugas <span class="text-danger">*</span></label>
+                                                        <label class="control-label" for="Nama_Kegiatan">Nama Kegiatan <span class="text-danger">*</span></label>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="">
-                                                            <input id="ctrl-Isi_Tugas"  value="<?php  echo $data['Isi_Tugas']; ?>" type="text" placeholder="Enter Isi Tugas"  required="" name="Isi_Tugas"  class="form-control " />
+                                                            <input id="ctrl-Nama_Kegiatan"  value="<?php  echo $data['Nama_Kegiatan']; ?>" type="text" placeholder="Enter Nama Kegiatan"  required="" name="Nama_Kegiatan"  class="form-control " />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="form-group ">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label" for="Bertugas_Sebagai">Bertugas Sebagai <span class="text-danger">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="">
+                                                            <input id="ctrl-Bertugas_Sebagai"  value="<?php  echo $data['Bertugas_Sebagai']; ?>" type="text" placeholder="Enter Bertugas Sebagai"  required="" name="Bertugas_Sebagai"  class="form-control " />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="Pembebanan">Pembebanan <span class="text-danger">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <input id="ctrl-Pembebanan"  value="<?php  echo $data['Pembebanan']; ?>" type="text" placeholder="Enter Pembebanan"  required="" name="Pembebanan"  class="form-control " />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">

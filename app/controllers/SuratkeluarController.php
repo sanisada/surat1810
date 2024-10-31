@@ -88,6 +88,7 @@ class SuratkeluarController extends BaseController{
 		$this->view->report_layout = "report_layout.php";
 		$this->view->report_paper_size = "A4";
 		$this->view->report_orientation = "portrait";
+		
 		$this->render_view("suratkeluar/list.php", $data); //render the full page
 	}
 	/**
@@ -142,12 +143,74 @@ class SuratkeluarController extends BaseController{
 		}
 		return $this->render_view("suratkeluar/view.php", $record);
 	}
+
+	// function getPegawai(){
+	// 	$url_base       = 'https://sso.bps.go.id/auth/';
+	// 	$url_token      = $url_base.'realms/pegawai-bps/protocol/openid-connect/token';
+	// 	$url_api        = $url_base.'admin/realms/pegawai-bps/users';
+	// 	$client_id      = '11810-surat-k3n'; 
+	// 	$client_secret  = '50b4f756-cc24-4d7b-aada-260c82dbd2d1';
+
+	// 	$query_search   = '?username={username}'; //'?username={username}' atau '?email={email pegawai}'
+
+	// 	/*
+	// 	------------------------------------------------------------------------------------------------
+	// 	Tahap 1 :
+	// 	Mendapatkan akses token
+	// 	------------------------------------------------------------------------------------------------
+	// 	*/
+	// 	$ch = curl_init($url_token);
+	// 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+	// 	curl_setopt($ch, CURLOPT_POSTFIELDS,"grant_type=client_credentials");
+	// 	curl_setopt($ch, CURLOPT_USERPWD, $client_id . ":" . $client_secret);  
+	// 	curl_setopt($ch, CURLOPT_POST, 1);
+	// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	// 	$response_token = curl_exec($ch);
+	// 	if(curl_errno($ch)){
+	// 		throw new Exception(curl_error($ch));
+	// 	}
+	// 	curl_close ($ch);
+	// 	$json_token = json_decode($response_token, true);
+	// 	$access_token = $json_token['access_token'];
+
+	// 	/*
+	// 	------------------------------------------------------------------------------------------------
+	// 	Tahap 2 :
+	// 	Mendapatkan data pegawai dengan username tertentu
+	// 	------------------------------------------------------------------------------------------------
+	// 	*/
+	// 	$ch = curl_init($url_api.$query_search);
+	// 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , 'Authorization: Bearer '.$access_token ));  
+	// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	// 	$response = curl_exec($ch);
+	// 	if(curl_errno($ch)){
+	// 		throw new Exception(curl_error($ch));
+	// 	}
+	// 	curl_close ($ch);
+	// 	$json = json_decode($response, true);
+
+	// 	return $json;
+
+	// 	// echo "Hasil Pencarian <b>$query_search </b><hr>";
+	// 	// $i=1;
+	// 	// foreach ($json as $result){
+	// 	// 	echo "<br>$i : Username : ".$result['username']."<ul>";
+	// 	// 	foreach ($result['attributes'] as $key => $value){
+	// 	// 		echo "<li><i>".$key."</i>: <br>". $value[0]."</li>";
+	// 	// 	}
+	// 	// 	echo "</ul>";
+	// 	// 	$i++;
+		
+	// 	// }
+	// }
+	
 	/**
      * Insert new record to the database table
 	 * @param $formdata array() from $_POST
      * @return BaseView
      */
 	function add($formdata = null){
+		// $pegawaiData = $this->getPegawai();
 		if($formdata){
 			$db = $this->GetModel();
 			$tablename = $this->tablename;
@@ -197,7 +260,7 @@ class SuratkeluarController extends BaseController{
 			}
 		}
 		$page_title = $this->view->page_title = "Tambah Surat Keluar";
-		$this->render_view("suratkeluar/add.php");
+		$this->render_view("suratkeluar/add.php", ['pegawaiData' => $pegawaiData]);
 	}
 	/**
      * Update table record with formdata
@@ -232,12 +295,6 @@ class SuratkeluarController extends BaseController{
 				'Nama_Pegawai' => 'sanitize_string',
 				'Nama_Tim_Kerja' => 'sanitize_string',
 				'Jenis_Kegiatan' => 'sanitize_string',
-				'Kode_Sensus' => 'sanitize_string',
-				'Subkode_Sensus' => 'sanitize_string',
-				'Bagian_Sensus' => 'sanitize_string',
-				'Kode_Klasifikasi' => 'sanitize_string',
-				'Subkode_Klasifikasi' => 'sanitize_string',
-				'Bagian_Klasifikasi' => 'sanitize_string',
 				'Nomor_Surat' => 'sanitize_string',
 				'Ringkasan_Isi_Surat' => 'sanitize_string',
 				'Keterangan' => 'sanitize_string',
@@ -310,12 +367,6 @@ class SuratkeluarController extends BaseController{
 				'Nama_Pegawai' => 'sanitize_string',
 				'Nama_Tim_Kerja' => 'sanitize_string',
 				'Jenis_Kegiatan' => 'sanitize_string',
-				'Kode_Sensus' => 'sanitize_string',
-				'Subkode_Sensus' => 'sanitize_string',
-				'Bagian_Sensus' => 'sanitize_string',
-				'Kode_Klasifikasi' => 'sanitize_string',
-				'Subkode_Klasifikasi' => 'sanitize_string',
-				'Bagian_Klasifikasi' => 'sanitize_string',
 				'Nomor_Surat' => 'sanitize_string',
 				'Ringkasan_Isi_Surat' => 'sanitize_string',
 				'Keterangan' => 'sanitize_string',

@@ -80,6 +80,18 @@ $redirect_to = $this->redirect_to;
                                                     <div class="col-sm-8">
                                                         <div class="">
                                                             <input id="ctrl-Nama_Pegawai"  value="<?php  echo $this->set_field_value('Nama_Pegawai',""); ?>" type="text" placeholder="Enter Nama Pegawai"  required="" name="Nama_Pegawai"  class="form-control " />
+                                                            <!-- <select id="ctrl-Nama_Pegawai" name="Nama_Pegawai" class="form-control" required>
+                                                                <option value="">-- Pilih Nama Pegawai --</option>
+                                                                <?php
+                                                                // Assuming $pegawaiData contains the list of employees
+                                                                foreach ($pegawaiData as $pegawai) {
+                                                                    // Check if the current employee is the selected one
+                                                                    $selected = $this->set_field_value('Nama_Pegawai') == $pegawai['username'] ? 'selected' : '';
+                                                                    echo "<option value='{$pegawai['username']}' $selected>{$pegawai['username']}</option>";
+                                                                }
+                                                                ?>
+                                                            </select> -->
+
                                                             </div>
                                                         </div>
                                                     </div>

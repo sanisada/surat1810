@@ -114,7 +114,7 @@ $show_pagination = $this->show_pagination;
                                                     </label>
                                                 </th> -->
                                                 <th class="td-sno">#</th>
-                                                <th  class="td-Nomor"> Nomor</th>
+                                                <!-- <th  class="td-Nomor"> Nomor</th> -->
                                                 <th  class="td-Tanggal"> Tanggal</th>
                                                 <th  class="td-Alamat"> Alamat</th>
                                                 <th  class="td-Ringkasan_Isi"> Ringkasan Isi</th>
@@ -142,7 +142,7 @@ $show_pagination = $this->show_pagination;
                                                         </label>
                                                     </th> -->
                                                     <th class="td-sno"><?php echo $counter; ?></th>
-                                                    <td class="td-Nomor"><a href="<?php print_link("beritaacara/view/$data[Nomor]") ?>"><?php echo $data['Nomor']; ?></a></td>
+                                                    <!-- <td class="td-Nomor"><a href="<?php print_link("beritaacara/view/$data[Nomor]") ?>"><?php echo $data['Nomor']; ?></a></td> -->
                                                     <td class="td-Tanggal">
                                                         <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                             data-value="<?php echo $data['Tanggal']; ?>" 

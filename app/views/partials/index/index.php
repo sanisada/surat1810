@@ -57,6 +57,10 @@
                                             Login <i class="fa fa-key"></i>
                                         </button>
                                     </div>
+                                    <div class="form-group text-center">
+                                        <a href="<?php print_link("index/sso_login") ?>" class="btn btn-block btn-md btn-info">Login SSO BPS
+                                        <i class="fa fa-user"></i></a>
+                                    </div>
                                     <hr />
                                     <!-- <div class="text-center">
                                         Don't Have an Account? <a href="<?php print_link("index/register") ?>" class="btn btn-success">Register

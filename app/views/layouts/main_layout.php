@@ -131,11 +131,22 @@
 			Html ::  page_js('bootstrap-4.3.1.min.js');
 		?>
 		<?php
+			// Mendapatkan path dari URL
+			$request_uri = $_SERVER['REQUEST_URI'];
+			
+			// Cek apakah URL mengandung '/edit/'
+			if (strpos($request_uri, '/edit/') !== false) {
+				$should_load_page_scripts = false;
+			} else {
+				$should_load_page_scripts = true;
+			}
 			Html ::  page_js('flatpickr.min.js');
 			Html ::  page_js('bootstrap-editable.js');
 			Html ::  page_js('plugins.js'); //boostrapswitch, passwordStrength, twbs-pagination, blueimp-gallery,
 			Html ::  page_js('plugins-init.js');
-			Html ::  page_js('page-scripts.js');
+			if ($should_load_page_scripts) {
+				Html::page_js('page-scripts.js');
+			}
 		?>
 	</body>
 </html>

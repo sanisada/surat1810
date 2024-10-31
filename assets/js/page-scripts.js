@@ -224,23 +224,53 @@ $('#ctrl-Jenis_Kegiatan').on('change', function(){
 		$('#ctrl-Sub_Bagian_Sensus').hide();
 		$("label[for='Sub_Bagian_Sensus']").hide();
 }
-});$('#ctrl-Kode_Sensus,#ctrl-Subkode_Sensus,#ctrl-Bagian_Sensus,#ctrl-Kode_Klasifikasi,#ctrl-Subkode_Klasifikasi,#ctrl-Bagian_Klasifikasi,#ctrl-Nama_Tim_Kerja').on('change', function(){ 
-	var Kode_Sensus = $('#ctrl-Kode_Sensus').val();
- var Subkode_Sensus = $('#ctrl-Subkode_Sensus').val();
- var Bagian_Sensus =$ ('#ctrl-Bagian_Sensus').val();
- 	var Kode_Klasifikasi = $('#ctrl-Kode_Klasifikasi').val();
- var Subkode_Klasifikasi = $('#ctrl-Subkode_Klasifikasi').val();
- var Bagian_Klasifikasi =$ ('#ctrl-Bagian_Klasifikasi').val();
- var Nama_Tim_Kerja = $ ('#ctrl-Nama_Tim_Kerja').val();
-var Nomor = $('#ctrl-Nomor').val();   
-        var Nomor_Sensus = Bagian_Sensus ? Bagian_Sensus : Subkode_Sensus;
-var Nomor_Klasifikasi = Bagian_Klasifikasi ? Bagian_Klasifikasi : Subkode_Klasifikasi;
-
-        var Nomor_Surat = Nomor+'/'+ Nama_Tim_Kerja +'/' + Kode_Sensus + Kode_Klasifikasi + '.'+ Nomor_Sensus + Nomor_Klasifikasi +'/2024';
-        $('#ctrl-Nomor_Surat').val(Nomor_Surat);
-        $('#ctrl-Nomor').on('input', function(){
 });
 
+$('#ctrl-Kode_Sensus,#ctrl-Subkode_Sensus,#ctrl-Bagian_Sensus,#ctrl-Kode_Klasifikasi,#ctrl-Subkode_Klasifikasi,#ctrl-Bagian_Klasifikasi,#ctrl-Nama_Tim_Kerja').on('change', function(){ 
+	var Kode_Sensus = $('#ctrl-Kode_Sensus').val();
+	var Subkode_Sensus = $('#ctrl-Subkode_Sensus').val();
+	var Bagian_Sensus = $('#ctrl-Bagian_Sensus').val();
+	var Kode_Klasifikasi = $('#ctrl-Kode_Klasifikasi').val();
+	var Subkode_Klasifikasi = $('#ctrl-Subkode_Klasifikasi').val();
+	var Bagian_Klasifikasi = $('#ctrl-Bagian_Klasifikasi').val();
+	var Nama_Tim_Kerja = $('#ctrl-Nama_Tim_Kerja').val();
+	var Nomor = $('#ctrl-Nomor').val();
+
+	// Determine Nomor_Sensus and Nomor_Klasifikasi
+	var Nomor_Sensus = Bagian_Sensus ? Bagian_Sensus : Subkode_Sensus;
+	var Nomor_Klasifikasi = Bagian_Klasifikasi ? Bagian_Klasifikasi : Subkode_Klasifikasi;
+
+	// Get the current year
+	const currentYear = new Date().getFullYear();
+
+	// Check if the Nomor needs to be reset to 001 for the new year
+	if (localStorage.getItem('lastGeneratedYear') != currentYear) {
+		localStorage.setItem('lastGeneratedYear', currentYear);
+		localStorage.setItem('lastGeneratedNumber', '000');
+	}
+
+	// Retrieve the last generated number from local storage
+	var lastGeneratedNumber = localStorage.getItem('lastGeneratedNumber');
+
+	// Increment the number
+	var newNumber = parseInt(lastGeneratedNumber, 10) + 1;
+
+	// Format the new number to three digits
+	var formattedNewNumber = newNumber.toString().padStart(3, '0');
+
+	// Update the local storage with the new number
+	localStorage.setItem('lastGeneratedNumber', formattedNewNumber);
+
+	// Construct the Nomor_Surat
+	var Nomor_Surat = Nomor + '/' + Nama_Tim_Kerja + '/' + Kode_Sensus + Kode_Klasifikasi + '.' + Nomor_Sensus + Nomor_Klasifikasi + '/' + currentYear;
+
+	// Set the Nomor_Surat in the input field
+	$('#ctrl-Nomor_Surat').val(Nomor_Surat);
+
+	// Optional: Add event listener for changes in the Nomor input field
+	$('#ctrl-Nomor').on('input', function(){
+		// You can add additional logic here if needed
+	});
 });
 });
 /**

@@ -18,7 +18,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Edit  Namatimkerja</h4>
+                    <h4 class="record-title">Edit  Nama Tim Kerja</h4>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@ $redirect_to = $this->redirect_to;
                 <div class="col-md-7 comp-grid">
                     <?php $this :: display_page_errors(); ?>
                     <div  class="bg-light p-3 animated fadeIn page-content">
-                        <form novalidate  id="" role="form" enctype="multipart/form-data"  class="form page-form form-horizontal needs-validation" action="<?php print_link("namatimkerja/edit/$page_id/?csrf_token=$csrf_token"); ?>" method="post">
+                        <form novalidate  id="" role="form" enctype="multipart/form-data"  class="form page-form form-horizontal needs-validation" action="<?php print_link("Nama Tim Kerja/edit/$page_id/?csrf_token=$csrf_token"); ?>" method="post">
                             <div>
                                 <div class="form-group ">
                                     <div class="row">

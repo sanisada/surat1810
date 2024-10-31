@@ -109,6 +109,31 @@ class SharedController extends BaseController{
 	}
 
 	/**
+     * surat_tugas_number Model Action
+     * @return array
+     */
+	public function surat_tugas_number($Nama_Tim_Kerja){
+		$db = $this->GetModel();
+		$sqltext = "SELECT max(Nomor) as maxID FROM surat_tugas WHERE Nama_Tim_Kerja = ?";
+		$params = array($Nama_Tim_Kerja);
+		$result = $db->rawQueryValue($sqltext, $params);
+	
+		$idMax = !empty($result) ? $result[0] : null;
+		$noUrut = 0;
+		if (!empty($idMax)) {
+			$noUrut = (int)substr($idMax, 2, 3);
+		}
+		$noUrut++;
+		$newID = "B-" . sprintf("%03d", $noUrut);
+	
+		// Pastikan header JSON
+		header('Content-Type: application/json');
+		$response = array('success' => true, 'nomor' => $newID);
+		echo json_encode($response);
+		exit();
+	}
+
+	/**
      * getcount_suratmasuk Model Action
      * @return Value
      */
@@ -140,4 +165,63 @@ class SharedController extends BaseController{
 		return $val;
 	}
 
+	/**
+     * getcount_surattugas Model Action
+     * @return Value
+     */
+	function getcount_surattugas(){
+		$db = $this->GetModel();
+		$sqltext = "SELECT COUNT(*) AS num FROM surat_tugas";
+		$queryparams = null;
+		$val = $db->rawQueryValue($sqltext, $queryparams);
+		
+		if(is_array($val)){
+			return $val[0];
+		}
+		return $val;
+	}
+
+	/**
+     * getcount_sk Model Action
+     * @return Value
+     */
+	function getcount_sk(){
+		$db = $this->GetModel();
+		$sqltext = "SELECT COUNT(*) AS num FROM surat_keputusan";
+		$queryparams = null;
+		$val = $db->rawQueryValue($sqltext, $queryparams);
+		
+		if(is_array($val)){
+			return $val[0];
+		}
+		return $val;
+	}
+
+	/**
+	 * getcount by teamwork
+	 */
+	function getcount_bytim(){
+		$db = $this->GetModel();
+		
+		// SQL untuk menampilkan semua tim dan menggabungkan khusus kode '18100'
+		$sqltext = "
+			SELECT CASE 
+						WHEN ntk.Kode_Tim = '18100' THEN 'Tim 18100'
+						ELSE ntk.Nama_Tim_Kerja 
+					END AS Nama_Tim_Kerja, 
+					COUNT(st.id) AS num
+			FROM surat_tugas st
+			JOIN namatimkerja ntk ON st.Nama_Tim_Kerja = ntk.Kode_Tim
+			GROUP BY CASE 
+						WHEN ntk.Kode_Tim = '18100' THEN 'Tim 18100'
+						ELSE ntk.Nama_Tim_Kerja 
+					END
+		";
+		
+		$val = $db->rawQuery($sqltext);
+		
+		return $val;
+	}
+	
+	
 }

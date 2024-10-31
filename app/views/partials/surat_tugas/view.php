@@ -104,21 +104,39 @@ $show_export_btn = $this->show_export_btn;
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-Isi_Tugas">
-                                        <th class="title"> Isi Tugas: </th>
+                                    <tr  class="td-Nama_Kegiatan">
+                                        <th class="title"> Nama Kegiatan: </th>
                                         <td class="value">
-                                            <span  data-value="<?php echo $data['Isi_Tugas']; ?>" 
+                                            <span  data-value="<?php echo $data['Nama_Kegiatan']; ?>" 
                                                 data-pk="<?php echo $data['Nomor'] ?>" 
                                                 data-url="<?php print_link("surat_tugas/editfield/" . urlencode($data['Nomor'])); ?>" 
-                                                data-name="Isi_Tugas" 
-                                                data-title="Enter Isi Tugas" 
+                                                data-name="Nama_Kegiatan" 
+                                                data-title="Enter Nama Kegiatan" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
                                                  >
-                                                <?php echo $data['Isi_Tugas']; ?> 
+                                                <?php echo $data['Nama_Kegiatan']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Bertugas_Sebagai">
+                                        <th class="title">  Bertugas Sebagai: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['Bertugas_Sebagai']; ?>" 
+                                                data-pk="<?php echo $data['Nomor'] ?>" 
+                                                data-url="<?php print_link("surat_tugas/editfield/" . urlencode($data['Nomor'])); ?>" 
+                                                data-name="Bertugas_Sebagai" 
+                                                data-title="Enter Bertugas Sebagai" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                 >
+                                                <?php echo $data['Bertugas_Sebagai']; ?> 
                                             </span>
                                         </td>
                                     </tr>

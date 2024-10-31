@@ -36,7 +36,7 @@ class SecureController extends BaseController{
 	private function authenticate_user()
 	{
 		if (user_login_status() == false) {
-			//check if user has a login cookie
+			// Check if user has a login cookie
 			$session_key = get_cookie("login_session_key");
 			if (!empty($session_key)) {
 				$db = $this->GetModel();
@@ -45,6 +45,13 @@ class SecureController extends BaseController{
 				if (!empty($user)) {
 					set_session("user_data", $user);
 				}
+			}
+			
+			// Check if user has session data from SSO login
+			if (isset($_SESSION['user_data'])) {
+				$sso_user_data = $_SESSION['user_data'];
+				// Merge or replace user_data from SSO with existing session data
+				set_session("user_data", $sso_user_data);
 			}
 		}
 		return user_login_status();

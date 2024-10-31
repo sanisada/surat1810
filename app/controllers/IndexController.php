@@ -7,6 +7,9 @@ class IndexController extends BaseController{
 	function __construct(){
 		parent::__construct(); 
 		$this->tablename = "pengguna";
+
+		
+		
 	}
 	/**
      * Index Action 
@@ -66,6 +69,77 @@ class IndexController extends BaseController{
 			return $this->login_fail("Username or password not correct");
 		}
 	}
+
+	function sso_login(){
+		session_start();
+		// Inisialisasi provider Keycloak
+        $provider = new JKD\SSO\Client\Provider\Keycloak([
+			'authServerUrl'         => 'https://sso.bps.go.id',
+			'realm'                 => 'pegawai-bps',
+			'clientId'              => '11810-surat-k3n',
+			'clientSecret'          => '50b4f756-cc24-4d7b-aada-260c82dbd2d1',
+			'redirectUri'           => 'https://localhost/index/sso_login'
+		]);
+		
+		if (!isset($_GET['code'])) {
+
+			// Untuk mendapatkan authorization code
+			$authUrl = $provider->getAuthorizationUrl();
+			$_SESSION['oauth2state'] = $provider->getState();
+			header('Location: '.$authUrl);
+			exit;
+		
+		// Mengecek state yang disimpan saat ini untuk memitigasi serangan CSRF
+		} elseif (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
+		
+			unset($_SESSION['oauth2state']);
+			exit('Invalid state');
+		
+		} else {
+		
+			try {
+				$token = $provider->getAccessToken('authorization_code', [
+					'code' => $_GET['code']
+				]);
+			} catch (Exception $e) {
+				exit('Gagal mendapatkan akses token : '.$e->getMessage());
+			}
+		
+			// Opsional: Setelah mendapatkan token, anda dapat melihat data profil pengguna
+			try {
+				$user = $provider->getResourceOwner($token);
+				// Simpan data pengguna ke dalam session
+				set_session("user_data", [
+					'name' => $user->getName(),
+					'email' => $user->getEmail(),
+					'username' => $user->getUsername(),
+					'token' => $token->getToken() // Optionally save the token
+				]);
+	
+	
+				// Redirect atau tampilkan halaman selanjutnya setelah autentikasi sukses
+				return $this->redirect_after_login();
+				exit;
+			} catch (Exception $e) {
+				exit('Gagal Mendapatkan Data Pengguna: ' . $e->getMessage());
+			}
+		
+			// Gunakan token ini untuk berinteraksi dengan API di sisi pengguna
+			echo $token->getToken();
+		}		
+		$token = $provider->getAccessToken('refresh_token', ['refresh_token' => $token->getRefreshToken()]);
+	}
+
+	private function redirect_after_login() {
+		$redirect_url = get_session("login_redirect_url");
+		if (!empty($redirect_url)) {
+			clear_session("login_redirect_url");
+			return $this->redirect($redirect_url);
+		} else {
+			return $this->redirect(HOME_PAGE);
+		}
+	}
+
 	/**
      * Display login page with custom message when login fails
      * @return BaseView
@@ -157,5 +231,7 @@ class IndexController extends BaseController{
 		session_destroy();
 		clear_cookie("login_session_key");
 		$this->redirect("");
+
+		$url_logout = $provider->getLogoutUrl();
 	}
 }

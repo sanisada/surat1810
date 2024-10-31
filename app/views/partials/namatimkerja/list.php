@@ -25,12 +25,19 @@ $show_pagination = $this->show_pagination;
                 <div class="col ">
                     <h4 class="record-title">Tim Kerja</h4>
                 </div>
-                <!-- <div class="col-sm-3 ">
-                    <a  class="btn btn btn-primary my-1" href="<?php print_link("namatimkerja/add") ?>">
-                        <i class="fa fa-plus"></i>                              
-                        Tambah Namatimkerja 
-                    </a>
-                </div> -->
+                <?php
+                    // Hanya tampilkan tombol edit jika role pengguna adalah admin
+                    if (USER_ROLE === 'Admin') {
+                        ?>
+                    <div class="col-sm-3 ">
+                        <a  class="btn btn btn-primary my-1" href="<?php print_link("namatimkerja/add") ?>">
+                            <i class="fa fa-plus"></i>                              
+                            Tambah Tim Kerja 
+                        </a>
+                    </div>
+                    <?php
+                    }
+                ?>
                 <div class="col-sm-4 ">
                     <form  class="search" action="<?php print_link('namatimkerja'); ?>" method="get">
                         <div class="input-group">
@@ -170,7 +177,11 @@ $show_pagination = $this->show_pagination;
                                                             <?php echo $data['Nama_Tim_Kerja']; ?> 
                                                         </span>
                                                     </td>
-                                                    <!-- <th class="td-btn">
+                                                    <?php
+                                                    // Hanya tampilkan tombol edit jika role pengguna adalah admin
+                                                    if (USER_ROLE === 'Admin') {
+                                                        ?>
+                                                    <th class="td-btn">
                                                         <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("namatimkerja/view/$rec_id"); ?>">
                                                             <i class="fa fa-eye"></i> View
                                                         </a>
@@ -181,7 +192,10 @@ $show_pagination = $this->show_pagination;
                                                             <i class="fa fa-times"></i>
                                                             Delete
                                                         </a>
-                                                    </th> -->
+                                                    </th>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </tr>
                                                 <?php 
                                                 }

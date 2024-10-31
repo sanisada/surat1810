@@ -34,6 +34,12 @@ class Menu{
 		),
 		
 		array(
+			'path' => 'surat_keputusan', 
+			'label' => 'SURAT KEPUTUSAN', 
+			'icon' => ''
+		),
+
+		array(
 			'path' => 'beritaacara', 
 			'label' => 'BERITA ACARA', 
 			'icon' => ''
@@ -54,6 +60,12 @@ class Menu{
 		array(
 			'path' => 'kodesurveisensus', 
 			'label' => 'KODE SURVEI SENSUS', 
+			'icon' => ''
+		),
+
+		array(
+			'path' => 'dokumentasi', 
+			'label' => 'DOKUMENTASI SOP', 
 			'icon' => ''
 		),
 		

@@ -87,7 +87,7 @@ define("DEFAULT_EMAIL_ACCOUNT_NAME", "");
 define("DB_HOST", "localhost");
 define("DB_USERNAME", "root");
 define("DB_PASSWORD", "");
-define("DB_NAME", "db_surat");
+define("DB_NAME", "surat_db");
 define("DB_TYPE", "mysql");
 define("DB_PORT", "");
 define("DB_CHARSET", "utf8");

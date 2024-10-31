@@ -21,7 +21,7 @@ $show_export_btn = $this->show_export_btn;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">View  Namatimkerja</h4>
+                    <h4 class="record-title">View  Nama Tim Kerja</h4>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@ $show_export_btn = $this->show_export_btn;
                                         <td class="value">
                                             <span  data-value="<?php echo $data['Kode_Tim']; ?>" 
                                                 data-pk="<?php echo $data['Nomor'] ?>" 
-                                                data-url="<?php print_link("namatimkerja/editfield/" . urlencode($data['Nomor'])); ?>" 
+                                                data-url="<?php print_link("Nama Tim Kerja/editfield/" . urlencode($data['Nomor'])); ?>" 
                                                 data-name="Kode_Tim" 
                                                 data-title="Enter Kode Tim" 
                                                 data-placement="left" 
@@ -72,7 +72,7 @@ $show_export_btn = $this->show_export_btn;
                                         <td class="value">
                                             <span  data-value="<?php echo $data['Nama_Tim_Kerja']; ?>" 
                                                 data-pk="<?php echo $data['Nomor'] ?>" 
-                                                data-url="<?php print_link("namatimkerja/editfield/" . urlencode($data['Nomor'])); ?>" 
+                                                data-url="<?php print_link("Nama Tim Kerja/editfield/" . urlencode($data['Nomor'])); ?>" 
                                                 data-name="Nama_Tim_Kerja" 
                                                 data-title="Enter Nama Tim Kerja" 
                                                 data-placement="left" 
@@ -117,10 +117,10 @@ $show_export_btn = $this->show_export_btn;
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <a class="btn btn-sm btn-info"  href="<?php print_link("namatimkerja/edit/$rec_id"); ?>">
+                                                <a class="btn btn-sm btn-info"  href="<?php print_link("Nama Tim Kerja/edit/$rec_id"); ?>">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("namatimkerja/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
+                                                <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("Nama Tim Kerja/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                     <i class="fa fa-times"></i> Delete
                                                 </a>
                                             </div>

@@ -63,7 +63,7 @@ class NamatimkerjaController extends SecureController{
 		if($db->getLastError()){
 			$this->set_page_error();
 		}
-		$page_title = $this->view->page_title = "Namatimkerja";
+		$page_title = $this->view->page_title = "Nama Tim Kerja";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -93,7 +93,7 @@ class NamatimkerjaController extends SecureController{
 		}
 		$record = $db->getOne($tablename, $fields );
 		if($record){
-			$page_title = $this->view->page_title = "View  Namatimkerja";
+			$page_title = $this->view->page_title = "View  Nama Tim Kerja";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -144,7 +144,7 @@ class NamatimkerjaController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Tambah Namatimkerja";
+		$page_title = $this->view->page_title = "Tambah Nama Tim Kerja";
 		$this->render_view("namatimkerja/add.php");
 	}
 	/**
@@ -195,7 +195,7 @@ class NamatimkerjaController extends SecureController{
 		}
 		$db->where("namatimkerja.Nomor", $rec_id);;
 		$data = $db->getOne($tablename, $fields);
-		$page_title = $this->view->page_title = "Edit  Namatimkerja";
+		$page_title = $this->view->page_title = "Edit  Nama Tim Kerja";
 		if(!$data){
 			$this->set_page_error();
 		}

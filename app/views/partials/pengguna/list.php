@@ -25,12 +25,19 @@ $show_pagination = $this->show_pagination;
                 <div class="col ">
                     <h4 class="record-title">Pengguna</h4>
                 </div>
-                <div class="col-sm-3 ">
-                    <a  class="btn btn btn-primary my-1" href="<?php print_link("pengguna/add") ?>">
-                        <i class="fa fa-plus"></i>                              
-                        Tambah Pengguna 
-                    </a>
-                </div>
+                <?php
+                    // Hanya tampilkan tombol edit jika role pengguna adalah admin
+                    if (USER_ROLE === 'Admin') {
+                        ?>
+                    <div class="col-sm-3 ">
+                        <a  class="btn btn btn-primary my-1" href="<?php print_link("pengguna/add") ?>">
+                            <i class="fa fa-plus"></i>                              
+                            Tambah Pengguna 
+                        </a>
+                    </div>
+                    <?php
+                    }
+                ?>
                 <div class="col-sm-4 ">
                     <form  class="search" action="<?php print_link('pengguna'); ?>" method="get">
                         <div class="input-group">
@@ -114,7 +121,7 @@ $show_pagination = $this->show_pagination;
                                                     </label>
                                                 </th> -->
                                                 <th class="td-sno">#</th>
-                                                <th  class="td-id_user"> Id User</th>
+                                                <!-- <th  class="td-id_user"> Id User</th> -->
                                                 <th  class="td-Username"> Username</th>
                                                 <th  class="td-Email"> Email</th>
                                                 <th class="td-btn"></th>
@@ -139,7 +146,7 @@ $show_pagination = $this->show_pagination;
                                                         </label>
                                                     </th> -->
                                                     <th class="td-sno"><?php echo $counter; ?></th>
-                                                    <td class="td-id_user"><a href="<?php print_link("pengguna/view/$data[id_user]") ?>"><?php echo $data['id_user']; ?></a></td>
+                                                    <!-- <td class="td-id_user"><a href="<?php print_link("pengguna/view/$data[id_user]") ?>"><?php echo $data['id_user']; ?></a></td> -->
                                                     <td class="td-Username">
                                                         <span  data-value="<?php echo $data['Username']; ?>" 
                                                             data-pk="<?php echo $data['id_user'] ?>" 

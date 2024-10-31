@@ -30,6 +30,9 @@ $show_pagination = $this->show_pagination;
                         <i class="fa fa-plus"></i>                              
                         Tambah Surat Tugas 
                     </a>
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-tambah">
+                        <i class="fa fa-plus"></i> Tambah Surat Tugas 
+                    </button> -->
                 </div>
                 <div class="col-sm-4 ">
                     <form  class="search" action="<?php print_link('surat_tugas'); ?>" method="get">
@@ -114,11 +117,11 @@ $show_pagination = $this->show_pagination;
                                                     </label>
                                                 </th> -->
                                                 <th class="td-sno">#</th>
-                                                <th  class="td-Nomor"> Nomor</th>
+                                                <!-- <th  class="td-Nomor"> Nomor</th> -->
                                                 <th  class="td-Tanggal_Surat"> Tanggal Surat</th>
                                                 <th  class="td-Nomor_Surat"> Nomor Surat</th>
                                                 <th  class="td-Nama_Yang_di_Tugaskan"> Nama Yang Di Tugaskan</th>
-                                                <th  class="td-Isi_Tugas"> Isi Tugas</th>
+                                                <th  class="td-Nama_Kegiatan"> Nama Kegiatan</th>
                                                 <th  class="td-Rentang_Waktu_Penugasan"> Rentang Waktu Penugasan</th>
                                                 <th class="td-btn"></th>
                                             </tr>
@@ -131,7 +134,7 @@ $show_pagination = $this->show_pagination;
                                             <?php
                                             $counter = 0;
                                             foreach($records as $data){
-                                            $rec_id = (!empty($data['Nomor']) ? urlencode($data['Nomor']) : null);
+                                            $rec_id = (!empty($data['id']) ? urlencode($data['id']) : null);
                                             $counter++;
                                             ?>
                                             <tr>
@@ -142,7 +145,7 @@ $show_pagination = $this->show_pagination;
                                                         </label>
                                                     </th> -->
                                                     <th class="td-sno"><?php echo $counter; ?></th>
-                                                    <td class="td-Nomor"><a href="<?php print_link("surat_tugas/view/$data[Nomor]") ?>"><?php echo $data['Nomor']; ?></a></td>
+                                                    <!-- <td class="td-Nomor"><a href="<?php print_link("surat_tugas/view/$data[Nomor]") ?>"><?php echo $data['Nomor']; ?></a></td> -->
                                                     <td class="td-Tanggal_Surat">
                                                         <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                             data-value="<?php echo $data['Tanggal_Surat']; ?>" 
@@ -189,19 +192,19 @@ $show_pagination = $this->show_pagination;
                                                             <?php echo $data['Nama_Yang_di_Tugaskan']; ?> 
                                                         </span>
                                                     </td>
-                                                    <td class="td-Isi_Tugas">
-                                                        <span  data-value="<?php echo $data['Isi_Tugas']; ?>" 
+                                                    <td class="td-Nama_Kegiatan">
+                                                        <span  data-value="<?php echo $data['Nama_Kegiatan']; ?>" 
                                                             data-pk="<?php echo $data['Nomor'] ?>" 
                                                             data-url="<?php print_link("surat_tugas/editfield/" . urlencode($data['Nomor'])); ?>" 
-                                                            data-name="Isi_Tugas" 
-                                                            data-title="Enter Isi Tugas" 
+                                                            data-name="Nama_Kegiatan" 
+                                                            data-title="Enter Nama Kegiatan" 
                                                             data-placement="left" 
                                                             data-toggle="click" 
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
                                                              >
-                                                            <?php echo $data['Isi_Tugas']; ?> 
+                                                            <?php echo $data['Nama_Kegiatan']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Rentang_Waktu_Penugasan">
@@ -219,11 +222,12 @@ $show_pagination = $this->show_pagination;
                                                             <?php echo $data['Rentang_Waktu_Penugasan']; ?> 
                                                         </span>
                                                     </td>
+                                                    <th class="td-btn">
                                                     <?php
                                                         // Hanya tampilkan tombol edit jika role pengguna adalah admin
                                                         if (USER_ROLE === 'Admin') {
                                                             ?>
-                                                            <th class="td-btn">
+                                                            
                                                                 <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("surat_tugas/view/$rec_id"); ?>">
                                                                     <i class="fa fa-eye"></i> View
                                                                 </a>
@@ -234,10 +238,16 @@ $show_pagination = $this->show_pagination;
                                                                     <i class="fa fa-times"></i>
                                                                     Delete
                                                                 </a>
-                                                            </th>
                                                     <?php
                                                         }
                                                     ?>
+                                                                <?php if($data['jenis_surtug'] != 'dinas') { ?>
+                                                                    <a class="btn btn-sm btn-primary has-tooltip" href="<?php print_link("surat_tugas/download/$rec_id"); ?>">
+                                                                        <i class="fa fa-download"></i> Download
+                                                                    </a>
+                                                                <?php } ?>
+                                                            </th>
+                                                    
                                                 </tr>
                                                 <?php 
                                                 }
@@ -325,3 +335,32 @@ $show_pagination = $this->show_pagination;
                                     </div>
                                 </div>
                             </section>
+
+<div class="modal fade" id="modal-tambah">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Form Tambah Surat Tugas</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?php print_link("surat_tugas/tambah?csrf_token=$csrf_token") ?>" method="post">
+                <div class="modal-body">
+                    <label for="jenis_surtug"><h6>Keperluan Kegiatan</h6></label><br/>
+                    <select name="jenis_surtug" id="jenis_surtug" class="custom-select custom-select-md mb-3">
+                        <option value="dinas">Perjalanan Dinas</option>
+                        <option value="pelatihan">Pelatihan</option>
+                        <option value="pendataan">Pendataan</option>
+                    </select>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Tutup</button>
+                    <button class="btn btn-sm btn-success float-right" type="submit" name="tambah_data">Simpan</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
