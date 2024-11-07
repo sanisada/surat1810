@@ -226,7 +226,8 @@ $('#ctrl-Jenis_Kegiatan').on('change', function(){
 }
 });
 
-$('#ctrl-Kode_Sensus,#ctrl-Subkode_Sensus,#ctrl-Bagian_Sensus,#ctrl-Kode_Klasifikasi,#ctrl-Subkode_Klasifikasi,#ctrl-Bagian_Klasifikasi,#ctrl-Nama_Tim_Kerja').on('change', function(){ 
+$('#ctrl-Jenis_Kegiatan,#ctrl-Kode_Sensus,#ctrl-Subkode_Sensus,#ctrl-Bagian_Sensus,#ctrl-Kode_Klasifikasi,#ctrl-Subkode_Klasifikasi,#ctrl-Bagian_Klasifikasi,#ctrl-Nama_Tim_Kerja').on('change', function(){ 
+	var Jenis_Kegiatan = $('#ctrl-Jenis_Kegiatan').val();
 	var Kode_Sensus = $('#ctrl-Kode_Sensus').val();
 	var Subkode_Sensus = $('#ctrl-Subkode_Sensus').val();
 	var Bagian_Sensus = $('#ctrl-Bagian_Sensus').val();
@@ -235,37 +236,55 @@ $('#ctrl-Kode_Sensus,#ctrl-Subkode_Sensus,#ctrl-Bagian_Sensus,#ctrl-Kode_Klasifi
 	var Bagian_Klasifikasi = $('#ctrl-Bagian_Klasifikasi').val();
 	var Nama_Tim_Kerja = $('#ctrl-Nama_Tim_Kerja').val();
 	var Nomor = $('#ctrl-Nomor').val();
-
-	// Determine Nomor_Sensus and Nomor_Klasifikasi
-	var Nomor_Sensus = Bagian_Sensus ? Bagian_Sensus : Subkode_Sensus;
-	var Nomor_Klasifikasi = Bagian_Klasifikasi ? Bagian_Klasifikasi : Subkode_Klasifikasi;
-
-	// Get the current year
 	const currentYear = new Date().getFullYear();
 
-	// Check if the Nomor needs to be reset to 001 for the new year
-	if (localStorage.getItem('lastGeneratedYear') != currentYear) {
-		localStorage.setItem('lastGeneratedYear', currentYear);
-		localStorage.setItem('lastGeneratedNumber', '000');
+	// Determine Nomor_Sensus and Nomor_Klasifikasi
+	var Nomor_Sensus = Bagian_Sensus || Subkode_Sensus || Kode_Sensus;
+	var Nomor_Klasifikasi = Bagian_Klasifikasi || Subkode_Klasifikasi || Kode_Klasifikasi;
+
+	if (Jenis_Kegiatan === "Survei Sensus") {
+		// Use Kode_Sensus with Nomor_Sensus
+		Nomor_Surat = `${Nomor}/${Nama_Tim_Kerja}/${Kode_Sensus}.${Nomor_Sensus}/${currentYear}`;
+	} else if (Jenis_Kegiatan === "Klasifikasi") {
+		// Use Kode_Klasifikasi with Nomor_Klasifikasi
+		Nomor_Surat = `${Nomor}/${Nama_Tim_Kerja}/${Kode_Klasifikasi}.${Nomor_Klasifikasi}/${currentYear}`;
+	} else {
+		console.warn("Jenis_Kegiatan not specified or unrecognized.");
+		return; // Exit if neither condition is met
 	}
+	
+	// Set Nomor_Surat in the input field
+	$('#ctrl-Nomor_Surat').val(Nomor_Surat);
 
-	// Retrieve the last generated number from local storage
-	var lastGeneratedNumber = localStorage.getItem('lastGeneratedNumber');
-
-	// Increment the number
-	var newNumber = parseInt(lastGeneratedNumber, 10) + 1;
-
-	// Format the new number to three digits
-	var formattedNewNumber = newNumber.toString().padStart(3, '0');
-
-	// Update the local storage with the new number
-	localStorage.setItem('lastGeneratedNumber', formattedNewNumber);
-
-	// Construct the Nomor_Surat
-	var Nomor_Surat = Nomor + '/' + Nama_Tim_Kerja + '/' + Kode_Sensus + Kode_Klasifikasi + '.' + Nomor_Sensus + Nomor_Klasifikasi + '/' + currentYear;
+	// $.ajax({
+	// 	url: 'http://localhost:8071/suratkeluar/getKode',  // URL for the getKode function
+	// 	type: 'GET',
+	// 	success: function (generatedNumber) {
+	// 		console.log("Generated Number:", generatedNumber);
+	// 		// Determine the format for Nomor_Surat based on Jenis_Kegiatan
+	// 		var Nomor_Surat;
+	// 		if (Jenis_Kegiatan === "Survei Sensus") {
+	// 			// Use Kode_Sensus with Nomor_Sensus
+	// 			Nomor_Surat = `${generatedNumber}/${Nama_Tim_Kerja}/${Kode_Sensus}.${Nomor_Sensus}/${currentYear}`;
+	// 		} else if (Jenis_Kegiatan === "Klasifikasi") {
+	// 			// Use Kode_Klasifikasi with Nomor_Klasifikasi
+	// 			Nomor_Surat = `${generatedNumber}/${Nama_Tim_Kerja}/${Kode_Klasifikasi}.${Nomor_Klasifikasi}/${currentYear}`;
+	// 		} else {
+	// 			console.warn("Jenis_Kegiatan not specified or unrecognized.");
+	// 			return; // Exit if neither condition is met
+	// 		}
+			
+	// 		// Set Nomor_Surat in the input field
+	// 		$('#ctrl-Nomor_Surat').val(Nomor_Surat);
+	// 	},
+	// 	error: function (xhr, status, error) {
+	// 		console.error("Failed to fetch the latest generated number:", xhr.responseText);
+	// 		alert(`Error: ${status} - ${error}`);
+	// 	}
+	// });
 
 	// Set the Nomor_Surat in the input field
-	$('#ctrl-Nomor_Surat').val(Nomor_Surat);
+	// $('#ctrl-Nomor_Surat').val(Nomor_Surat);
 
 	// Optional: Add event listener for changes in the Nomor input field
 	$('#ctrl-Nomor').on('input', function(){

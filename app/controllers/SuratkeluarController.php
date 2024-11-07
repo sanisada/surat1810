@@ -426,23 +426,25 @@ class SuratkeluarController extends BaseController{
 		return	$this->redirect("suratkeluar");
 	}
 	
-	function getKode(){
-	    $db  = $this->GetModel();
-	    
-	    $data = $db->rawQueryOne("SELECT max(Nomor) as maxID FROM suratkeluar");
-	    
-	    $idMax = $data ["maxID"];
-	    
-	    $noUrut =0;
-	    
-	    if(!empty($idMax)){
-	        $noUrut = (int)substr($idMax,2,4);
-	    }
-	    
-	    $noUrut++;
-	    
-	    $newID = "B-".sprintf("%03s", $noUrut);
-	    
-	    return $newID;
+	public function getKode() {
+		$db = $this->GetModel();
+		$currentYear = date('Y');
+		
+		// Query to get the last number for the current year
+		$data = $db->rawQueryOne("SELECT MAX(Nomor) AS maxID FROM suratkeluar WHERE YEAR(Tanggal_Surat) = ?", [$currentYear]);
+		
+		$idMax = $data["maxID"];
+		$noUrut = 0;
+		
+		if (!empty($idMax)) {
+			$noUrut = (int)substr($idMax, 2, 3);
+		}
+		
+		// Increment the number and reset to 001 if it's a new year
+		$noUrut++;
+		$newID = "B-" . sprintf("%03s", $noUrut);
+		
+		return $newID;
 	}
+	
 }

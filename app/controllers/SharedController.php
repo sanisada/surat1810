@@ -40,6 +40,14 @@ class SharedController extends BaseController{
 		return $arr;
 	}
 
+	function dokumentasi_Kategori_option_list(){
+		$db = $this->GetModel();
+		$sqltext = "SELECT  DISTINCT Kode_Kategori AS value,Nama_Kategori AS label FROM kategori_dokumentasi";
+		$queryparams = null;
+		$arr = $db->rawQuery($sqltext, $queryparams);
+		return $arr;
+	}
+
 	/**
      * suratkeluar_Subkode_Sensus_option_list Model Action
      * @return array
@@ -112,10 +120,13 @@ class SharedController extends BaseController{
      * surat_tugas_number Model Action
      * @return array
      */
-	public function surat_tugas_number($Nama_Tim_Kerja){
+	public function surat_tugas_number($Nama_Tim_Kerja) {
 		$db = $this->GetModel();
-		$sqltext = "SELECT max(Nomor) as maxID FROM surat_tugas WHERE Nama_Tim_Kerja = ?";
-		$params = array($Nama_Tim_Kerja);
+		$currentYear = date('Y');
+	
+		// Correct SQL syntax and parameters array
+		$sqltext = "SELECT max(Nomor) as maxID FROM surat_tugas WHERE Nama_Tim_Kerja = ? AND YEAR(Tanggal_Surat) = ?";
+		$params = array($Nama_Tim_Kerja, $currentYear);
 		$result = $db->rawQueryValue($sqltext, $params);
 	
 		$idMax = !empty($result) ? $result[0] : null;
@@ -126,12 +137,13 @@ class SharedController extends BaseController{
 		$noUrut++;
 		$newID = "B-" . sprintf("%03d", $noUrut);
 	
-		// Pastikan header JSON
+		// Ensure JSON response format
 		header('Content-Type: application/json');
 		$response = array('success' => true, 'nomor' => $newID);
 		echo json_encode($response);
 		exit();
 	}
+	
 
 	/**
      * getcount_suratmasuk Model Action

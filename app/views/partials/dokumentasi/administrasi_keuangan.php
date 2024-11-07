@@ -23,7 +23,7 @@ $show_pagination = $this->show_pagination;
         <div class="container-fluid">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Administrasi Umum</h4>
+                    <h4 class="record-title">Administrasi Keuangan</h4>
                 </div>
                 <div class="col-sm-3 ">
                     <a  class="btn btn btn-primary my-1" href="<?php print_link("dokumentasi/add") ?>">

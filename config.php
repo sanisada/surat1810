@@ -8,7 +8,7 @@ define("ROOT", str_replace("\\", "/", dirname(__FILE__)) . "/");
 // return the application directory name.
 define("ROOT_DIR_NAME", basename(ROOT));
 
-define("SITE_NAME", "SIMENOR");
+define("SITE_NAME", "AMPLAS");
 
 
 // Get Site Address Dynamically

@@ -335,32 +335,3 @@ $show_pagination = $this->show_pagination;
                                     </div>
                                 </div>
                             </section>
-
-<div class="modal fade" id="modal-tambah">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Form Tambah Surat Tugas</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?php print_link("surat_tugas/tambah?csrf_token=$csrf_token") ?>" method="post">
-                <div class="modal-body">
-                    <label for="jenis_surtug"><h6>Keperluan Kegiatan</h6></label><br/>
-                    <select name="jenis_surtug" id="jenis_surtug" class="custom-select custom-select-md mb-3">
-                        <option value="dinas">Perjalanan Dinas</option>
-                        <option value="pelatihan">Pelatihan</option>
-                        <option value="pendataan">Pendataan</option>
-                    </select>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Tutup</button>
-                    <button class="btn btn-sm btn-success float-right" type="submit" name="tambah_data">Simpan</button>
-                </div>
-            </form>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>

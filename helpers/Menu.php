@@ -65,8 +65,140 @@ class Menu{
 
 		array(
 			'path' => 'dokumentasi', 
-			'label' => 'DOKUMENTASI SOP', 
-			'icon' => ''
+			'label' => 'SOP', 
+			'icon' => '',
+			'submenu' => array(
+				array(
+					'path' => 'dokumentasi/index/administrasi_umum',
+					'label' => 'Administrasi Umum',
+					'icon' => ''
+				),
+				array(
+					'path' => 'dokumentasi/index/administrasi_keuangan',
+					'label' => 'Administrasi Keuangan',
+					'icon' => ''
+				),
+				array(
+					'path' => 'dokumentasi/index/administrasi_kepegawaian',
+					'label' => 'Administrasi Kepegawaian',
+					'icon' => ''
+				),
+				array(
+					'path' => 'dokumentasi/index/sensus_survei',
+					'label' => 'Sensus dan Survei',
+					'icon' => '',
+					'submenu' => array(
+						array(
+							'path' => 'dokumentasi/index/pmss',
+							'label' => 'Pengembangan Metodologi Sensus dan Survei',
+							'icon' => ''
+						),
+						array(
+							'path' => 'dokumentasi/index/statistik_sosial',
+							'label' => 'Statistik Sosial',
+							'icon' => '',
+							'submenu' => array(
+								array(
+									'path' => 'dokumentasi/index/statistik_kependudukan_ketenagakerjaan',
+									'label' => 'Statistik Kependudukan dan Ketenagakerjaan',
+									'icon' => ''
+								),
+								array(
+									'path' => 'dokumentasi/index/statistik_ketahanan_sosial',
+									'label' => 'Statistik Ketahanan Sosial',
+									'icon' => ''
+								),
+								array(
+									'path' => 'dokumentasi/index/statistik_kesejahteraan_rakyat',
+									'label' => 'Statistik Kesejahteraan Rakyat',
+									'icon' => ''
+								),
+							)
+						),
+						array(
+							'path' => 'dokumentasi/index/statistik_produksi',
+							'label' => 'Statistik Ekonomi Produksi',
+							'icon' => '',
+							'submenu' => array(
+								array(
+									'path' => 'dokumentasi/index/tphp',
+									'label' => 'Statistik Tanaman Pangan, Hortikultura dan Perkebunan',
+									'icon' => ''
+								),
+								array(
+									'path' => 'dokumentasi/index/ppk',
+									'label' => 'Statistik Peternakan, Perikanan, dan Kehutanan',
+									'icon' => ''
+								),
+								array(
+									'path' => 'dokumentasi/index/industri',
+									'label' => 'Statistik Industri',
+									'icon' => ''
+								),
+								array(
+									'path' => 'dokumentasi/index/pek',
+									'label' => 'Statistik Pertambangan, Energi, dan Konstruksi',
+									'icon' => ''
+								),
+							)
+						),
+						array(
+							'path' => 'dokumentasi/index/statistik_distribusi',
+							'label' => 'Statistik Ekonomi Distribusi',
+							'icon' => '',
+							'submenu' => array(
+								array(
+									'path' => 'dokumentasi/index/harga',
+									'label' => 'Statistik Harga',
+									'icon' => ''
+								),
+								array(
+									'path' => 'dokumentasi/index/distribusi',
+									'label' => 'Statistik Distribusi',
+									'icon' => ''
+								),
+								array(
+									'path' => 'dokumentasi/index/ktip',
+									'label' => 'Statistik Keuangan, Teknologi Informasi, dan Pariwisata',
+									'icon' => ''
+								),
+							)
+						),
+						array(
+							'path' => 'dokumentasi/index/nerwilis',
+							'label' => 'Neraca Wilayah',
+							'icon' => '',
+							'submenu' => array(
+								array(
+									'path' => 'dokumentasi/index/neraca_produksi',
+									'label' => 'Neraca Produksi',
+									'icon' => ''
+								),
+								array(
+									'path' => 'dokumentasi/index/neraca_pengeluaran',
+									'label' => 'Neraca Pengeluaran',
+									'icon' => ''
+								),
+								array(
+									'path' => 'dokumentasi/index/aps',
+									'label' => 'Analisis dan Pengembangan Statistik',
+									'icon' => ''
+								),
+							)
+						),
+						array(
+							'path' => 'dokumentasi/index/diseminasi',
+							'label' => 'Diseminasi Statistik',
+							'icon' => ''
+						),
+					),
+				),
+				array(
+					'path' => 'dokumentasi/index/pti',
+					'label' => 'Pelayanan dan Teknologi Informasi',
+					'icon' => ''
+				),
+			),
 		),
 		
 		array(

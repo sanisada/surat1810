@@ -318,20 +318,20 @@ class BeritaacaraController extends SecureController{
 
 	function getKode(){
 	    $db  = $this->GetModel();
-	    
-	    $data = $db->rawQueryOne("SELECT max(Nomor) as maxID FROM beritaacara");
+	    $currentYear = date('Y');
+	    $data = $db->rawQueryOne("SELECT max(Nomor) as maxID FROM beritaacara WHERE YEAR(Tanggal) = ?", [$currentYear]);
 	    
 	    $idMax = $data ["maxID"];
-	    
+	    $noUrut = 0;
 	    // $noUrut =1;
 	    
-	    // if(!empty($idMax)){
-	    //     $noUrut = (int)substr($idMax,2,4);
-	    // }
+	    if(!empty($idMax)){
+	        $noUrut = $idMax;
+	    }
 	    
-	    $idMax++;
+	    $noUrut++;
 	    
-	    $newID = $idMax;
+	    $newID = $noUrut;
 	    
 	    return $newID;
 	}

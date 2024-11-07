@@ -34,7 +34,6 @@ $redirect_to = $this->redirect_to;
                                 <?php
                                     $kode_controller = new Surat_keputusanController;
                                     $kode = $kode_controller->getKode();
-                                    $year = $kode_controller->getYear();
                                 ?>
                                 <div class="form-group ">
                                     <div class="row">
@@ -43,7 +42,7 @@ $redirect_to = $this->redirect_to;
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="">
-                                                <input id="ctrl-Nomor" value="<?php echo $this->set_field_value('Nomor', 'SK Nomor '. $kode .' Tahun ' . $year); ?>" type="text" placeholder="Enter Nomor" required="" name="Nomor" class="form-control" />
+                                                <input id="ctrl-Nomor" value="<?php echo $this->set_field_value('Nomor', $kode); ?>" type="text" placeholder="Enter Nomor" required="" name="Nomor" class="form-control" />
                                             </div>
                                         </div>
                                     </div>

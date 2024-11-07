@@ -307,34 +307,29 @@ class Surat_keputusanController extends SecureController{
 		return	$this->redirect("surat_keputusan");
 	}
 
-	function getKode(){
-	    $db  = $this->GetModel();
-	    
-	    $data = $db->rawQueryOne("SELECT max(Nomor) as maxID FROM surat_keputusan");
-	    $idMax = $data["maxID"];
-	    // Jika tidak ada ID, set idMax ke string "SK Nomor 000 Tahun 202"
+	public function getKode() {
+		$db  = $this->GetModel();
+		$currentYear = date('Y');
+		$data = $db->rawQueryOne("SELECT max(Nomor) as maxID FROM surat_keputusan WHERE YEAR(Tanggal_Surat) = ?", [$currentYear]);
+		$idMax = $data["maxID"];
+	
+		// If no ID found, set idMax to default format with "000"
 		if (empty($idMax)) {
-			$idMax = "SK Nomor 000 Tahun 202";
+			$idMax = "SK Nomor 000 Tahun " . $currentYear;
 		}
-
-		// Ekstrak nomor dari string
+	
+		// Extract number from the string
 		preg_match('/SK Nomor (\d{3}) Tahun/', $idMax, $matches);
-
-		if (isset($matches[1])) {
-			$currentNumber = (int)$matches[1];
-		} else {
-			$currentNumber = 0; // Default value jika tidak ada nomor yang ditemukan
-		}
-
-		// Tingkatkan nomor dan format sebagai tiga digit angka
+		$currentNumber = isset($matches[1]) ? (int)$matches[1] : 0;
+	
+		// Increment the number and format it as a three-digit string
 		$newNumber = $currentNumber + 1;
-		$newID = sprintf("%03d", $newNumber);
+		$formattedNumber = sprintf("%03d", $newNumber);
+	
+		// Construct the new ID with the format "SK Nomor 001 Tahun 2024"
+		$newID = "SK Nomor " . $formattedNumber . " Tahun " . $currentYear;
+		
 		return $newID;
 	}
-
-	function getYear(){
-	    $currentYear = date("Y");
-	    
-	    return  $currentYear;
-	}
+	
 }
