@@ -239,15 +239,21 @@ $('#ctrl-Jenis_Kegiatan,#ctrl-Kode_Sensus,#ctrl-Subkode_Sensus,#ctrl-Bagian_Sens
 	const currentYear = new Date().getFullYear();
 
 	// Determine Nomor_Sensus and Nomor_Klasifikasi
-	var Nomor_Sensus = Bagian_Sensus || Subkode_Sensus || Kode_Sensus;
-	var Nomor_Klasifikasi = Bagian_Klasifikasi || Subkode_Klasifikasi || Kode_Klasifikasi;
+	var Nomor_Sensus = Bagian_Sensus || Subkode_Sensus;
+	var Nomor_Klasifikasi = Bagian_Klasifikasi || Subkode_Klasifikasi;
 
 	if (Jenis_Kegiatan === "Survei Sensus") {
-		// Use Kode_Sensus with Nomor_Sensus
-		Nomor_Surat = `${Nomor}/${Nama_Tim_Kerja}/${Kode_Sensus}.${Nomor_Sensus}/${currentYear}`;
+		if (Nomor_Sensus !== '') {
+			Nomor_Surat = `${Nomor}/${Nama_Tim_Kerja}/${Kode_Sensus}.${Nomor_Sensus}/${currentYear}`;
+		} else {
+			Nomor_Surat = `${Nomor}/${Nama_Tim_Kerja}/${Kode_Sensus}/${currentYear}`;
+		}
 	} else if (Jenis_Kegiatan === "Klasifikasi") {
-		// Use Kode_Klasifikasi with Nomor_Klasifikasi
-		Nomor_Surat = `${Nomor}/${Nama_Tim_Kerja}/${Kode_Klasifikasi}.${Nomor_Klasifikasi}/${currentYear}`;
+		if (Nomor_Klasifikasi !== '') {
+			Nomor_Surat = `${Nomor}/${Nama_Tim_Kerja}/${Kode_Klasifikasi}.${Nomor_Klasifikasi}/${currentYear}`;
+		} else {
+			Nomor_Surat = `${Nomor}/${Nama_Tim_Kerja}/${Kode_Klasifikasi}/${currentYear}`;
+		}
 	} else {
 		console.warn("Jenis_Kegiatan not specified or unrecognized.");
 		return; // Exit if neither condition is met

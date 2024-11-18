@@ -44,7 +44,8 @@ class Surat_tugasController extends SecureController{
 			"Bertugas_Sebagai",
 			"Rentang_Waktu_Penugasan",
 			"Pembebanan",
-			"jenis_surtug"
+			"jenis_surtug",
+			"Generated_File"
 		);
 	
 		// Mendapatkan paginasi saat ini, misalnya array(page_number, page_limit)
@@ -187,11 +188,9 @@ class Surat_tugasController extends SecureController{
 				} else if($selectedJenis == 'pelatihan'){
 					$this->view->jenis_surtug = $selectedJenis;
 					return $this->render_view("surat_tugas/pelatihan/add.php");
-					// return $this->render_view("errors/coming soon.php");
 				} else {
 					$this->view->jenis_surtug = $selectedJenis;
 					return $this->render_view("surat_tugas/upload_form.php");
-					// return $this->render_view("errors/coming soon.php");
 				}
 			} else {
 				echo "No jenis selected.";
@@ -248,7 +247,8 @@ class Surat_tugasController extends SecureController{
 				'Rentang_Waktu_Penugasan',
 				'Pembebanan',
 				'Surat_Pemanggilan',
-				'jenis_surtug'
+				'jenis_surtug',
+				'Generated_File'
 			);
 	
 			// Format request data
@@ -295,11 +295,16 @@ class Surat_tugasController extends SecureController{
 								$newNomorSurat = $row['Nomor'] . substr($mergedData['Nomor_Surat'], 5);
 								$mergedData['Nomor_Surat'] = $newNomorSurat; // Update Nomor_Surat in merged data
 							}
-	
-							$mergedDataList[] = $mergedData;  // Collect all merged data
-							$db->insert($tablename, $mergedData);  // Save to DB
+							$db->insert($tablename, $mergedData);
+							$lastId = $db->rawQueryValue("SELECT LAST_INSERT_ID()"); // Assumes MySQL database
+							$mergedData['id'] = $lastId[0]; 
+							// print_r($mergedData);
+							
+
+							$mergedDataList[] = $mergedData;
 						}
-	
+						// $mergedDataList[] = $mergedData;
+						print_r($mergedDataList);
 						// Generate one Word document with all records
 						$this->generateToWord($mergedDataList);
 						$this->set_flash_msg("Records added successfully from Excel", "success");
@@ -335,115 +340,6 @@ class Surat_tugasController extends SecureController{
 		$page_title = $this->view->page_title = "Tambah Surat Tugas";
 		$this->render_view("surat_tugas/add.php");
 	}
-	
-	// function add($formdata = null) {
-	// 	if ($formdata) {
-	// 		$db = $this->GetModel();
-	// 		$tablename = $this->tablename;
-	// 		$request = $this->request;
-	
-	// 		// Fillable fields
-	// 		$fields = $this->fields = array(
-	// 			'Nama_Tim_Kerja',
-	// 			'Nomor',
-	// 			'Jenis_Kegiatan',
-	// 			'Kode_Sensus',
-	// 			'Subkode_Sensus',
-	// 			'Bagian_Sensus',
-	// 			'Kode_Klasifikasi',
-	// 			'Subkode_Klasifikasi',
-	// 			'Bagian_Klasifikasi',
-	// 			'Nama_Kegiatan',
-	// 			'Tanggal_Surat',
-	// 			'Nomor_Surat',
-	// 			'Nama_Yang_di_Tugaskan',
-	// 			'Bertugas_Sebagai',
-	// 			'Rentang_Waktu_Penugasan',
-	// 			'Pembebanan',
-	// 			'Surat_Pemanggilan',
-	// 			'jenis_surtug'
-	// 		);
-	
-	// 		// Format request data
-	// 		$postdata = $this->format_request_data($formdata);
-	
-	// 		// Check if jenis_surtug is 'pendataan'
-	// 		if (isset($postdata['jenis_surtug']) && $postdata['jenis_surtug'] === 'pendataan') {
-	// 			// If jenis_surtug is 'pendataan', process the uploaded Excel file
-	// 			if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
-	// 				// Process the Excel file
-	// 				$file = $_FILES['file']['tmp_name'];
-	// 				$this->processExcel($file);
-	
-	// 				// Flash message for success
-	// 				$this->set_flash_msg("Records added successfully from Excel", "success");
-	// 				return $this->redirect("surat_tugas");
-	// 			} else {
-	// 				$this->set_flash_msg("No file uploaded or there was an upload error", "danger");
-	// 			}
-	// 		} else {
-	// 			// Validation rules
-	// 			$this->rules_array = array(
-	// 				'Nama_Tim_Kerja' => 'required',
-	// 				'Nomor' => 'required',
-	// 				'Jenis_Kegiatan' => 'required',
-	// 				'Nama_Kegiatan' => 'required',
-	// 				'Tanggal_Surat' => 'required',
-	// 				'Nomor_Surat' => 'required',
-	// 				'Nama_Yang_di_Tugaskan' => 'required',
-	// 				'Bertugas_Sebagai' => 'required',
-	// 				'Rentang_Waktu_Penugasan' => 'required',
-	// 				'jenis_surtug' => 'required'
-	// 			);
-	
-	// 			// Sanitize fields
-	// 			$this->sanitize_array = array_fill_keys($fields, 'sanitize_string');
-	// 			$this->filter_vals = true; // Set whether to remove empty fields
-	
-	// 			// Validate form data
-	// 			$modeldata = $this->modeldata = $this->validate_form($postdata);
-				
-	// 			// Check if the form data is validated
-	// 			if ($this->validated()) {
-	// 				$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
-					
-	// 				if ($rec_id) {
-	// 					// Generate Word document if 'jenis_surtug' is 'pelatihan'
-	// 					if ($modeldata['jenis_surtug'] == 'pelatihan') {
-	// 						if ($this->generateWord($modeldata, $rec_id)) {
-	// 							$this->set_flash_msg("Record added and document generated successfully", "success");
-	// 						} else {
-	// 							$this->set_flash_msg("Record added but failed to generate document", "danger");
-	// 						}
-	// 					} else {
-	// 						// If it's not 'pelatihan', just add a success message
-	// 						$this->set_flash_msg("Record added successfully", "success");
-	// 					}
-	// 					return $this->redirect("surat_tugas");
-	// 				} else {
-	// 					$this->set_page_error();
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-		
-	// 	// Page title for the view
-	// 	$page_title = $this->view->page_title = "Tambah Surat Tugas";
-	// 	$this->render_view("surat_tugas/add.php");
-	// }
-	
-	
-	// // public function uploadForm() {
-    // //     $this->view->render('surat_tugas/upload_form.php');
-    // // }
-
-    // // public function upload() {
-	// // 	if ($_FILES['file']['name']) {
-    // //         $file = $_FILES['file']['tmp_name'];
-    // //         $this->processExcel($file);
-    // //     }
-    // //     $this->render_view("surat_tugas/upload.php");
-    // // }
 
 	private function processExcel($file, $startingNomor) {
 		// Load the XLSX file using SimpleXLSX
@@ -477,108 +373,6 @@ class Surat_tugasController extends SecureController{
 			throw new Exception('Error: ' . SimpleXLSX::parseError());
 		}
 	}
-
-	// function addPendataan($formdata = null) {
-	// 	if ($formdata) {
-	// 		$db = $this->GetModel();
-	// 		$tablename = $this->tablename;
-	
-	// 		// Get form data
-	// 		$postdata = $this->format_request_data($formdata);
-	
-	// 		// Define the form fields and validation rules
-	// 		$this->rules_array = array(
-	// 			'Nama_Tim_Kerja' => 'required',
-	// 			'Nomor' => 'required',  // Will be dynamically generated later
-	// 			'Jenis_Kegiatan' => 'required',
-	// 			'Nama_Kegiatan' => 'required',
-	// 			'Tanggal_Surat' => 'required',
-	// 			'Nomor_Surat' => 'required'
-	// 		);
-	
-	// 		$this->sanitize_array = array(
-	// 			'Nama_Tim_Kerja' => 'sanitize_string',
-	// 			'Nomor' => 'sanitize_string',
-	// 			'Jenis_Kegiatan' => 'sanitize_string',
-	// 			'Nama_Kegiatan' => 'sanitize_string',
-	// 			'Tanggal_Surat' => 'sanitize_string',
-	// 			'Nomor_Surat' => 'sanitize_string'
-	// 		);
-	
-	// 		$modeldata = $this->modeldata = $this->validate_form($postdata);
-	
-	// 		if ($this->validated()) {
-	// 			// Process Excel upload if valid
-	// 			if (!empty($_FILES['file']['tmp_name'])) {
-	// 				// Starting number for "Nomor"
-	// 				$startingNomor = $modeldata['Nomor'];
-					
-	// 				$excelData = $this->processExcel($_FILES['file']['tmp_name'], $startingNomor);
-
-	// 				$lastRowNumber = $excelData['Nomor'];
-	
-	// 				// For each row in the Excel file, duplicate form data and merge with Excel data
-	// 				foreach ($excelData as $row) {
-	// 					$mergedData = array_merge($modeldata, $row);
-
-	// 					// Modify Nomor_Surat
-	// 					if (isset($mergedData['Nomor_Surat'])) {
-	// 						// Replace the first 5 characters with the lastRowNumber
-	// 						$newNomorSurat = $row['Nomor'] . substr($mergedData['Nomor_Surat'], 5);
-	// 						$mergedData['Nomor_Surat'] = $newNomorSurat; // Update Nomor_Surat in merged data
-	// 					}
-
-	// 					$mergedDataList[] = $mergedData;  // Collect all merged data
-	// 					$db->insert($tablename, $mergedData);  // Save to DB
-	// 				}
-					
-	// 				// Generate one Word document with all records
-	// 				$this->generateToWord($mergedDataList);
-	// 				// 
-	// 				$this->set_flash_msg("Record added and documents generated successfully", "success");
-	// 				return $this->redirect("surat_tugas");
-	// 			} else {
-	// 				$this->set_page_error();
-	// 			}
-	// 		}
-	// 	}
-	
-	// 	$page_title = $this->view->page_title = "Tambah Surat Tugas";
-	// 	$this->render_view("surat_tugas/add.php");
-	// }
-
-	// private function processExcel($file) {
-	// 	// Load the Excel file
-	// 	if ($xlsx = SimpleXLSX::parse($file)) {
-	// 		// Iterate through the rows
-	// 		foreach ($xlsx->rows() as $row) {
-	// 			$data = [
-	// 				'Nama_Tim_Kerja' => isset($row[0]) ? $row[0] : null,
-	// 				'Jenis_Kegiatan' => isset($row[1]) ? $row[1] : null,
-	// 				'Kode_Sensus' => isset($row[2]) ? $row[2] : null,
-	// 				'Subkode_Sensus' => isset($row[3]) ? $row[3] : null,
-	// 				'Bagian_Sensus' => isset($row[4]) ? $row[4] : null,
-	// 				'Kode_Klasifikasi' => isset($row[5]) ? $row[5] : null,
-	// 				'Subkode_Klasifikasi' => isset($row[6]) ? $row[6] : null,
-	// 				'Bagian_Klasifikasi' => isset($row[7]) ? $row[7] : null,
-	// 				'Nama_Kegiatan' => isset($row[8]) ? $row[8] : null,
-	// 				'Tanggal_Surat' => isset($row[9]) ? $row[9] : null,
-	// 				'Nomor_Surat' => isset($row[10]) ? $row[10] : null,
-	// 				'Nama_Yang_di_Tugaskan' => isset($row[11]) ? $row[11] : null,
-	// 				'Bertugas_Sebagai' => isset($row[12]) ? $row[12] : null,
-	// 				'Rentang_Waktu_Penugasan' => isset($row[13]) ? $row[13] : null,
-	// 				'Kecamatan' => isset($row[14]) ? $row[14] : null // Adjust index if necessary
-	// 			];
-				
-	// 			// Save the record and generate the Word file
-	// 			$this->saveRecord($data);
-	// 			$this->generateToWord($data);
-	// 		}
-	// 	} else {
-	// 		// Handle error loading the file
-	// 		echo SimpleXLSX::parseError();
-	// 	}
-	// }
 
 	private function saveRecord($data) {
         $db = $this->GetModel();
@@ -628,7 +422,11 @@ class Surat_tugasController extends SecureController{
 			}
 		}
 		// $templateProcessor->cloneBlock('block_name', 5, true, false);
-		$filename = 'SuratTugas_' . $data['Tanggal_Surat'] . '.docx';
+		// $filename = 'SuratTugas_' . $data['Tanggal_Surat'] . '.docx';
+
+		$timestamp = date('Ymd_His'); 
+    	$randomNumber = rand(100, 999); 
+    	$filename = 'SuratTugas_' . $timestamp . '_' . $randomNumber . '.docx';
         $directory = __DIR__ . '/../../assets/surat_tugas/';
         $filepath = $directory . $filename;
 
@@ -637,7 +435,12 @@ class Surat_tugasController extends SecureController{
         }
 
         $templateProcessor->saveAs($filepath);
-		
+
+		foreach ($dataList as $data) {
+			$db = $this->GetModel();
+			$db->where("surat_tugas.id", $data['id']);
+			$db->update("surat_tugas", ["Generated_File" => $filename]);
+		}
     }
 
 	private function downloadFile($filepath) {
@@ -692,6 +495,10 @@ class Surat_tugasController extends SecureController{
 		}
 	
 		$templateProcessor->saveAs($filepath);
+
+		$db = $this->GetModel();
+		$db->where("surat_tugas.id", $rec_id); // Adjust field name to match your database
+		$db->update("surat_tugas", ["Generated_File" => $filename]);
 	
 		return true;  // Return true when the file is successfully generated
 	}
@@ -733,43 +540,24 @@ class Surat_tugasController extends SecureController{
 		$db = $this->GetModel();
 		$tablename = $this->tablename;
 	
-		// Retrieve the record based on the ID
 		if (!empty($rec_id)) {
-			$db->where("surat_tugas.id", $rec_id);
+			$db->where("id", $rec_id); // Adjust field name as needed
 			$record = $db->getOne($tablename);
 	
-			if ($record) {
-				// Format Tanggal_Surat for the date-based filename
-				if (isset($record['Tanggal_Surat']) && strtotime($record['Tanggal_Surat'])) {
-					$date = new DateTime($record['Tanggal_Surat']);
-					$formattedDate = $date->format('Y-m-d'); // Adjust the format if needed
-				} else {
-					$formattedDate = 'unknown_date'; // Fallback if the date is invalid
-				}
-	
-				// Possible filenames based on the generation type
-				$filenameById = 'SuratTugas_' . $rec_id . '.docx';       // Filename for generateWord
-				$filenameByDate = 'SuratTugas_' . $formattedDate . '.docx';  // Filename for generateToWord
-	
+			if ($record && !empty($record['Generated_File'])) {
+				$filename = $record['Generated_File'];
 				$directory = __DIR__ . '/../../assets/surat_tugas/';
+				$filepath = $directory . $filename;
 	
-				// Paths for the two possible files
-				$filepathById = $directory . $filenameById;
-				$filepathByDate = $directory . $filenameByDate;
-	
-				// Check if either file exists and download the correct one
-				if (file_exists($filepathById)) {
-					// Download file by ID
-					$this->downloadFile($filepathById);
-				} elseif (file_exists($filepathByDate)) {
-					// Download file by Date
-					$this->downloadFile($filepathByDate);
+				// Download the file if it exists
+				if (file_exists($filepath)) {
+					$this->downloadFile($filepath);
 				} else {
 					$this->set_flash_msg("File not found", "danger");
 					return $this->redirect("surat_tugas");
 				}
 			} else {
-				$this->set_flash_msg("Record not found", "danger");
+				$this->set_flash_msg("Record or file reference not found", "danger");
 				return $this->redirect("surat_tugas");
 			}
 		} else {
@@ -777,6 +565,7 @@ class Surat_tugasController extends SecureController{
 			return $this->redirect("surat_tugas");
 		}
 	}
+	
 
 	/**
      * Update table record with formdata
@@ -812,15 +601,12 @@ class Surat_tugasController extends SecureController{
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'Nama_Tim_Kerja' => 'required',
-				'Nomor' => 'required',
-				'Jenis_Kegiatan' => 'required',
 				'Nama_Kegiatan' => 'required',
-				'Tanggal_Surat' => 'required',
+				'Tanggal_Surat' => 'required',	
 				'Nomor_Surat' => 'required',
 				'Nama_Yang_di_Tugaskan' => 'required',
 				'Bertugas_Sebagai' => 'required',
-				'Rentang_Waktu_Penugasan' => 'required',
-				'Pembebanan' => 'required'
+				'Rentang_Waktu_Penugasan' => 'required'
 			);
 			$this->sanitize_array = array(
 				'Nama_Tim_Kerja' => 'sanitize_string',

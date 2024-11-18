@@ -42,7 +42,7 @@ $redirect_to = $this->redirect_to;
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <select required="" id="ctrl-Nama_Tim_Kerja" name="Nama_Tim_Kerja" placeholder="-- Pilih --" class="custom-select">
+                                                    <select id="ctrl-Nama_Tim_Kerja" name="Nama_Tim_Kerja" placeholder="-- Pilih --" class="custom-select">
                                                         <option value="">-- Pilih --</option>
                                                         <option value="18100">18100 - Umum Kantor</option>
                                                         <?php
@@ -73,7 +73,7 @@ $redirect_to = $this->redirect_to;
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
-                                                        <input id="ctrl-Tanggal_Surat" class="form-control" type="date" value="<?php  echo $data['Tanggal_Surat']; ?>" name="Tanggal_Surat" required="">
+                                                        <input id="ctrl-Tanggal_Surat" class="form-control" type="date" value="<?php  echo $data['Tanggal_Surat']; ?>" name="Tanggal_Surat">
                                                         <!-- <div id="tanggal_display" class="mt-2"></div> -->
                                                     </div>
                                                 </div>
@@ -87,7 +87,7 @@ $redirect_to = $this->redirect_to;
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <input id="ctrl-Nomor_Surat"  value="<?php  echo $data['Nomor_Surat']; ?>" type="text" placeholder="Enter Nomor Surat"  required="" name="Nomor_Surat"  class="form-control " />
+                                                    <input id="ctrl-Nomor_Surat"  value="<?php  echo $data['Nomor_Surat']; ?>" type="text" placeholder="Enter Nomor Surat" name="Nomor_Surat"  class="form-control " />
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,7 +99,7 @@ $redirect_to = $this->redirect_to;
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="">
-                                                        <input id="ctrl-Nama_Yang_di_Tugaskan"  value="<?php  echo $data['Nama_Yang_di_Tugaskan']; ?>" type="text" placeholder="Enter Nama Yang Di Tugaskan"  required="" name="Nama_Yang_di_Tugaskan"  class="form-control " />
+                                                        <input id="ctrl-Nama_Yang_di_Tugaskan"  value="<?php  echo $data['Nama_Yang_di_Tugaskan']; ?>" type="text" placeholder="Enter Nama Yang Di Tugaskan" name="Nama_Yang_di_Tugaskan"  class="form-control " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -111,7 +111,7 @@ $redirect_to = $this->redirect_to;
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="">
-                                                            <input id="ctrl-Nama_Kegiatan"  value="<?php  echo $data['Nama_Kegiatan']; ?>" type="text" placeholder="Enter Nama Kegiatan"  required="" name="Nama_Kegiatan"  class="form-control " />
+                                                            <input id="ctrl-Nama_Kegiatan"  value="<?php  echo $data['Nama_Kegiatan']; ?>" type="text" placeholder="Enter Nama Kegiatan"  name="Nama_Kegiatan"  class="form-control " />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -123,23 +123,11 @@ $redirect_to = $this->redirect_to;
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="">
-                                                            <input id="ctrl-Bertugas_Sebagai"  value="<?php  echo $data['Bertugas_Sebagai']; ?>" type="text" placeholder="Enter Bertugas Sebagai"  required="" name="Bertugas_Sebagai"  class="form-control " />
+                                                            <input id="ctrl-Bertugas_Sebagai"  value="<?php  echo $data['Bertugas_Sebagai']; ?>" type="text" placeholder="Enter Bertugas Sebagai"  name="Bertugas_Sebagai"  class="form-control " />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group ">
-                                                    <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label" for="Pembebanan">Pembebanan <span class="text-danger">*</span></label>
-                                                        </div>
-                                                        <div class="col-sm-8">
-                                                            <div class="">
-                                                                <input id="ctrl-Pembebanan"  value="<?php  echo $data['Pembebanan']; ?>" type="text" placeholder="Enter Pembebanan"  required="" name="Pembebanan"  class="form-control " />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
