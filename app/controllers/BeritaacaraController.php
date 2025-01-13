@@ -26,6 +26,10 @@ class BeritaacaraController extends SecureController{
 			"Keterangan");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
+		$currentYear = date('Y'); // Mengambil tahun berjalan
+		$tahun = $request->tahun ?? $currentYear; // Jika tidak ada parameter tahun, gunakan tahun berjalan
+		$db->where("YEAR(Tanggal)", $tahun);
+
 		if(!empty($request->search)){
 			$text = trim($request->search); 
 			$search_condition = "(

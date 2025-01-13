@@ -1,12 +1,12 @@
 <?php 
 /**
- * Suratkeluar Page Controller
+ * surat_internal Page Controller
  * @category  Controller
  */
-class SuratkeluarController extends BaseController{
+class Surat_internalController extends BaseController{
 	function __construct(){
 		parent::__construct();
-		$this->tablename = "suratkeluar";
+		$this->tablename = "surat_internal";
 	}
 	/**
      * List page records
@@ -36,22 +36,22 @@ class SuratkeluarController extends BaseController{
 		if(!empty($request->search)){
 			$text = trim($request->search); 
 			$search_condition = "(
-				suratkeluar.id LIKE ? OR 
-				suratkeluar.Nomor LIKE ? OR 
-				suratkeluar.Tanggal_Surat LIKE ? OR 
-				suratkeluar.Tujuan_Surat LIKE ? OR 
-				suratkeluar.Nama_Pegawai LIKE ? OR 
-				suratkeluar.Nama_Tim_Kerja LIKE ? OR 
-				suratkeluar.Jenis_Kegiatan LIKE ? OR 
-				suratkeluar.Kode_Sensus LIKE ? OR 
-				suratkeluar.Subkode_Sensus LIKE ? OR 
-				suratkeluar.Bagian_Sensus LIKE ? OR 
-				suratkeluar.Kode_Klasifikasi LIKE ? OR 
-				suratkeluar.Subkode_Klasifikasi LIKE ? OR 
-				suratkeluar.Bagian_Klasifikasi LIKE ? OR 
-				suratkeluar.Nomor_Surat LIKE ? OR 
-				suratkeluar.Ringkasan_Isi_Surat LIKE ? OR 
-				suratkeluar.Keterangan LIKE ?
+				surat_internal.id LIKE ? OR 
+				surat_internal.Nomor LIKE ? OR 
+				surat_internal.Tanggal_Surat LIKE ? OR 
+				surat_internal.Tujuan_Surat LIKE ? OR 
+				surat_internal.Nama_Pegawai LIKE ? OR 
+				surat_internal.Nama_Tim_Kerja LIKE ? OR 
+				surat_internal.Jenis_Kegiatan LIKE ? OR 
+				surat_internal.Kode_Sensus LIKE ? OR 
+				surat_internal.Subkode_Sensus LIKE ? OR 
+				surat_internal.Bagian_Sensus LIKE ? OR 
+				surat_internal.Kode_Klasifikasi LIKE ? OR 
+				surat_internal.Subkode_Klasifikasi LIKE ? OR 
+				surat_internal.Bagian_Klasifikasi LIKE ? OR 
+				surat_internal.Nomor_Surat LIKE ? OR 
+				surat_internal.Ringkasan_Isi_Surat LIKE ? OR 
+				surat_internal.Keterangan LIKE ?
 			)";
 			$search_params = array(
 				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
@@ -59,7 +59,7 @@ class SuratkeluarController extends BaseController{
 			//setting search conditions
 			$db->where($search_condition, $search_params);
 			 //template to use when ajax search
-			$this->view->search_template = "suratkeluar/search.php";
+			$this->view->search_template = "surat_internal/search.php";
 		}
 		if(!empty($request->orderby)){
 			$orderby = $request->orderby;
@@ -67,7 +67,7 @@ class SuratkeluarController extends BaseController{
 			$db->orderBy($orderby, $ordertype);
 		}
 		else{
-			$db->orderBy("suratkeluar.id", ORDER_TYPE);
+			$db->orderBy("surat_internal.id", ORDER_TYPE);
 		}
 		if($fieldname){
 			$db->where($fieldname , $fieldvalue); //filter by a single field name
@@ -86,14 +86,14 @@ class SuratkeluarController extends BaseController{
 		if($db->getLastError()){
 			$this->set_page_error();
 		}
-		$page_title = $this->view->page_title = "Surat Keluar";
+		$page_title = $this->view->page_title = "Surat Internal";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
 		$this->view->report_paper_size = "A4";
 		$this->view->report_orientation = "portrait";
 		
-		$this->render_view("suratkeluar/list.php", $data); //render the full page
+		$this->render_view("surat_internal/list.php", $data); //render the full page
 	}
 	/**
      * View record detail 
@@ -126,11 +126,11 @@ class SuratkeluarController extends BaseController{
 			$db->where($rec_id, urldecode($value)); //select record based on field name
 		}
 		else{
-			$db->where("suratkeluar.id", $rec_id);; //select record based on primary key
+			$db->where("surat_internal.id", $rec_id);; //select record based on primary key
 		}
 		$record = $db->getOne($tablename, $fields );
 		if($record){
-			$page_title = $this->view->page_title = "View  Surat Keluar";
+			$page_title = $this->view->page_title = "View Surat Internal";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -145,68 +145,8 @@ class SuratkeluarController extends BaseController{
 				$this->set_page_error("No record found");
 			}
 		}
-		return $this->render_view("suratkeluar/view.php", $record);
+		return $this->render_view("surat_internal/view.php", $record);
 	}
-
-	// function getPegawai(){
-	// 	$url_base       = 'https://sso.bps.go.id/auth/';
-	// 	$url_token      = $url_base.'realms/pegawai-bps/protocol/openid-connect/token';
-	// 	$url_api        = $url_base.'admin/realms/pegawai-bps/users';
-	// 	$client_id      = '11810-surat-k3n'; 
-	// 	$client_secret  = '50b4f756-cc24-4d7b-aada-260c82dbd2d1';
-
-	// 	$query_search   = '?username={username}'; //'?username={username}' atau '?email={email pegawai}'
-
-	// 	/*
-	// 	------------------------------------------------------------------------------------------------
-	// 	Tahap 1 :
-	// 	Mendapatkan akses token
-	// 	------------------------------------------------------------------------------------------------
-	// 	*/
-	// 	$ch = curl_init($url_token);
-	// 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
-	// 	curl_setopt($ch, CURLOPT_POSTFIELDS,"grant_type=client_credentials");
-	// 	curl_setopt($ch, CURLOPT_USERPWD, $client_id . ":" . $client_secret);  
-	// 	curl_setopt($ch, CURLOPT_POST, 1);
-	// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// 	$response_token = curl_exec($ch);
-	// 	if(curl_errno($ch)){
-	// 		throw new Exception(curl_error($ch));
-	// 	}
-	// 	curl_close ($ch);
-	// 	$json_token = json_decode($response_token, true);
-	// 	$access_token = $json_token['access_token'];
-
-	// 	/*
-	// 	------------------------------------------------------------------------------------------------
-	// 	Tahap 2 :
-	// 	Mendapatkan data pegawai dengan username tertentu
-	// 	------------------------------------------------------------------------------------------------
-	// 	*/
-	// 	$ch = curl_init($url_api.$query_search);
-	// 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , 'Authorization: Bearer '.$access_token ));  
-	// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// 	$response = curl_exec($ch);
-	// 	if(curl_errno($ch)){
-	// 		throw new Exception(curl_error($ch));
-	// 	}
-	// 	curl_close ($ch);
-	// 	$json = json_decode($response, true);
-
-	// 	return $json;
-
-	// 	// echo "Hasil Pencarian <b>$query_search </b><hr>";
-	// 	// $i=1;
-	// 	// foreach ($json as $result){
-	// 	// 	echo "<br>$i : Username : ".$result['username']."<ul>";
-	// 	// 	foreach ($result['attributes'] as $key => $value){
-	// 	// 		echo "<li><i>".$key."</i>: <br>". $value[0]."</li>";
-	// 	// 	}
-	// 	// 	echo "</ul>";
-	// 	// 	$i++;
-		
-	// 	// }
-	// }
 	
 	/**
      * Insert new record to the database table
@@ -256,15 +196,15 @@ class SuratkeluarController extends BaseController{
 				$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
 				if($rec_id){
 					$this->set_flash_msg("Record added successfully", "success");
-					return	$this->redirect("suratkeluar");
+					return	$this->redirect("surat_internal");
 				}
 				else{
 					$this->set_page_error();
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Tambah Surat Keluar";
-		$this->render_view("suratkeluar/add.php", ['pegawaiData' => $pegawaiData]);
+		$page_title = $this->view->page_title = "Tambah Surat Internal";
+		$this->render_view("surat_internal/add.php");
 	}
 	/**
      * Update table record with formdata
@@ -305,12 +245,12 @@ class SuratkeluarController extends BaseController{
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
-				$db->where("suratkeluar.id", $rec_id);;
+				$db->where("surat_internal.id", $rec_id);;
 				$bool = $db->update($tablename, $modeldata);
 				$numRows = $db->getRowCount(); //number of affected rows. 0 = no record field updated
 				if($bool && $numRows){
 					$this->set_flash_msg("Record updated successfully", "success");
-					return $this->redirect("suratkeluar");
+					return $this->redirect("surat_internal");
 				}
 				else{
 					if($db->getLastError()){
@@ -321,18 +261,18 @@ class SuratkeluarController extends BaseController{
 						$page_error = "No record updated";
 						$this->set_page_error($page_error);
 						$this->set_flash_msg($page_error, "warning");
-						return	$this->redirect("suratkeluar");
+						return	$this->redirect("surat_internal");
 					}
 				}
 			}
 		}
-		$db->where("suratkeluar.id", $rec_id);;
+		$db->where("surat_internal.id", $rec_id);;
 		$data = $db->getOne($tablename, $fields);
-		$page_title = $this->view->page_title = "Edit  Surat Keluar";
+		$page_title = $this->view->page_title = "Edit  Surat Internal";
 		if(!$data){
 			$this->set_page_error();
 		}
-		return $this->render_view("suratkeluar/edit.php", $data);
+		return $this->render_view("surat_internal/edit.php", $data);
 	}
 	/**
      * Update single field
@@ -378,7 +318,7 @@ class SuratkeluarController extends BaseController{
 			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
-				$db->where("suratkeluar.id", $rec_id);;
+				$db->where("surat_internal.id", $rec_id);;
 				$bool = $db->update($tablename, $modeldata);
 				$numRows = $db->getRowCount();
 				if($bool && $numRows){
@@ -418,7 +358,7 @@ class SuratkeluarController extends BaseController{
 		$this->rec_id = $rec_id;
 		//form multiple delete, split record id separated by comma into array
 		$arr_rec_id = array_map('trim', explode(",", $rec_id));
-		$db->where("suratkeluar.id", $arr_rec_id, "in");
+		$db->where("surat_internal.id", $arr_rec_id, "in");
 		$bool = $db->delete($tablename);
 		if($bool){
 			$this->set_flash_msg("Record deleted successfully", "success");
@@ -427,7 +367,7 @@ class SuratkeluarController extends BaseController{
 			$page_error = $db->getLastError();
 			$this->set_flash_msg($page_error, "danger");
 		}
-		return	$this->redirect("suratkeluar");
+		return	$this->redirect("surat_internal");
 	}
 	
 	public function getKode() {
@@ -435,7 +375,7 @@ class SuratkeluarController extends BaseController{
 		$currentYear = date('Y');
 		
 		// Query to get the last number for the current year
-		$data = $db->rawQueryOne("SELECT MAX(Nomor) AS maxID FROM suratkeluar WHERE YEAR(Tanggal_Surat) = ?", [$currentYear]);
+		$data = $db->rawQueryOne("SELECT MAX(Nomor) AS maxID FROM surat_internal WHERE YEAR(Tanggal_Surat) = ?", [$currentYear]);
 		
 		$idMax = $data["maxID"];
 		$noUrut = 0;
@@ -446,7 +386,7 @@ class SuratkeluarController extends BaseController{
 		
 		// Increment the number and reset to 001 if it's a new year
 		$noUrut++;
-		$newID = "B-" . sprintf("%03s", $noUrut);
+		$newID = sprintf("%03s", $noUrut);
 		
 		return $newID;
 	}

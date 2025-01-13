@@ -23,16 +23,16 @@ $show_pagination = $this->show_pagination;
         <div class="container-fluid">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Surat Keluar</h4>
+                    <h4 class="record-title">Surat Internal</h4>
                 </div>
                 <div class="col-sm-3 ">
-                    <a  class="btn btn btn-primary my-1" href="<?php print_link("suratkeluar/add") ?>">
+                    <a  class="btn btn btn-primary my-1" href="<?php print_link("surat_internal/add") ?>">
                         <i class="fa fa-plus"></i>                              
-                        Tambah Surat Keluar 
+                        Tambah Surat Internal 
                     </a>
                 </div>
                 <div class="col-sm-4 ">
-                    <form  class="search" action="<?php print_link('suratkeluar'); ?>" method="get">
+                    <form  class="search" action="<?php print_link('surat_internal'); ?>" method="get">
                         <div class="input-group">
                             <input value="<?php echo get_value('search'); ?>" class="form-control" type="text" name="search"  placeholder="Search" />
                                 <div class="input-group-append">
@@ -54,7 +54,7 @@ $show_pagination = $this->show_pagination;
                                     if(!empty($field_name)){
                                     ?>
                                     <li class="breadcrumb-item">
-                                        <a class="text-decoration-none" href="<?php print_link('suratkeluar'); ?>">
+                                        <a class="text-decoration-none" href="<?php print_link('surat_internal'); ?>">
                                             <i class="fa fa-angle-left"></i>
                                         </a>
                                     </li>
@@ -71,7 +71,7 @@ $show_pagination = $this->show_pagination;
                                     if(get_value("search")){
                                     ?>
                                     <li class="breadcrumb-item">
-                                        <a class="text-decoration-none" href="<?php print_link('suratkeluar'); ?>">
+                                        <a class="text-decoration-none" href="<?php print_link('surat_internal'); ?>">
                                             <i class="fa fa-angle-left"></i>
                                         </a>
                                     </li>
@@ -103,7 +103,7 @@ $show_pagination = $this->show_pagination;
                         <?php $this :: display_page_errors(); ?>
                         <div  class=" animated fadeIn page-content">
                         <div class="form-group">
-                            <label for="tahunFilter">Lihat Arsip Surat Keluar:</label>
+                            <label for="tahunFilter">Lihat Arsip Surat Internal:</label>
                             <select id="tahunFilter" class="form-control">
                             <option value="">-- Pilih --</option>
                                 <?php
@@ -116,7 +116,7 @@ $show_pagination = $this->show_pagination;
                                 ?>
                             </select>
                         </div>
-                            <div id="suratkeluar-list-records">
+                            <div id="surat_internal-list-records">
                                 <div id="page-report-body" class="table-responsive">
                                     <table class="table  table-striped table-sm text-left">
                                         <thead class="table-header bg-light">
@@ -162,7 +162,7 @@ $show_pagination = $this->show_pagination;
                                                         <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                             data-value="<?php echo $data['Tanggal_Surat']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("suratkeluar/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-url="<?php print_link("surat_internal/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Tanggal_Surat" 
                                                             data-title="Enter Tanggal Surat" 
                                                             data-placement="left" 
@@ -177,7 +177,7 @@ $show_pagination = $this->show_pagination;
                                                     <td class="td-Tujuan_Surat">
                                                         <span  data-value="<?php echo $data['Tujuan_Surat']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("suratkeluar/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-url="<?php print_link("surat_internal/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Tujuan_Surat" 
                                                             data-title="Enter Tujuan Surat" 
                                                             data-placement="left" 
@@ -192,7 +192,7 @@ $show_pagination = $this->show_pagination;
                                                     <td class="td-Nama_Pegawai">
                                                         <span  data-value="<?php echo $data['Nama_Pegawai']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("suratkeluar/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-url="<?php print_link("surat_internal/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Nama_Pegawai" 
                                                             data-title="Enter Nama Pegawai" 
                                                             data-placement="left" 
@@ -205,10 +205,10 @@ $show_pagination = $this->show_pagination;
                                                         </span>
                                                     </td>
                                                     <td class="td-Nama_Tim_Kerja">
-                                                        <span  data-source='<?php print_link('api/json/suratkeluar_Nama_Tim_Kerja_option_list'); ?>' 
+                                                        <span  data-source='<?php print_link('api/json/surat_internal_Nama_Tim_Kerja_option_list'); ?>' 
                                                             data-value="<?php echo $data['Nama_Tim_Kerja']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("suratkeluar/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-url="<?php print_link("surat_internal/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Nama_Tim_Kerja" 
                                                             data-title="Select a value ..." 
                                                             data-placement="left" 
@@ -224,7 +224,7 @@ $show_pagination = $this->show_pagination;
                                                         <span  data-source='<?php echo json_encode_quote(Menu :: $Jenis_Kegiatan); ?>' 
                                                             data-value="<?php echo $data['Jenis_Kegiatan']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("suratkeluar/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-url="<?php print_link("surat_internal/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Jenis_Kegiatan" 
                                                             data-title="Select a value ..." 
                                                             data-placement="left" 
@@ -239,7 +239,7 @@ $show_pagination = $this->show_pagination;
                                                     <td class="td-Nomor_Surat">
                                                         <span  data-value="<?php echo $data['Nomor_Surat']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("suratkeluar/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-url="<?php print_link("surat_internal/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Nomor_Surat" 
                                                             data-title="Enter Nomor Surat" 
                                                             data-placement="left" 
@@ -254,7 +254,7 @@ $show_pagination = $this->show_pagination;
                                                     <td class="td-Ringkasan_Isi_Surat">
                                                         <span  data-value="<?php echo $data['Ringkasan_Isi_Surat']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("suratkeluar/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-url="<?php print_link("surat_internal/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Ringkasan_Isi_Surat" 
                                                             data-title="Enter Ringkasan Isi Surat" 
                                                             data-placement="left" 
@@ -269,7 +269,7 @@ $show_pagination = $this->show_pagination;
                                                     <td class="td-Keterangan">
                                                         <span  data-value="<?php echo $data['Keterangan']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("suratkeluar/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-url="<?php print_link("surat_internal/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Keterangan" 
                                                             data-title="Enter Keterangan" 
                                                             data-placement="left" 
@@ -286,10 +286,10 @@ $show_pagination = $this->show_pagination;
                                                         if (USER_ROLE === 'Admin') {
                                                             ?>
                                                            <th class="td-btn">
-                                                                <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("suratkeluar/edit/$rec_id"); ?>">
+                                                                <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("surat_internal/edit/$rec_id"); ?>">
                                                                     <i class="fa fa-edit"></i> Edit
                                                                 </a>
-                                                                <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("suratkeluar/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
+                                                                <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("surat_internal/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                                     <i class="fa fa-times"></i>
                                                                     Delete
                                                                 </a>
@@ -326,7 +326,7 @@ $show_pagination = $this->show_pagination;
                                         <div class="row justify-content-center">    
                                             <div class="col-md-auto justify-content-center">    
                                                 <div class="p-3 d-flex justify-content-between">    
-                                                    <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("suratkeluar/delete/{sel_ids}/?csrf_token=$csrf_token&redirect=$current_page"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
+                                                    <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("surat_internal/delete/{sel_ids}/?csrf_token=$csrf_token&redirect=$current_page"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                                                         <i class="fa fa-times"></i> Delete Selected
                                                     </button>
                                                     <div class="dropup export-btn-holder mx-1">

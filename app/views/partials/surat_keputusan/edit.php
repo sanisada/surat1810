@@ -34,11 +34,6 @@ $redirect_to = $this->redirect_to;
                     <div  class="bg-light p-3 animated fadeIn page-content">
                         <form novalidate  id="" role="form" enctype="multipart/form-data"  class="form page-form form-horizontal needs-validation" action="<?php print_link("surat_keputusan/edit/$page_id/?csrf_token=$csrf_token"); ?>" method="post">
                             <div>
-                                <?php
-                                    $kode_controller = new Surat_keputusanController;
-                                    $kode = $kode_controller->getKode();
-                                    $year = $kode_controller->getYear();
-                                ?>
                                 <div class="form-group ">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -97,6 +92,20 @@ $redirect_to = $this->redirect_to;
                                             <div class="">
                                                 <input id="ctrl-Waktu_Pelaksanaan" value="<?php  echo $data['Waktu_Pelaksanaan']; ?>" type="text" placeholder="Enter Waktu Pelaksanaan" name="Waktu_Pelaksanaan" class="form-control" />
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="file-upload"><h6>Upload PDF File</h6></label><br/>
+
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="file" name="file_pdf" id="file-upload" accept=".pdf" />
+                                            <?php if (!empty($data['file_pdf'])): ?>
+                                                <small>File saat ini: <?php echo htmlspecialchars($data['file_pdf']); ?></small>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>

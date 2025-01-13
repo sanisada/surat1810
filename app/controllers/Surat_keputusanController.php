@@ -22,9 +22,15 @@ class Surat_keputusanController extends SecureController{
 			"Tanggal_Surat", 
 			"Perihal", 
 			"Catatan", 
-			"Waktu_Pelaksanaan");
+			"Waktu_Pelaksanaan",
+			"file_pdf");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
+
+		$currentYear = date('Y'); // Mengambil tahun berjalan
+		$tahun = $request->tahun ?? $currentYear; // Jika tidak ada parameter tahun, gunakan tahun berjalan
+		$db->where("YEAR(Tanggal_Surat)", $tahun);
+		
 		if(!empty($request->search)){
 			$text = trim($request->search); 
 			$search_condition = "(
@@ -32,10 +38,11 @@ class Surat_keputusanController extends SecureController{
 				surat_keputusan.Tanggal_Surat LIKE ? OR 
 				surat_keputusan.Perihal LIKE ? OR 
 				surat_keputusan.Catatan LIKE ? OR 
-				surat_keputusan.Waktu_Pelaksanaan LIKE ?
+				surat_keputusan.Waktu_Pelaksanaan LIKE ? OR
+				surat_keputusan.file_pdf LIKE ?
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
+				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -165,22 +172,25 @@ class Surat_keputusanController extends SecureController{
 	 * @param $formdata array() from $_POST
      * @return array
      */
-	function edit($rec_id = null, $formdata = null){
+	function edit($rec_id = null, $formdata = null) {
 		$request = $this->request;
 		$db = $this->GetModel();
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
-		 //editable fields
-		$fields = $this->fields = array("Nomor","Tanggal_Surat","Perihal","Catatan","Waktu_Pelaksanaan");
-		if($formdata){
+		
+		// Editable fields, tambahkan "file_pdf" sebagai kolom untuk menyimpan nama file
+		$fields = $this->fields = array("Nomor", "Tanggal_Surat", "Perihal", "Catatan", "Waktu_Pelaksanaan", "file_pdf");
+	
+		if ($formdata) {
 			$postdata = $this->format_request_data($formdata);
+			
 			$this->rules_array = array(
 				'Nomor' => 'required',
-				'Tanggal_Surat' 	=> 'required', 
-				'Perihal' 			=> 'required', 
-				'Catatan' 			=> 'required', 
-				
+				'Tanggal_Surat' => 'required',
+				'Perihal' => 'required',
+				'Catatan' => 'required'
 			);
+	
 			$this->sanitize_array = array(
 				'Nomor' => 'sanitize_string',
 				'Tanggal_Surat' => 'sanitize_string',
@@ -188,37 +198,95 @@ class Surat_keputusanController extends SecureController{
 				'Catatan' => 'sanitize_string',
 				'Waktu_Pelaksanaan' => 'sanitize_string'
 			);
+	
+			// Validasi data form
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
-			if($this->validated()){
-				$db->where("surat_keputusan.Nomor", $rec_id);;
+	
+			// Tangani unggahan file PDF
+			if (!empty($_FILES['file_pdf']['name'])) {
+				$file_info = $_FILES['file_pdf'];
+				$upload_dir = __DIR__ . '/../../assets/sk/'; // Direktori untuk menyimpan file
+				$new_filename = uniqid() . "_" . basename($file_info['name']);
+				$target_path = $upload_dir . $new_filename;
+
+				// Pindahkan file ke lokasi tujuan
+				if (move_uploaded_file($file_info['tmp_name'], $target_path)) {
+					$modeldata['file_pdf'] = $new_filename;
+				} else {
+					$this->set_page_error("Gagal mengunggah file.");
+					echo '<pre>';
+					print_r($_FILES['file_pdf']);
+					echo '</pre>';
+				}
+			}
+	
+			if ($this->validated()) {
+				$db->where("surat_keputusan.Nomor", $rec_id);
 				$bool = $db->update($tablename, $modeldata);
-				$numRows = $db->getRowCount(); //number of affected rows. 0 = no record field updated
-				if($bool && $numRows){
+				$numRows = $db->getRowCount();
+	
+				if ($bool && $numRows) {
 					$this->set_flash_msg("Record updated successfully", "success");
 					return $this->redirect("surat_keputusan");
-				}
-				else{
-					if($db->getLastError()){
+				} else {
+					if ($db->getLastError()) {
 						$this->set_page_error();
-					}
-					elseif(!$numRows){
-						//not an error, but no record was updated
+					} elseif (!$numRows) {
 						$page_error = "No record updated";
 						$this->set_page_error($page_error);
 						$this->set_flash_msg($page_error, "warning");
-						return	$this->redirect("surat_keputusan");
+						return $this->redirect("surat_keputusan");
 					}
 				}
 			}
 		}
-		$db->where("surat_keputusan.Nomor", $rec_id);;
+	
+		$db->where("surat_keputusan.Nomor", $rec_id);
 		$data = $db->getOne($tablename, $fields);
 		$page_title = $this->view->page_title = "Edit SK";
-		if(!$data){
+	
+		if (!$data) {
 			$this->set_page_error();
 		}
+	
 		return $this->render_view("surat_keputusan/edit.php", $data);
+	}	
+
+	public function openPdf($id) {
+		$db = $this->GetModel();
+		$tablename = 'surat_keputusan';
+	
+		// Fetch the record by ID
+		$record = $db->where('Nomor', $id)->getOne($tablename);
+		
+		if (!$record || empty($record['file_pdf'])) {
+			$this->set_page_error("PDF file not found.");
+			return;
+		}
+		
+		// Define the file path
+		$pdfFileName = $record['file_pdf'];
+		$uploadDir = __DIR__ . '/../../assets/sk/';
+		$filePath = $uploadDir . $pdfFileName;
+	
+		// Check if file exists
+		if (!file_exists($filePath)) {
+			$this->set_page_error("File not found.");
+			return;
+		}
+	
+		// Set headers to display PDF inline
+		header('Content-Type: application/pdf');
+		header('Content-Disposition: inline; filename="' . basename($pdfFileName) . '"');
+		header('Content-Length: ' . filesize($filePath));
+	
+		// Clear output buffer and read the PDF file
+		ob_clean();
+		flush();
+		readfile($filePath);
+		exit;
 	}
+
 	/**
      * Update single field
 	 * @param $rec_id (select record by table primary key)

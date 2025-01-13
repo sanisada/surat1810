@@ -32,6 +32,12 @@ class Menu{
 			'label' => 'SURAT TUGAS', 
 			'icon' => ''
 		),
+
+		array(
+			'path' => 'surat_internal', 
+			'label' => 'SURAT INTERNAL', 
+			'icon' => ''
+		),
 		
 		array(
 			'path' => 'surat_keputusan', 

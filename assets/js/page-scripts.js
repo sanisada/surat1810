@@ -237,7 +237,7 @@ $('#ctrl-Jenis_Kegiatan,#ctrl-Kode_Sensus,#ctrl-Subkode_Sensus,#ctrl-Bagian_Sens
 	var Nama_Tim_Kerja = $('#ctrl-Nama_Tim_Kerja').val();
 	var Nomor = $('#ctrl-Nomor').val();
 	const currentYear = new Date().getFullYear();
-
+	
 	// Determine Nomor_Sensus and Nomor_Klasifikasi
 	var Nomor_Sensus = Bagian_Sensus || Subkode_Sensus;
 	var Nomor_Klasifikasi = Bagian_Klasifikasi || Subkode_Klasifikasi;

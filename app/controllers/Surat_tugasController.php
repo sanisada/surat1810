@@ -50,6 +50,10 @@ class Surat_tugasController extends SecureController{
 	
 		// Mendapatkan paginasi saat ini, misalnya array(page_number, page_limit)
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT);
+
+		$currentYear = date('Y'); // Mengambil tahun berjalan
+		$tahun = $request->tahun ?? $currentYear; // Jika tidak ada parameter tahun, gunakan tahun berjalan
+		$db->where("YEAR(Tanggal_Surat)", $tahun);
 	
 		// Pencarian dalam tabel
 		if (!empty($request->search)) {

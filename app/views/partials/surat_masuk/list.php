@@ -102,6 +102,20 @@ $show_pagination = $this->show_pagination;
                     <div class="col-md-12 comp-grid">
                         <?php $this :: display_page_errors(); ?>
                         <div  class=" animated fadeIn page-content">
+                        <div class="form-group">
+                            <label for="tahunFilter">Lihat Arsip Surat Masuk:</label>
+                            <select id="tahunFilter" class="form-control">
+                            <option value="">-- Pilih --</option>
+                                <?php
+                                $currentYear = date('Y');
+                                $selectedYear = $currentYear;
+                                for ($year = $currentYear - 1; $year >= 2024; $year--) {
+                                    $selected = ($year == $selectedYear) ? 'selected' : '';
+                                    echo "<option value='$year' $selected>$year</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
                             <div id="surat_masuk-list-records">
                                 <div id="page-report-body" class="table-responsive">
                                     <table class="table  table-striped table-sm text-left">
@@ -335,9 +349,19 @@ $show_pagination = $this->show_pagination;
                                                         }
                                                         ?>
                                                     </div>
+                                                    
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </section>
+                            <script>
+    document.getElementById('tahunFilter').addEventListener('change', function() {
+        let selectedYear = this.value;
+        let url = new URL(window.location.href);
+        url.searchParams.set('tahun', selectedYear);
+        window.location.href = url.href;
+    });
+</script>

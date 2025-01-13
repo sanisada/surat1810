@@ -102,6 +102,20 @@ $show_pagination = $this->show_pagination;
                     <div class="col-md-12 comp-grid">
                         <?php $this :: display_page_errors(); ?>
                         <div  class=" animated fadeIn page-content">
+                        <div class="form-group">
+                            <label for="tahunFilter">Lihat Arsip SK:</label>
+                            <select id="tahunFilter" class="form-control">
+                            <option value="">-- Pilih --</option>
+                                <?php
+                                $currentYear = date('Y');
+                                $selectedYear = $currentYear;
+                                for ($year = $currentYear - 1; $year >= 2024; $year--) {
+                                    $selected = ($year == $selectedYear) ? 'selected' : '';
+                                    echo "<option value='$year' $selected>$year</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
                             <div id="surat_keputusan-list-records">
                                 <div id="page-report-body" class="table-responsive">
                                     <table class="table  table-striped table-sm text-left">
@@ -222,9 +236,6 @@ $show_pagination = $this->show_pagination;
                                                         if (USER_ROLE === 'Admin') {
                                                             ?>
                                                             <th class="td-btn">
-                                                                <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("surat_keputusan/view/$rec_id"); ?>">
-                                                                    <i class="fa fa-eye"></i> View
-                                                                </a>
                                                                 <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("surat_keputusan/edit/$rec_id"); ?>">
                                                                     <i class="fa fa-edit"></i> Edit
                                                                 </a>
@@ -232,6 +243,9 @@ $show_pagination = $this->show_pagination;
                                                                     <i class="fa fa-times"></i>
                                                                     Delete
                                                                 </a>
+                                                                <?php if (isset($data['file_pdf'])): ?>
+                                                                    <a class="btn btn-sm btn-primary has-tooltip" href="<?php print_link("surat_keputusan/openPdf/$rec_id")?>" target="_blank"><i class="fa fa-eye"></i> Open PDF File</a>
+                                                                <?php endif; ?>
                                                             </th>
                                                     <?php
                                                         }
@@ -323,3 +337,11 @@ $show_pagination = $this->show_pagination;
                                     </div>
                                 </div>
                             </section>
+                            <script>
+    document.getElementById('tahunFilter').addEventListener('change', function() {
+        let selectedYear = this.value;
+        let url = new URL(window.location.href);
+        url.searchParams.set('tahun', selectedYear);
+        window.location.href = url.href;
+    });
+</script>

@@ -26,6 +26,12 @@ class Surat_masukController extends SecureController{
 			"Ringkasan_Isi_Surat", 
 			"Keterangan");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
+
+		// Filter berdasarkan tahun
+		$currentYear = date('Y'); // Mengambil tahun berjalan
+		$tahun = $request->tahun ?? $currentYear; // Jika tidak ada parameter tahun, gunakan tahun berjalan
+		$db->where("YEAR(Tanggal_Surat)", $tahun);
+
 		//search table record
 		if(!empty($request->search)){
 			$text = trim($request->search); 
@@ -79,6 +85,88 @@ class Surat_masukController extends SecureController{
 		$this->view->report_orientation = "portrait";
 		$this->render_view("surat_masuk/list.php", $data); //render the full page
 	}
+
+	function index_by_year($tahun = null){
+		$request = $this->request;
+		$db = $this->GetModel();
+		$tablename = $this->tablename;
+		$fields = array(
+			"Nomor", 
+			"Tanggal_Surat", 
+			"Asal_Surat", 
+			"Penerima", 
+			"Nomor_Surat", 
+			"Ringkasan_Isi_Surat", 
+			"Keterangan"
+		);
+		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination
+	
+		// Menggunakan tahun berjalan jika tidak ada parameter tahun
+		$currentYear = date('Y');
+		$tahun = $tahun ?? $currentYear;
+	
+		// Filter berdasarkan tahun pada kolom Tanggal_Surat
+		$db->where("YEAR(Tanggal_Surat)", $tahun);
+	
+		// Pencarian data
+		if (!empty($request->search)) {
+			$text = trim($request->search); 
+			$search_condition = "(
+				surat_masuk.Nomor LIKE ? OR 
+				surat_masuk.Tanggal_Surat LIKE ? OR 
+				surat_masuk.Asal_Surat LIKE ? OR 
+				surat_masuk.Penerima LIKE ? OR 
+				surat_masuk.Nomor_Surat LIKE ? OR 
+				surat_masuk.Ringkasan_Isi_Surat LIKE ? OR 
+				surat_masuk.Keterangan LIKE ?
+			)";
+			$search_params = array(
+				"%$text%", "%$text%", "%$text%", "%$text%", "%$text%", "%$text%", "%$text%"
+			);
+			$db->where($search_condition, $search_params);
+			$this->view->search_template = "surat_masuk/search.php";
+		}
+	
+		// Urutan data
+		if (!empty($request->orderby)) {
+			$orderby = $request->orderby;
+			$ordertype = (!empty($request->ordertype) ? $request->ordertype : ORDER_TYPE);
+			$db->orderBy($orderby, $ordertype);
+		} else {
+			$db->orderBy("surat_masuk.Nomor", ORDER_TYPE);
+		}
+	
+		// Fetch data
+		$tc = $db->withTotalCount();
+		$records = $db->get($tablename, $pagination, $fields);
+		$records_count = count($records);
+		$total_records = intval($tc->totalCount);
+		$page_limit = $pagination[1];
+		$total_pages = ceil($total_records / $page_limit);
+	
+		// Format data
+		$data = new stdClass;
+		$data->records = $records;
+		$data->record_count = $records_count;
+		$data->total_records = $total_records;
+		$data->total_page = $total_pages;
+	
+		// Error handling
+		if ($db->getLastError()) {
+			$this->set_page_error();
+		}
+	
+		// Laporan dan Tampilan
+		$page_title = $this->view->page_title = "Surat Masuk Tahun $tahun";
+		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
+		$this->view->report_title = $page_title;
+		$this->view->report_layout = "report_layout.php";
+		$this->view->report_paper_size = "A4";
+		$this->view->report_orientation = "portrait";
+	
+		$this->render_view("surat_masuk/list.php", $data); // Render halaman
+	}
+	
 	/**
      * View record detail 
 	 * @param $rec_id (select record by table primary key) 
