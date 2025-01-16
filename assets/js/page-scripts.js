@@ -297,7 +297,25 @@ $('#ctrl-Jenis_Kegiatan,#ctrl-Kode_Sensus,#ctrl-Subkode_Sensus,#ctrl-Bagian_Sens
 		// You can add additional logic here if needed
 	});
 });
-});
+
+// $('#ctrl-RO').on('change', function(){ 
+// 	var RO = $('#ctrl-RO').val();
+// 	var Nomor = $('#ctrl-Nomor').val();
+// 	var Nomor_RO = $('#ctrl-Nomor_RO').val();
+
+// 	const currentYear = new Date().getFullYear();
+
+// 	Nomor_Surat = `${Nomor}/${RO}/${currentYear}`;
+	
+// 	// Set Nomor_Surat in the input field
+// 	$('#ctrl-Nomor_RO').val(Nomor_Surat);
+
+// 	// Optional: Add event listener for changes in the Nomor input field
+// 	$('#ctrl-Nomor').on('input', function(){
+// 		// You can add additional logic here if needed
+// 	});
+// });
+
 /**
  * Table toggle select all records
  */

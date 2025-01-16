@@ -40,6 +40,14 @@ class SharedController extends BaseController{
 		return $arr;
 	}
 
+	function permintaan_RO_option_list(){
+		$db = $this->GetModel();
+		$sqltext = "SELECT  DISTINCT Kode AS value,Keterangan AS label FROM kode_permintaan";
+		$queryparams = null;
+		$arr = $db->rawQuery($sqltext, $queryparams);
+		return $arr;
+	}
+
 	function dokumentasi_Kategori_option_list(){
 		$db = $this->GetModel();
 		$sqltext = "SELECT  DISTINCT Kode_Kategori AS value,Nama_Kategori AS label FROM kategori_dokumentasi";

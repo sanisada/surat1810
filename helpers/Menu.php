@@ -50,6 +50,12 @@ class Menu{
 			'label' => 'BERITA ACARA', 
 			'icon' => ''
 		),
+
+		array(
+			'path' => 'form_permintaan', 
+			'label' => 'FORM PERMINTAAN', 
+			'icon' => ''
+		),
 		
 		array(
 			'path' => 'namatimkerja', 
